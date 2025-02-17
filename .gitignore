@@ -1,5 +1,6 @@
 api/node_modules/
 *.exe
+*.o
 config.py
 __pycache__/
 
