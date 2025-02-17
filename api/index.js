@@ -11,6 +11,17 @@ app.get("/players", (req, res) => {
     res.json(players);
 });
 
+app.get("/players/:id", (req, res) => {
+    const idNguoiChoi = req.params.id;
+    const player = players.find(p => p.idNguoiChoi === idNguoiChoi);
+
+    if (!player) {
+        return res.status(404).json({ message: "Khong ton tai id" });
+    }
+
+    res.json(player);
+});
+
 app.post("/players", (req, res) => {
     const { weaponName, armorName, tenNguoiChoi, idNguoiChoi } = req.body;
 
