@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "Weapon.h"
-#include "Player.h"
+#include "Weapon.hpp"
+#include "Player.hpp"
 #include <vector>
 
 class WeaponManager

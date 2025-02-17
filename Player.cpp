@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "Player.hpp"
 
 Player::Player() : _name("Unknown"), _ID("Unknown"), _points(0) {}
 
