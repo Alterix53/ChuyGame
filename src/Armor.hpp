@@ -6,14 +6,16 @@ enum class ArmorPart{ // rat minecraft
 	HELMET,
 	CHESTPLATE,
 	LEGGINGS,
-	BOOTS
+	BOOTS,
+	BASE_ARMOR_PART
 };
 
 enum class ArmorType { // cai nay thi khong nhai nhe
 	BULLETPROOF,
 	CHAIN,
 	LEATHER,
-	PLATE
+	PLATE,
+	BASE_ARMOR_TYPE
 };
 
 class Armor

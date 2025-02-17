@@ -1,7 +1,8 @@
 #include "Armor.hpp"
 
 // begin implementation of Armor class
-Armor::Armor() : _name("Default"), _type(ArmorType::BULLETPROOF), _part(ArmorPart::HELMET), _resistance(0), _cost(0) {} 
+Armor::Armor() : _name("Default"), _type(ArmorType::BASE_ARMOR_TYPE), _part(ArmorPart::BASE_ARMOR_PART)
+, _resistance(0), _cost(0) {} 
 
 Armor::Armor(std::string name, ArmorType type, ArmorPart part, int resistance, int cost) : 
 	_name(name), _type(type), _part(part), _resistance(resistance), _cost(cost) {}
