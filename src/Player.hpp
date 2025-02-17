@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "Weapon.h"
+#include "Weapon.hpp"
 #include <vector>
 
 class Player
