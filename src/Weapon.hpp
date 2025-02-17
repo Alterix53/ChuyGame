@@ -24,7 +24,7 @@ public:
 	int getCost();
 
 	void printInfo() const;
-protected:
+private:
 	int _damage;
 	int _cost;
 	std::string _name;
