@@ -14,7 +14,7 @@ void displayMenu(int option) {
             std::cout << "\033[1;32m";
             std::cout << "\t\t\t> " << options[i] << " <" << std::endl;
             std::cout << "\033[0m";
-} else {
+        } else {
             std::cout << "\t\t\t  " << options[i] << "  " << std::endl;
         }
     }
