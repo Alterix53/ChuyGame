@@ -1,7 +1,7 @@
 import express from 'express'
 
 const app = express();
-const port = 3000;
+// const port = 3000;
 
 app.use(express.json());
 
@@ -35,6 +35,8 @@ app.post("/players", (req, res) => {
     res.status(201).json({ message: "Them thanh cong", newPlayer });
 });
 
-app.listen(port, () => {
-    console.log(`http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//     console.log(`http://localhost:${port}`);
+// });
+
+export default app;
