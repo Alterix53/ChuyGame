@@ -1,10 +1,10 @@
 #include <iostream>
 #include <conio.h>
 
-const int OPTION = 3;
+const int OPTION = 4;
 
 void displayMenu(int option) {
-    std::string options[] = {"Character", "Shop", "Play"};
+    std::string options[] = {"Character", "Shop", "Play", "Exit"};
 
     std::cout << "\033[1;31m";
     std::cout << "\t\t\t  CHUYGAME" << "\n\n";
@@ -31,21 +31,20 @@ int main() {
         char key = getch();
 
         if (key == 'w' || key == 'W') {
-            if (option > 0) {
-                option--;
-            } else {
-                option = OPTION - 1;
-            }
+            option = (option > 0) ? option - 1 : OPTION - 1;
         } else if (key == 's' || key == 'S') {
-            if (option < OPTION - 1) {
-                option++;
-            } else {
-                option = 0;
+            option = (option < OPTION - 1) ? option + 1 : 0;
+        } else if (key == -32) {
+            key = getch(); 
+            
+            if (key == 72) {
+                option = (option > 0) ? option - 1 : OPTION - 1;
+            } else if (key == 80) { 
+                option = (option < OPTION - 1) ? option + 1 : 0;
             }
         } else if (key == '\n' || key == '\r') {
             break;
         }
-
     }
 
     std::cout << "\033[?25h";
