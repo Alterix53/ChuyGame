@@ -1,18 +1,17 @@
 #include "Player.hpp"
-#include <typeinfo>
 
 Player::Player() : _name("Unknown"), _ID("Unknown"), _points(0), _health(100), _attack(10), _atkSpeed(1), 
-_defense(10), _weapIndex(0), _weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate() {
+_defense(10), _weapIndex(WEAPON_INDEX), _weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate() {
 }
 
 Player::Player(std::string name, std::string ID, int points) : 
 	_name(name), _ID(ID), _points(points), _health(100), _attack(10), _atkSpeed(1), _defense(10),
-	_weapIndex(0),	_weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate()
+	_weapIndex(WEAPON_INDEX),	_weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate()
 {}
 
 Player::Player(std::string name, std::string ID, int points, int health, int attack, int atkSpeed, int defense) :
 	_name(name), _ID(ID), _points(points), _health(health), _attack(attack), _atkSpeed(atkSpeed), _defense(defense),
-	_weapIndex(0),	_weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate()
+	_weapIndex(WEAPON_INDEX),	_weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate()
 {}
 
 Player::Player(const Player& player) :
@@ -34,21 +33,66 @@ int Player::getPoint() {
 	return _points;
 }
 
-bool Player::addWeapon(Weapon weapon) {
+void Player::addWeapon(Weapon weapon) {
 	int cost = weapon.getCost();
 	if (cost > _points) {
 		std::cerr << "Not enough points to buy this weapon!" << std::endl;
-		return false;
+		return;
 	}
 
 	if (_weapIndex >= 2) {
 		std::cerr << "You can only have 2 weapons!" << std::endl;
-		return false;
+		return;
 	}
 
 	_weapon[_weapIndex++] = weapon;
 	_points -= cost;
-	return true;
+}
+
+void Player::addArmor(Armor armor) {
+
+	int cost = armor.getCost();
+	if (cost > _points) {
+		std::cerr << "Not enough points to buy this armor!" << std::endl;
+		return;
+	}
+
+	ArmorPart part = armor.getPart();
+	switch (part) {
+	case ArmorPart::HELMET:
+		if (_helmet.getArmorPartString() != "Unknown") {
+			std::cerr << "You already have a helmet!" << std::endl;
+			return;
+		}
+		_helmet = armor;
+		break;
+	case ArmorPart::CHESTPLATE:
+		if (_chestplate.getArmorPartString() != "Unknown") {
+			std::cerr << "You already have a chestplate!" << std::endl;
+			return;
+		}
+		_chestplate = armor;
+		break;
+	case ArmorPart::LEGGINGS:
+		if (_leggings.getArmorPartString() != "Unknown") {
+			std::cerr << "You already have leggings!" << std::endl;
+			return;
+		}
+		_leggings = armor;
+		break;
+	case ArmorPart::BOOTS:
+		if (_boots.getArmorPartString() != "Unknown") {
+			std::cerr << "You already have boots!" << std::endl;
+			return;
+		}
+		_boots = armor;
+		break;
+	default:
+		std::cerr << "Invalid armor part!" << std::endl;
+		return;
+	}
+
+	_points -= cost;
 }
 
 void Player::printInfo() {
@@ -68,26 +112,61 @@ void Player::printInfo() {
 	std::cout << "Weapons: ";
 	if (_weapIndex == 0) {
 		std::cout << "No weapons!" << std::endl;
-		return;
 	}
-
-	std::cout << std::endl;
-	for (int i = 0; i < _weapIndex; i++) {
-		std::cout << "Weapon " << i + 1 << ": " << std::endl;
-		_weapon[i].printInfo();
+	else {
+		std::cout << std::endl;
+		for (int i = 0; i < _weapIndex; i++) {
+			std::cout << "Weapon " << i + 1 << ": " << std::endl;
+			_weapon[i].printInfo();
+		}
 	}
 
 	// armors
+	bool hasArmor = false;
 	std::cout << "Armors: " << std::endl;
-	if (_helmet.getArmorPartString() == "Unknown") {
+	if (_helmet.getArmorPartString() != "Unknown") {
+		hasArmor = true;
 		std::cout << "Helmet: " << std::endl;
 		_helmet.printInfo();
 	}
+
+	if (_chestplate.getArmorPartString() != "Unknown") {
+		hasArmor = true;
+		std::cout << "Chestplate: " << std::endl;
+		_chestplate.printInfo();
+	}
+
+	if (_leggings.getArmorPartString() != "Unknown") {
+		hasArmor = true;
+		std::cout << "Leggings: " << std::endl;
+		_leggings.printInfo();
+	}
+
+	if (_boots.getArmorPartString() != "Unknown") {
+		hasArmor = true;
+		std::cout << "Boots: " << std::endl;
+		_boots.printInfo();
+	}
+
+	if (!hasArmor) {
+		std::cout << "No armors!" << std::endl;
+	}
 }
 
-void Player::updateStatEquipItem(Item item) {
-	// if the equipped item is a weapon
-	if (typeid(item) == typeid(Weapon)) {
-		
-	}
+void Player::updateStatEquipWeapon(Weapon weapon) {
+	_attack += weapon.getDamage();
+	_atkSpeed += weapon.getAtkSpeed();
+}
+
+void Player::updateStatUnequipWeapon(Weapon weapon) {
+	_attack -= weapon.getDamage();
+	_atkSpeed -= weapon.getAtkSpeed();
+}
+
+void Player::updateStatEquipArmor(Armor armor) {
+	_defense += armor.getDefense();
+}
+
+void Player::updateStatUnequipArmor(Armor armor) {
+	_defense -= armor.getDefense();
 }

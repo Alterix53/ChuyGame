@@ -19,4 +19,3 @@ public:
 	// print info
 	void printInfo();
 };
-
