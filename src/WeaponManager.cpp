@@ -18,7 +18,7 @@ void WeaponManager::printAvailableWeapons() const {
 	std::cout << "Available weapons for players: " << std::endl;
 	for (int i = 0; i < _availableWeapons.size(); i++) {
 		std::cout << "Weapon " << i + 1 << ": " << std::endl;
-		_availableWeapons[i].printInfo();
+		//_availableWeapons[i].printInfo();
 	}
 
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "Item.hpp"
 
 enum class ArmorPart{ // rat minecraft
 	HELMET,
@@ -18,31 +19,34 @@ enum class ArmorType { // cai nay thi khong nhai nhe
 	BASE_ARMOR_TYPE
 };
 
-class Armor
+class Armor : public Item
 {
 private:
-	std::string _name;
+	// phan loai
 	ArmorType _type;
 	ArmorPart _part;
-	int _resistance;
-	int _cost;
-	std::string getArmorPartString();
-	std::string getArmorTypeString();
+
+	// thong so rieng cua armor
+	int _defense;
+	int _health;
+
 public:
 
 	// constructor and destructor
 	Armor();
-	Armor(std::string name, ArmorType type, ArmorPart part, int resistance, int cost);
+	Armor(std::string name, ArmorType type, ArmorPart part, int defense, int cost);
 	~Armor();
 
 	// getter and setter
 	std::string getName();
 	ArmorType getType();
 	ArmorPart getPart();
-	int getResistance();
+	int getDefense();
 	int getCost();
 
+	// get the armor type and part string
+	std::string getArmorPartString();
+	std::string getArmorTypeString();
+
 	void printInfo();
-
 };
-
