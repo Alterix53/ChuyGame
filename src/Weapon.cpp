@@ -1,8 +1,8 @@
 #include "Weapon.hpp"
 
-Weapon::Weapon() : _damage(0), _cost(0), _name("Unknown"), _type(WeaponType::BASEWEAPON) {}
-Weapon::Weapon(std::string name, int damage, int cost, WeaponType type) :
-	_name(name), _damage(damage), _cost(cost), _type(type) {}
+Weapon::Weapon() : Item(), _type(WeaponType::BASEWEAPON), _damage(0), _atkSpeed(0) {}
+Weapon::Weapon(std::string name, int cost, WeaponType type, int damage, int atkSpeed) :
+	Item(name, cost), _type(type), _damage(damage), _atkSpeed(atkSpeed) {}
 
 std::string Weapon::getName() {
 	return _name;
@@ -23,11 +23,33 @@ void Weapon::setDamage(int damage) {
 	_damage = damage;
 }
 
-void Weapon::printInfo() const {
-	// in type kieu gi ching oi cuu voi, ma chac khong can dau nhi
+int Weapon::getAtkSpeed() {
+	return _atkSpeed;
+}
+
+std::string Weapon::getWeaponTypeString() {
+	switch (_type) {
+	case WeaponType::SWORD:
+		return "Sword";
+	case WeaponType::BOW:
+		return "Bow";
+	case WeaponType::DAGGER:
+		return "Dagger";
+	case WeaponType::AXE:
+		return "Axe";
+	default:
+		return "Unknown";
+	}
+}
+
+void Weapon::printInfo() {
+	
 	std::cout << "Weapon's name: " << _name << std::endl;
+	std::cout << "Type: " << getWeaponTypeString() << std::endl;
 	std::cout << "Damage: " << _damage << std::endl;
+	std::cout << "Attack Speed: " << _atkSpeed << std::endl;
 	std::cout << "Cost: " << _cost << std::endl;
+
 }
 
 Weapon::~Weapon() {}
