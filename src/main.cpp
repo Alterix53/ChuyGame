@@ -1,7 +1,7 @@
 #include <iostream>
 #include <conio.h>
 #include "Shop.hpp"
-#include "data/GetData.cpp"
+#include "data/Data.hpp"
 
 const int OPTION = 4;
 
