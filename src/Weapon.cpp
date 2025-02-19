@@ -27,6 +27,10 @@ int Weapon::getAtkSpeed() {
 	return _atkSpeed;
 }
 
+WeaponType Weapon::getType() {
+	return _type;
+}
+
 std::string Weapon::getWeaponTypeString() {
 	switch (_type) {
 	case WeaponType::SWORD:

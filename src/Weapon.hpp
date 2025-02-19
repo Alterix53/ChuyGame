@@ -3,6 +3,7 @@
 #include <string>
 #include "Item.hpp"
 
+
 enum class WeaponType {
 	SWORD,
 	BOW,
@@ -33,6 +34,7 @@ public:
 	int getAtkSpeed();
 	void setCost(int cost);
 	int getCost();
+	WeaponType getType();
 
 	// print info
 	void printInfo();
@@ -40,5 +42,3 @@ public:
 	// get weapon type string
 	std::string getWeaponTypeString();
 };
-
-// minh thieu doan tao ID cho weapon (vi khong biet co can thiet khong (va cung chua biet tao randomID khong bi trung(huhu)))

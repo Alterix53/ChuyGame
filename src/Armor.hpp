@@ -42,6 +42,7 @@ public:
 	ArmorType getType();
 	ArmorPart getPart();
 	int getDefense();
+	int getHealth();
 	int getCost();
 
 	// get the armor type and part string

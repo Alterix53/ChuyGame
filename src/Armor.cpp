@@ -30,6 +30,10 @@ int Armor::getCost() {
 	return _cost;
 }
 
+int Armor::getHealth() {
+	return _health;
+}
+
 // get armor part string
 std::string Armor::getArmorPartString() {
 	switch (_part) {
@@ -72,6 +76,7 @@ void Armor::printInfo() {
 	std::cout << "Name: " << _name << std::endl;
 	std::cout << "Type: " << type << std::endl;
 	std::cout << "Part: " << part << std::endl;
+	std::cout << "Health: " << _health << std::endl;
 	std::cout << "defense: " << _defense << std::endl;
 	std::cout << "Cost: " << _cost << std::endl;
 

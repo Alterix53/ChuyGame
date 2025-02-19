@@ -5,6 +5,9 @@
 #include "Armor.hpp"
 #include <vector>
 
+#define MAX_WEAPON 2
+#define WEAPON_INDEX 0
+
 class Player
 {
 private:
@@ -41,10 +44,18 @@ public:
 	int getPoint();
 
 	// adding weapon and armor
-	void updateStatEquipItem(Item item);		// update player's stat when equip an item
-	void updateStatUnequipItem(Item item);		// update player's stat when unequip an item
-	bool addWeapon(Weapon weapon);				// add weapon to player's inventory
-	bool addArmor(Armor armor);					// add armor to player's inventory
+	void addWeapon(Weapon weapon);				// add weapon to player's inventory
+	void addArmor(Armor armor);					// add armor to player's inventory
+
+	// unequipped weapon and armor
+	void unequipWeapon(int index);				// unequip weapon from player's inventory
+	void unequipArmor(ArmorPart part);			// unequip armor from player's inventory
+
+	// update player's stat
+	void updateStatEquipWeapon(Weapon weapon);		// update player's stat when equip an item
+	void updateStatUnequipWeapon(Weapon weapon);		// update player's stat when unequip an item
+	void updateStatEquipArmor(Armor armor);			// update player's stat when equip an item
+	void updateStatUnequipArmor(Armor armor);		// update player's stat when unequip an item
 
 	// print info
 	void printInfo();
