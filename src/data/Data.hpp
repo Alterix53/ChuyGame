@@ -1,36 +1,22 @@
+#pragma once
+#include <iostream>
 #include <fstream>
 #include "json.hpp"
-#include <iostream>
+#include <vector>
+#include "../Weapon.hpp"
+#include "../Armor.hpp"
+#include <string>
 
 using json = nlohmann::json;
 
+WeaponType stringToWeaponType(const std::string &typeStr);
+
 namespace WeaponData {
-
-    json getWeapons() {
-        std::ifstream file("data/weapons.json");
-        if (!file) {
-            std::cerr << "loi khi mo file weapons.json\n";
-            return json{};
-        }
-
-        json data;
-        file >> data;
-
-        return data;
-    }
+    json getWeapons();
+    void loadData(std::vector<Weapon> &_availableWeapons);
 }
 
 namespace ArmorData {
-    json getArmors() {
-        std::ifstream file("data/armors.json");
-        if (!file) {
-            std::cerr << "loi khi mo file armors.json\n";
-            return json{};
-        }
-
-        json data;
-        file >> data;
-
-        return data;
-    }
+    json getArmors();
+    void loadData(std::vector<Armor> &_availableArmors);
 }

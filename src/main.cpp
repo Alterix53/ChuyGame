@@ -3,6 +3,8 @@
 #include "Shop.hpp"
 #include "Player.hpp"
 #include "data/Data.hpp"
+#include <vector>
+#include "Weapon.hpp"
 const int EQUIP_SLOT = 6;
 const int OPTION = 4;
 
@@ -62,18 +64,7 @@ int main() {
             if (option == int(Menu::PLAY)) {
             }
             if (option == int(Menu::EXIT)) {
-                json dataW = WeaponData::getWeapons();
-                json dataA = ArmorData::getArmors();
-                std::cout << dataW[0]["type"] << std::endl;
-                std::cout << dataW[0]["name"] << std::endl;
-                std::cout << dataW[0]["damage"] << std::endl;
-                std::cout << "\n\n";
-                for (const auto &item : dataA) {
-                    std::cout << item["type"] << std::endl;
-                    std::cout << item["part"] << std::endl;
-                    std::cout << item["defense"] << std::endl;
-                }
-
+                
                 break;
             }
         }
