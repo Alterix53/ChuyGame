@@ -1,13 +1,13 @@
 [
     {
-        "type": "sword",
+        "type": "Sword",
         "name": "Excalibur",
         "damage": 100,
-        "atkSpeed": 1.5,
+        "atkSpeed": 1,
         "cost": 1000
     },
     {
-        "type": "bow",
+        "type": "Bow",
         "name": "Longbow",
         "damage": 50,
         "atkSpeed": 2,

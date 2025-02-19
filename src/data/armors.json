@@ -1,6 +1,7 @@
 [
     {
         "type": "Bulletproof",
+        "name": "Vest",
         "part": "Helmet",
         "defense": 10,
         "health": 100
