@@ -1,7 +1,15 @@
 #include <iostream>
 #include <conio.h>
+#include "Shop.hpp"
 
 const int OPTION = 4;
+
+enum class Menu {
+    CHARACTER,
+    SHOP,
+    PLAY,
+    EXIT
+};
 
 void displayMenu(int option) {
     std::string options[] = {"Character", "Shop", "Play", "Exit"};
@@ -24,7 +32,8 @@ int main() {
     std::cout << "\033[?25l"; 
     int option = 0;
 
-    while (true) {
+    bool isHome = true;
+    while (isHome) {
         system("cls");
         displayMenu(option);
 
@@ -43,7 +52,15 @@ int main() {
                 option = (option < OPTION - 1) ? option + 1 : 0;
             }
         } else if (key == '\n' || key == '\r') {
-            break;
+            if (option == int(Menu::CHARACTER)) {
+            } 
+            if (option == int(Menu::SHOP)) {
+            }
+            if (option == int(Menu::PLAY)) {
+            }
+            if (option == int(Menu::EXIT)) {
+                break;
+            }
         }
     }
 
