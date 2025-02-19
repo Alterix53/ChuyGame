@@ -63,7 +63,7 @@ int main() {
             if (option == int(Menu::SHOP)) {
             }
             if (option == int(Menu::PLAY)) {
-                std::string json = "{\"weapon\":{\"type\":\"test\",\"name\":\"test\",\"damage\":12, \"atkSpeed\": 1, \"cost\": 1000},\"armor\":{\"type\": \"test1\",\"name\":\"test1\", \"part\": \"test\",\"defense\":2,\"health\":141}}";
+                std::string json = "{\"weapon\":[{\"type\":\"test\",\"name\":\"test\",\"damage\":12, \"atkSpeed\": 1, \"cost\": 1000}],\"armor\":[{\"type\": \"test1\",\"name\":\"test1\", \"part\": \"test\",\"defense\":2,\"health\":141}]}";
                 json.insert(1, "\"tenNguoiChoi\":\"Player1\",\"idNguoiChoi\":\"1\",");
 
                 std::string eJson = json;
@@ -83,7 +83,7 @@ int main() {
                 break;
             }
             if (option == int(Menu::EXIT)) {
-                
+                Shop shop;
                 break;
             }
         }

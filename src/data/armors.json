@@ -3,7 +3,8 @@
         "type": "Bulletproof",
         "name": "Vest",
         "part": "Helmet",
+        "health": 100,
         "defense": 10,
-        "health": 100
+        "cost": 1000
     }
 ]

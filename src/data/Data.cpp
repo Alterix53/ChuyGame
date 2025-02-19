@@ -74,11 +74,11 @@ namespace ArmorData {
             std::string name = armor["name"];
             ArmorType type = stringToArmorType(armor["type"]);
             ArmorPart part = stringToArmorPart(armor["part"]);
-            int cost = armor["cost"];
             int health = armor["health"];
             int defense = armor["defense"];
+            int cost = armor["cost"];
 
-            _availableArmors.push_back(Armor(name, type, part, defense, cost));
+            _availableArmors.push_back(Armor(name, type, part, health, defense, cost));
         }
     }
 }
