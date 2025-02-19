@@ -5,6 +5,7 @@
 #include "data/Data.hpp"
 #include <vector>
 #include "Weapon.hpp"
+
 const int EQUIP_SLOT = 6;
 const int OPTION = 4;
 
