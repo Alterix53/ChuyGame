@@ -46,6 +46,11 @@ std::string Weapon::getWeaponTypeString() {
 	}
 }
 
+void Weapon::calculateCost() {
+	// lai nua, hay thay cong thuc theo y cua ban <(") (hien tai la 2*dam + 10*atk + 12)
+	_cost = _damage * 2 + _atkSpeed * 10 + 12;
+}
+
 void Weapon::printInfo() {
 	
 	std::cout << "Weapon's name: " << _name << std::endl;

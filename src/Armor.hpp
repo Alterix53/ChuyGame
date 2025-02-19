@@ -3,6 +3,10 @@
 #include <string>
 #include "Item.hpp"
 
+// define the armor's base stat below
+#define BASE_ARMOR_DEFENSE 10
+#define BASE_ARMOR_HEALTH 1000
+
 enum class ArmorPart{ // rat minecraft
 	HELMET,
 	CHESTPLATE,
@@ -29,12 +33,13 @@ private:
 	// thong so rieng cua armor
 	int _defense;
 	int _health;
+	// int _weight;
 
 public:
 
 	// constructor and destructor
 	Armor();
-	Armor(std::string name, ArmorType type, ArmorPart part, int defense, int cost);
+	Armor(std::string name, ArmorType type, ArmorPart part, int health, int defense, int cost);
 	~Armor();
 
 	// getter and setter
@@ -45,9 +50,13 @@ public:
 	int getHealth();
 	int getCost();
 
+	// calculate the cost of the armor
+	void calculateCost();		// base on hp and def
+
 	// get the armor type and part string
 	std::string getArmorPartString();
 	std::string getArmorTypeString();
 
+	// print the armor's info
 	void printInfo();
 };

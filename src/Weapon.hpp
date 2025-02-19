@@ -36,9 +36,12 @@ public:
 	int getCost();
 	WeaponType getType();
 
-	// print info
-	void printInfo();
-
 	// get weapon type string
 	std::string getWeaponTypeString();
+
+	// calculate the cost of the weapon
+	void calculateCost(); // base on damage and atk speed
+
+	// print info
+	void printInfo();
 };

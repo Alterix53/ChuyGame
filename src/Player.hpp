@@ -11,10 +11,11 @@
 class Player
 {
 private:
+	// player's info
 	std::string _name;
 	std::string _ID;
 
-	// player's weapon + armor
+	// player's current equip weapon + armor
 	Weapon _weapon[2];  // player's weapon, max 2 weapons
 	Armor _helmet;		// this var only contains the helmet
 	Armor _leggings;	// this var only contains the leggings
@@ -26,10 +27,14 @@ private:
 	int _attack;
 	int _defense;
 	int _atkSpeed;
-	// int _critRate;
-	// int _critDmg;
 	int _points;		// cost to buy weapon
 	int _weapIndex;		// shows the index of the weapon in the array
+	// int _critRate;
+	// int _critDmg;
+
+	// player's inventory
+	std::vector<Weapon> _inventoryWeapon;
+	std::vector<Armor> _inventoryArmor;
 
 public:
 	// constructor and destructor
@@ -42,10 +47,22 @@ public:
 	// getter and setter
 	void setPoint(int points);
 	int getPoint();
+	std::string getName();
+	std::string getID();
+	int getHealth();
+	int getAttack();
+	int getDefense();
+	int getAtkSpeed();
+	// int getCritRate();
+	// int getCritDmg();
 
-	// adding weapon and armor
-	void addWeapon(Weapon weapon);				// add weapon to player's inventory
-	void addArmor(Armor armor);					// add armor to player's inventory
+	// adding weapon and armor to inventory
+	void buyWeapon(Weapon weapon);				// buy and add weapon to player's inventory
+	void buyArmor(Armor armor);					// buy and add armor to player's inventory
+
+	// equip weapon and armor
+	void equipWeapon(Weapon weapon);					// equip weapon from player's inventory
+	void equipArmor(Armor armor);					// equip armor from player's inventory
 
 	// unequipped weapon and armor
 	void unequipWeapon(int index);				// unequip weapon from player's inventory
@@ -59,4 +76,6 @@ public:
 
 	// print info
 	void printInfo();
+	void printPlayerStat();					// only print stat
+	void printPlayerInventory();			// shows inventory	
 };

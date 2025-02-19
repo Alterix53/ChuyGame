@@ -2,10 +2,10 @@
 
 // begin implementation of Armor class
 Armor::Armor() : Item(), _type(ArmorType::BASE_ARMOR_TYPE), _part(ArmorPart::BASE_ARMOR_PART)
-, _defense(0), _health(0) {} 
+, _defense(BASE_ARMOR_DEFENSE), _health(BASE_ARMOR_HEALTH) {}
 
-Armor::Armor(std::string name, ArmorType type, ArmorPart part, int defense, int cost) : 
-	Item(name, cost), _type(type), _part(part), _defense(defense), _health(0) { }
+Armor::Armor(std::string name, ArmorType type, ArmorPart part, int health, int defense, int cost) : 
+	Item(name, cost), _type(type), _part(part), _defense(defense), _health(health) { }
 
 Armor::~Armor() {}
 
@@ -32,6 +32,12 @@ int Armor::getCost() {
 
 int Armor::getHealth() {
 	return _health;
+}
+
+// calculate the cost of the armor
+void Armor::calculateCost() {
+	// hay thay cong thuc theo y cua ban <(") (hien tai la 10hp + 2def + 12)
+	_cost = _defense * 2 + _health * 10 + 12; 
 }
 
 // get armor part string

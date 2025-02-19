@@ -17,5 +17,6 @@ public:
 	int getCost();
 
 	// print info
+	void calculateCost();
 	void printInfo();
 };
