@@ -62,6 +62,24 @@ int main() {
             if (option == int(Menu::SHOP)) {
             }
             if (option == int(Menu::PLAY)) {
+                std::string json = "{\"weapon\":{\"type\":\"test\",\"name\":\"test\",\"damage\":12, \"atkSpeed\": 1, \"cost\": 1000},\"armor\":{\"type\": \"test1\",\"name\":\"test1\", \"part\": \"test\",\"defense\":2,\"health\":141}}";
+                json.insert(1, "\"tenNguoiChoi\":\"Player1\",\"idNguoiChoi\":\"1\",");
+
+                std::string eJson = json;
+                size_t position = 0;
+                while ((position = eJson.find("\"", position)) != std::string::npos) {
+                    eJson.replace(position, 1, "\\\"");
+                    position += 2;
+                }
+                
+                std::string command = "node ../api/test.js \"" + eJson + "\"";
+                int result = system(command.c_str());
+                
+                if (result != 0) {
+                    std::cerr << "loi khi goi API!" << std::endl;
+                }
+    
+                break;
             }
             if (option == int(Menu::EXIT)) {
                 
