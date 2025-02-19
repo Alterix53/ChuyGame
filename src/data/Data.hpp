@@ -18,5 +18,5 @@ namespace WeaponData {
 
 namespace ArmorData {
     json getArmors();
-    void loadData(std::vector<Weapon> &_availableArmors);
+    void loadData(std::vector<Armor> &_availableArmors);
 }
