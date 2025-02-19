@@ -23,17 +23,31 @@ app.get("/players/:id", (req, res) => {
 app.post("/players", (req, res) => {
     const { weapon, armor, tenNguoiChoi, idNguoiChoi } = req.body;
 
-    if (!weapon || !armor || !tenNguoiChoi || !idNguoiChoi) {
-        return res.status(400).json({ message: "Thieu thong tin nguoi choi" });
+    if (!Array.isArray(weapon) || !Array.isArray(armor)) {
+        return res.status(400).json({ message: "weapon va armor phai la mang" });
     }
 
-    if (!weapon.type || !weapon.name || typeof weapon.damage !== 'number' || 
-        typeof weapon.atkSpeed !== 'number' || typeof weapon.cost !== 'number') {
+    const validWeapon = weapon.every(w => 
+        w.type && 
+        w.name && 
+        typeof w.damage === 'number' && 
+        typeof w.atkSpeed === 'number' && 
+        typeof w.cost === 'number'
+    );
+
+    if (!validWeapon) {
         return res.status(400).json({ message: "Thong tin vu khi khong hop le" });
     }
 
-    if (!armor.type || !armor.name || !armor.part || 
-        typeof armor.defense !== 'number' || typeof armor.health !== 'number') {
+    const validArmor = armor.every(a => 
+        a.type && 
+        a.name && 
+        a.part && 
+        typeof a.defense === 'number' && 
+        typeof a.health === 'number'
+    );
+
+    if (!validArmor) {
         return res.status(400).json({ message: "Thong tin giap khong hop le" });
     }
 
