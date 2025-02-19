@@ -34,6 +34,7 @@ public:
 	int getAtkSpeed();
 	void setCost(int cost);
 	int getCost();
+	WeaponType getType();
 
 	// print info
 	void printInfo();
