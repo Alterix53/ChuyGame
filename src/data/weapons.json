@@ -1,0 +1,16 @@
+[
+    {
+        "type": "sword",
+        "name": "Excalibur",
+        "damage": 100,
+        "atkSpeed": 1.5,
+        "cost": 1000
+    },
+    {
+        "type": "bow",
+        "name": "Longbow",
+        "damage": 50,
+        "atkSpeed": 2,
+        "cost": 500
+    }
+]

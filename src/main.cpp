@@ -1,6 +1,7 @@
 #include <iostream>
 #include <conio.h>
 #include "Shop.hpp"
+#include "data/GetData.cpp"
 
 const int OPTION = 4;
 
@@ -31,14 +32,14 @@ void displayMenu(int option) {
 int main() {
     std::cout << "\033[?25l"; 
     int option = 0;
-
+    
     bool isHome = true;
     while (isHome) {
         system("cls");
         displayMenu(option);
 
-        char key = getch();
-
+        char key = getch();        
+        
         if (key == 'w' || key == 'W') {
             option = (option > 0) ? option - 1 : OPTION - 1;
         } else if (key == 's' || key == 'S') {
@@ -59,6 +60,18 @@ int main() {
             if (option == int(Menu::PLAY)) {
             }
             if (option == int(Menu::EXIT)) {
+                json dataW = WeaponData::getWeapons();
+                json dataA = ArmorData::getArmors();
+                std::cout << dataW[0]["type"] << std::endl;
+                std::cout << dataW[0]["name"] << std::endl;
+                std::cout << dataW[0]["damage"] << std::endl;
+                std::cout << "\n\n";
+                for (const auto &item : dataA) {
+                    std::cout << item["type"] << std::endl;
+                    std::cout << item["part"] << std::endl;
+                    std::cout << item["defense"] << std::endl;
+                }
+
                 break;
             }
         }
