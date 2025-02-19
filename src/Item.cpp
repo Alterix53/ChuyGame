@@ -12,6 +12,10 @@ int Item::getCost() {
 	return _cost;
 }
 
+void Item::calculateCost() {
+	// do nothing
+}
+
 void Item::printInfo() {
 	std::cout << "Item's name: " << _name << std::endl;
 	std::cout << "Cost: " << _cost << std::endl;

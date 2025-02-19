@@ -1,10 +1,11 @@
 #include <iostream>
 #include <conio.h>
 #include "Shop.hpp"
+#include "Player.hpp"
 #include "data/Data.hpp"
 #include <vector>
 #include "Weapon.hpp"
-
+const int EQUIP_SLOT = 6;
 const int OPTION = 4;
 
 enum class Menu {
@@ -53,9 +54,10 @@ int main() {
                 option = (option > 0) ? option - 1 : OPTION - 1;
             } else if (key == 80) { 
                 option = (option < OPTION - 1) ? option + 1 : 0;
-            }
+            }   
         } else if (key == '\n' || key == '\r') {
             if (option == int(Menu::CHARACTER)) {
+
             } 
             if (option == int(Menu::SHOP)) {
             }

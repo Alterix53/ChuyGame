@@ -11,7 +11,7 @@ void Shop::addWeaponToShop(Weapon weapon) {
 	_availableWeapons.push_back(weapon);
 }
 
-void Shop::addArmorToShop(Armor armor) {
+void Shop::buyArmorToShop(Armor armor) {
 	_availableArmors.push_back(armor);
 }
 
@@ -51,7 +51,7 @@ void Shop::getWeapon(Player& player, std::string weaponName) {
 		if (_availableWeapons[i].getName() != weaponName) 
 			continue;
 
-		player.addWeapon(_availableWeapons[i]);
+		player.buyWeapon(_availableWeapons[i]);
 			return;
 	}
 
@@ -64,7 +64,7 @@ void Shop::getArmor(Player& player, std::string armorName) {
 		if (_availableArmors[i].getName() != armorName)
 			continue;
 
-		player.addArmor(_availableArmors[i]);
+		player.buyArmor(_availableArmors[i]);
 		return;
 
 	}
@@ -78,7 +78,7 @@ void Shop::getWeaponByIndex(Player& player, int index) {
 		std::cout << "Invalid index!" << std::endl;
 		return;
 	}
-	player.addWeapon(_availableWeapons[index]);
+	player.buyWeapon(_availableWeapons[index]);
 }
 
 void Shop::getArmorByIndex(Player& player, int index) {
@@ -86,7 +86,7 @@ void Shop::getArmorByIndex(Player& player, int index) {
 		std::cout << "Invalid index!" << std::endl;
 		return;
 	}
-	player.addArmor(_availableArmors[index]);
+	player.buyArmor(_availableArmors[index]);
 }
 
 std::vector <Weapon> Shop::filterWeaponByType(WeaponType type) {

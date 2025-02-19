@@ -25,6 +25,7 @@ Player::Player(const Player& player) :
 
 Player::~Player() {}
 
+// below are getter and setter
 void Player::setPoint(int points) {
 	_points = points;
 }
@@ -33,66 +34,93 @@ int Player::getPoint() {
 	return _points;
 }
 
-void Player::addWeapon(Weapon weapon) {
-	int cost = weapon.getCost();
-	if (cost > _points) {
-		std::cerr << "Not enough points to buy this weapon!" << std::endl;
-		return;
-	}
+std::string Player::getName() {
+	return _name;
+}
 
+std::string Player::getID() {
+	return _ID;
+}
+
+int Player::getHealth() {
+	return _health;
+}
+
+int Player::getAttack() {
+	return _attack;
+}
+
+int Player::getDefense() {
+	return _defense;
+}
+
+int Player::getAtkSpeed() {
+	return _atkSpeed;
+}
+
+// int Player::getCritRate() { return _critRate; }
+// int Player::getCritDmg() { return _critDmg; }
+
+// below are the functions to add weapon and armor
+
+void Player::equipWeapon(Weapon weapon) {
 	if (_weapIndex >= 2) {
 		std::cerr << "You can only have 2 weapons!" << std::endl;
 		return;
 	}
 
 	_weapon[_weapIndex++] = weapon;
-	_points -= cost;
 }
 
-void Player::addArmor(Armor armor) {
-
-	int cost = armor.getCost();
-	if (cost > _points) {
-		std::cerr << "Not enough points to buy this armor!" << std::endl;
-		return;
-	}
+void Player::equipArmor(Armor armor) {
 
 	ArmorPart part = armor.getPart();
 	switch (part) {
 	case ArmorPart::HELMET:
-		if (_helmet.getArmorPartString() != "Unknown") {
-			std::cerr << "You already have a helmet!" << std::endl;
-			return;
-		}
 		_helmet = armor;
 		break;
 	case ArmorPart::CHESTPLATE:
-		if (_chestplate.getArmorPartString() != "Unknown") {
-			std::cerr << "You already have a chestplate!" << std::endl;
-			return;
-		}
 		_chestplate = armor;
 		break;
 	case ArmorPart::LEGGINGS:
-		if (_leggings.getArmorPartString() != "Unknown") {
-			std::cerr << "You already have leggings!" << std::endl;
-			return;
-		}
 		_leggings = armor;
 		break;
 	case ArmorPart::BOOTS:
-		if (_boots.getArmorPartString() != "Unknown") {
+		/*if (_boots.getArmorPartString() != "Unknown") {
 			std::cerr << "You already have boots!" << std::endl;
 			return;
-		}
+		}*/
 		_boots = armor;
 		break;
 	default:
 		std::cerr << "Invalid armor part!" << std::endl;
 		return;
 	}
+}
 
+void Player::buyWeapon(Weapon weapon) {
+	int cost = weapon.getCost();
+	if (_points < cost) {
+		std::cerr << "You don't have enough points to buy this weapon!" << std::endl;
+		return;
+	}
+
+	_inventoryWeapon.push_back(weapon);
 	_points -= cost;
+	// if (_inventoryWeapon.push_back(weapon) == false) {return;} else {_points -= cost;}
+}
+
+void Player::buyArmor(Armor armor) {
+
+	int cost = armor.getCost();
+	if (_points < cost) {
+		std::cerr << "You don't have enough points to buy this armor!" << std::endl;
+		return;
+	}
+
+	_inventoryArmor.push_back(armor);
+	_points -= cost;
+	// if (_inventoryArmor.push_back(armor) == false) {return;} else {_points -= cost;}
 }
 
 void Player::printInfo() {
@@ -153,6 +181,34 @@ void Player::printInfo() {
 	}
 }
 
+// weapon truyen vao la weapon dang mac, index la slot (ben trai hay phai) cua weapon
+void Player::unequipWeapon(int index) {
+	_weapon[index] = Weapon();
+}
+
+void Player::unequipArmor(ArmorPart part) {
+	switch (part) {
+	case ArmorPart::HELMET:
+		_helmet = Armor();
+		break;
+	case ArmorPart::CHESTPLATE:
+		_chestplate = Armor();
+		break;
+	case ArmorPart::LEGGINGS:
+		break;
+	case ArmorPart::BOOTS:
+		//if (_boots.getArmorPartString() == "Unknown") {
+		//	std::cerr << "You don't have boots!" << std::endl;
+		//	return;
+		//}
+		_boots = Armor();
+		break;
+	default:
+		std::cerr << "Invalid armor part!" << std::endl;
+		return;
+	}
+}
+
 void Player::updateStatEquipWeapon(Weapon weapon) {
 	_attack += weapon.getDamage();
 	_atkSpeed += weapon.getAtkSpeed();
@@ -169,4 +225,35 @@ void Player::updateStatEquipArmor(Armor armor) {
 
 void Player::updateStatUnequipArmor(Armor armor) {
 	_defense -= armor.getDefense();
+}
+
+// ham nay dung de in ra thong so cua player (khong in ra thong tin cua weapon va armor)
+void Player::printPlayerStat() {
+	std::cout << "Health: " << _health << std::endl;
+	std::cout << "Attack: " << _attack << std::endl;
+	std::cout << "Defense: " << _defense << std::endl;
+}
+
+void Player::printPlayerInventory(){
+	std::cout << "Inventory: " << std::endl;
+	std::cout << "Weapons: " << std::endl;
+	if (_inventoryWeapon.empty()) {
+		std::cout << "No weapons!" << std::endl;
+	}
+	else {
+		for (int i = 0; i < _inventoryWeapon.size(); i++) {
+			std::cout << "Weapon " << i + 1 << ": " << std::endl;
+			_inventoryWeapon[i].printInfo();
+		}
+	}
+	std::cout << "Armors: " << std::endl;
+	if (_inventoryArmor.empty()) {
+		std::cout << "No armors!" << std::endl;
+	}
+	else {
+		for (int i = 0; i < _inventoryArmor.size(); i++) {
+			std::cout << "Armor " << i + 1 << ": " << std::endl;
+			_inventoryArmor[i].printInfo();
+		}
+	}
 }
