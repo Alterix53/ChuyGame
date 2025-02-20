@@ -54,6 +54,7 @@ public:
 	int getDefense();
 	int getAtkSpeed();
 	Weapon getWeapon(int index);
+	Armor getArmor(ArmorPart part);
 	// int getCritRate();
 	// int getCritDmg();
 

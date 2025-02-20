@@ -10,5 +10,6 @@
 using namespace Constants::Frame;
 
 namespace Character {
-    void show(Player player);   
+    void display(Player &player);
+    void show(Player &player);   
 }
