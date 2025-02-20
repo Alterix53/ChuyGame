@@ -243,7 +243,7 @@ void Player::printPlayerInventory(){
 	else {
 		for (int i = 0; i < _inventoryWeapon.size(); i++) {
 			std::cout << "Weapon " << i + 1 << ": " << std::endl;
-			_inventoryWeapon[i].printInfo();
+			_inventoryWeapon[i].printInfoInShort();
 		}
 	}
 	std::cout << "Armors: " << std::endl;
@@ -253,7 +253,7 @@ void Player::printPlayerInventory(){
 	else {
 		for (int i = 0; i < _inventoryArmor.size(); i++) {
 			std::cout << "Armor " << i + 1 << ": " << std::endl;
-			_inventoryArmor[i].printInfo();
+			_inventoryArmor[i].printInfoInShort();
 		}
 	}
 }

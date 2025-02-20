@@ -87,3 +87,7 @@ void Armor::printInfo() {
 	std::cout << "Cost: " << _cost << std::endl;
 
 }
+
+void Armor::printInfoInShort() {
+	std::cout << _name << " - " << _health << " health - " << _defense << " defense - " << _cost << " points" << std::endl;
+}

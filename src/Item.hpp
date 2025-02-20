@@ -16,7 +16,8 @@ public:
 	std::string getName();
 	int getCost();
 
-	// print info
-	void calculateCost();
-	void printInfo();
+	// functions
+	virtual void calculateCost() = 0;
+	virtual void printInfo() = 0;
+	virtual void printInfoInShort() = 0;
 };

@@ -44,4 +44,5 @@ public:
 
 	// print info
 	void printInfo();
+	void printInfoInShort(); // in thong tin tren 1 hang
 };

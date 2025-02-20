@@ -20,3 +20,7 @@ void Item::printInfo() {
 	std::cout << "Item's name: " << _name << std::endl;
 	std::cout << "Cost: " << _cost << std::endl;
 }
+
+void Item::printInfoInShort() {
+	std::cout << _name << " - " << _cost << " points" << std::endl;
+}
