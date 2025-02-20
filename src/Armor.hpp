@@ -59,4 +59,5 @@ public:
 
 	// print the armor's info
 	void printInfo();
+	void printInfoInShort();
 };

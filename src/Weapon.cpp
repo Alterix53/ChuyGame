@@ -51,6 +51,10 @@ void Weapon::calculateCost() {
 	_cost = _damage * 2 + _atkSpeed * 10 + 12;
 }
 
+void Weapon::printInfoInShort() {
+	std::cout << _name << " - " << _damage << " damage - " << _atkSpeed << " atk speed - " << _cost << " points" << std::endl;
+}
+
 void Weapon::printInfo() {
 	
 	std::cout << "Weapon's name: " << _name << std::endl;

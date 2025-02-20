@@ -42,7 +42,4 @@ public:
 	void getWeaponByIndex(Player& player, int index);
 	void getArmorByIndex(Player& player, int index);
 
-	// calculate the cost of weapon and armor
-	int calculateWeaponCost(Weapon weapon);     // calculate the cost of the weapon (base on atk and atk speed)
-	int calculateArmorCost(Armor armor);		// calculate the cost of the armor (base on defense and health)
 };
