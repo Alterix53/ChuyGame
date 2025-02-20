@@ -10,6 +10,8 @@
 using json = nlohmann::json;
 
 WeaponType stringToWeaponType(const std::string &typeStr);
+ArmorType stringToArmorType(const std::string &typeStr);
+ArmorPart stringToArmorPart(const std::string &partStr);
 
 namespace WeaponData {
     json getWeapons();
