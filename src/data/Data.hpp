@@ -3,15 +3,12 @@
 #include <fstream>
 #include "json.hpp"
 #include <vector>
+#include <string>
 #include "../Weapon.hpp"
 #include "../Armor.hpp"
-#include <string>
+#include "../Utils.hpp"
 
 using json = nlohmann::json;
-
-WeaponType stringToWeaponType(const std::string &typeStr);
-ArmorType stringToArmorType(const std::string &typeStr);
-ArmorPart stringToArmorPart(const std::string &partStr);
 
 namespace WeaponData {
     json getWeapons();

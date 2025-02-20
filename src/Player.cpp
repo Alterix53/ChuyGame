@@ -58,6 +58,10 @@ int Player::getAtkSpeed() {
 	return _atkSpeed;
 }
 
+Weapon Player::getWeapon(int index) {
+	return _weapon[index];
+}
+
 // int Player::getCritRate() { return _critRate; }
 // int Player::getCritDmg() { return _critDmg; }
 

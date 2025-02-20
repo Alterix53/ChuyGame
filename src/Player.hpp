@@ -53,6 +53,7 @@ public:
 	int getAttack();
 	int getDefense();
 	int getAtkSpeed();
+	Weapon getWeapon(int index);
 	// int getCritRate();
 	// int getCritDmg();
 
