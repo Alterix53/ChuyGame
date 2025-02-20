@@ -4,7 +4,7 @@
 #include "Player.hpp"
 #include "data/Data.hpp"
 #include <vector>
-#include "Weapon.hpp"
+#include "GameFlow/Character.hpp"
 
 const int EQUIP_SLOT = 6;
 const int OPTION = 4;
@@ -67,12 +67,11 @@ void displayMenu(int option) {
 }
 
 int main() {
-
-    // inital data
-
-
     std::cout << "\033[?25l"; 
+    // std::cout << "\xE2\x95\x90";
     int option = 0;
+    
+    Player player;
     
     bool isHome = true;
     while (isHome) {
@@ -95,9 +94,8 @@ int main() {
             }   
         } else if (key == '\n' || key == '\r') {   // choose the current option
             if (option == int(Menu::CHARACTER)) {
-                /*
-                
-                */
+                Character::show(player);
+                break;
             } 
             if (option == int(Menu::SHOP)) {
 
@@ -143,6 +141,7 @@ int main() {
                                 break;
                             }
                         }
+                    }
                 }
 
             }
