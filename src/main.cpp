@@ -3,6 +3,8 @@
 #include "Shop.hpp"
 #include "Player.hpp"
 #include "data/Data.hpp"
+#include <vector>
+#include "Weapon.hpp"
 
 const int EQUIP_SLOT = 6;
 const int OPTION = 4;
@@ -145,20 +147,27 @@ int main() {
 
             }
             if (option == int(Menu::PLAY)) {
+                std::string json = "{\"weapon\":[{\"type\":\"test\",\"name\":\"test\",\"damage\":12, \"atkSpeed\": 1, \"cost\": 1000}],\"armor\":[{\"type\": \"test1\",\"name\":\"test1\", \"part\": \"test\",\"defense\":2,\"health\":141}]}";
+                json.insert(1, "\"tenNguoiChoi\":\"Player1\",\"idNguoiChoi\":\"1\",");
+
+                std::string eJson = json;
+                size_t position = 0;
+                while ((position = eJson.find("\"", position)) != std::string::npos) {
+                    eJson.replace(position, 1, "\\\"");
+                    position += 2;
+                }
+                
+                std::string command = "node ../api/test.js \"" + eJson + "\"";
+                int result = system(command.c_str());
+                
+                if (result != 0) {
+                    std::cerr << "loi khi goi API!" << std::endl;
+                }
+    
+                break;
             }
             if (option == int(Menu::EXIT)) {
-                json dataW = WeaponData::getWeapons();
-                json dataA = ArmorData::getArmors();
-                std::cout << dataW[0]["type"] << std::endl;
-                std::cout << dataW[0]["name"] << std::endl;
-                std::cout << dataW[0]["damage"] << std::endl;
-                std::cout << "\n\n";
-                for (const auto &item : dataA) {
-                    std::cout << item["type"] << std::endl;
-                    std::cout << item["part"] << std::endl;
-                    std::cout << item["defense"] << std::endl;
-                }
-
+                Shop shop;
                 break;
             }
         }

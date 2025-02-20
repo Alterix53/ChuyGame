@@ -1,6 +1,9 @@
 #include "Shop.hpp"
 
-Shop::Shop() = default;
+Shop::Shop() {
+	WeaponData::loadData(this->_availableWeapons);
+	ArmorData::loadData(this->_availableArmors);
+}
 
 Shop::~Shop() = default;
 

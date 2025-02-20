@@ -7,6 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <iomanip>
+#include "data/Data.hpp"
 
 class Shop
 {
