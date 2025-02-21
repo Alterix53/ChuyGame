@@ -2,13 +2,16 @@
 
 namespace Character {
     std::vector<std::string> sign = {
-        "\033[1;31mMAIN\033[0m",
-        "\033[1;31mWEAPON1\033[0m",
-        "\033[1;31mWEAPON2\033[0m",
-        "\033[1;31mARMOR1\033[0m",
-        "\033[1;31mARMOR2\033[0m",
-        "\033[1;31mARMOR3\033[0m",
-        "\033[1;31mARMOR4\033[0m"
+        "\033[0;33m" + slotToStringUpper(Slot::MAIN) + "\033[0m",
+        "\033[0;31m" + slotToStringUpper(Slot::WEAPON1) + "\033[0m",
+        "\033[0;31m" + slotToStringUpper(Slot::WEAPON2) + "\033[0m",
+        "\033[0;31m" + slotToStringUpper(Slot::ARMOR1) + "\033[0m",
+        "\033[0;31m" + slotToStringUpper(Slot::ARMOR2) + "\033[0m",
+        "\033[0;31m" + slotToStringUpper(Slot::ARMOR3) + "\033[0m",
+        "\033[0;31m" + slotToStringUpper(Slot::ARMOR4) + "\033[0m",
+        "\033[0;31m" + slotToStringUpper(Slot::CHARACTER) + "\033[0m",
+        "\033[0;31m" + slotToStringUpper(Slot::INVENTORY) + "\033[0m",
+
     };
     
     std::string slotToString(Slot slot) {
@@ -88,25 +91,27 @@ namespace Character {
         };
 
         Tab tab = Tab::CHARACTER;
-        Slot option = Slot::WEAPON1;
+        Slot option = Slot::MAIN;
 
         std::function<void()> display = [&]() -> void {
-            std::cout << std::right << std::setw(Frame::space) << tabs[0] << std::setw(20) << tabs[1] << std::endl;
+            std::cout << std::right << std::setw(Frame::space + 11) << sign[int(Slot::CHARACTER)] << std::setw(Frame::space) << sign[int(Slot::INVENTORY)] << std::endl;
             std::cout << "\n\n";
             std::cout << std::right << std::setw(Frame::space + mainSlot[0].length() + 4) << sign[int(Slot::MAIN)] << "\n\n";
             std::cout << std::right << std::setw(Frame::space + mainSlot[0].length()) << mainSlot[0] << std::endl;
-            std::cout << std::left << std::setw(Frame::space + 11) << sign[int(Slot::WEAPON1)] << std::setw(Frame::space) << mainSlot[1] << "\033[1;31mWEAPON 2\033[0m" << std::endl; 
+            std::cout << std::left << std::setw(Frame::space + 11) << sign[int(Slot::WEAPON1)] << std::setw(Frame::space) << mainSlot[1] << sign[int(Slot::WEAPON2)] << std::endl; 
             std::cout << std::left << std::setw(Frame::space) << weaponSlot1[0] << std::setw(Frame::space) << mainSlot[2] << std::setw(Frame::space) << weaponSlot2[0] << "Current Tab: " << tabToString(tab) << std::endl;
-            std::cout << std::left << std::setw(Frame::space) << weaponSlot1[1] << std::setw(Frame::space) << mainSlot[3] << std::setw(Frame::space) << weaponSlot2[1] << "Current Select: " << slotToString(option) << std::endl;
+            std::cout << std::left << std::setw(Frame::space) << weaponSlot1[1] << std::setw(Frame::space) << mainSlot[3] << std::setw(Frame::space) << weaponSlot2[1] << "Current Select: " <<  colorString(option, 33, 0) << std::endl;
             std::cout << std::right << std::setw(Frame::space + mainSlot[4].length()) << mainSlot[4] << std::endl;
             std::cout << std::right << std::setw(Frame::space + mainSlot[5].length()) << mainSlot[5] << std::endl;
             std::cout << "\n\n";
-            std::cout << std::left << std::setw(Frame::space + 11) <<  "\033[1;31mARMOR 1\033[0m" << std::setw(Frame::space + 11) << "\033[1;31mARMOR 2\033[0m" << std::setw(Frame::space + 11) << "\033[1;31mARMOR 3\033[0m" << std::setw(Frame::space) << "\033[1;31mARMOR 4\033[0m" << std::endl;
+            std::cout << std::left << std::setw(Frame::space + 11) <<  sign[int(Slot::ARMOR1)] << std::setw(Frame::space + 11) << sign[int(Slot::ARMOR2)] << std::setw(Frame::space + 11) << sign[int(Slot::ARMOR3)] << std::setw(Frame::space) << sign[int(Slot::ARMOR4)] << std::endl;
             std::cout << std::left << std::setw(Frame::space) << armorSlot1[0] << std::setw(Frame::space) << armorSlot2[0] << std::setw(Frame::space) << armorSlot3[0] << std::setw(Frame::space) << armorSlot4[0] << std::endl;
             std::cout << std::left << std::setw(Frame::space) << armorSlot1[1] << std::setw(Frame::space) << armorSlot2[1] << std::setw(Frame::space) << armorSlot3[1] << std::setw(Frame::space) << armorSlot4[1] << std::endl;
             std::cout << "\n\n\n";
             std::cout << std::right << std::setw(Frame::space * 2) << "Press ESC or Q to exit" << std::endl;
         };
+
+        bool move = false;
 
         while (true) {
             system("cls");
@@ -115,24 +120,38 @@ namespace Character {
             if (key == 'q' || key == 'Q' || int(key) == 27) { 
                 return;
             } else if (key == 'w' || key == 'W') {
+                move = true;
                 if (tab == Tab::CHARACTER) {
                     option = goUp(option);
                 }
             } else if (key == 's' || key == 'S') {
+                move = true;
                 if (tab == Tab::CHARACTER) {
                     option = goDown(option);
                 }
 
             } else if (key == 'a' || key == 'A') {
+                move = true;
                 if (tab == Tab::CHARACTER) {
                     option = goLeft(option);
                 }
             } else if (key == 'd' || key == 'D') {
+                move = true;
                 if (tab == Tab::CHARACTER) {
                     option = goRight(option);
                 }
             }  else if (key == '\n' || key == '\r') {  // choose the current option
                 break;
+            } else {
+                move = false;
+            }
+            if (move){ 
+                sign[int(option)] = colorString(option, 33, 1);
+                for (int i = 0; i < sign.size(); i++) {
+                    if (i != int(option)) {
+                        sign[i] = colorString(Slot(i), 31, 0);
+                    }
+                }
             }
         }
     }   
