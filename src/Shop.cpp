@@ -227,11 +227,11 @@ void Shop::showArmorShop() {
 			if ((_currentItemArmorIndex == _firstItemArmorIndex) && _currentItemArmorIndex > 0) {
 				// case that the current item is the first item in the list and the current item is not the first item in the vector
 				_firstItemArmorIndex--;
-				_currentItemArmorIndex;
+				_currentItemArmorIndex--;
 			}
 			else if (_currentItemArmorIndex > 0) {
 				// other case
-				_currentItemArmorIndex;
+				_currentItemArmorIndex--;
 			}
 		}
 		else if (key == 's' || key == 'S' || key == -32 && _getch() == 80) {
