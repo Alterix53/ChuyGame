@@ -21,16 +21,18 @@ namespace Character {
     };
 
     enum class Slot {
-        CHARACTER,
-        INVENTORY,
-        MAIN,
-        WEAPON1,
-        WEAPON2,
-        ARMOR1,
-        ARMOR2,
-        ARMOR3,
-        ARMOR4
+        CHARACTER = 7,
+        INVENTORY = 8,
+        MAIN = 0,
+        WEAPON1 = 1,
+        WEAPON2 = 2,
+        ARMOR1 = 3,
+        ARMOR2 = 4,
+        ARMOR3 = 5,
+        ARMOR4 = 6
     };
+    
+    extern std::vector<std::string> sign;
 
     std::string slotToString(Slot slot);
     std::string slotToStringUpper(Slot slot);

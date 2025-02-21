@@ -1,6 +1,15 @@
 #include "Character.hpp"
 
 namespace Character {
+    std::vector<std::string> sign = {
+        "\033[1;31mMAIN\033[0m",
+        "\033[1;31mWEAPON1\033[0m",
+        "\033[1;31mWEAPON2\033[0m",
+        "\033[1;31mARMOR1\033[0m",
+        "\033[1;31mARMOR2\033[0m",
+        "\033[1;31mARMOR3\033[0m",
+        "\033[1;31mARMOR4\033[0m"
+    };
     
     std::string slotToString(Slot slot) {
         switch (slot) {
@@ -84,9 +93,9 @@ namespace Character {
         std::function<void()> display = [&]() -> void {
             std::cout << std::right << std::setw(Frame::space) << tabs[0] << std::setw(20) << tabs[1] << std::endl;
             std::cout << "\n\n";
-            std::cout << std::right << std::setw(Frame::space + mainSlot[0].length() + 4) << "\033[1;31mMAIN\033[0m" << "\n\n";
+            std::cout << std::right << std::setw(Frame::space + mainSlot[0].length() + 4) << sign[int(Slot::MAIN)] << "\n\n";
             std::cout << std::right << std::setw(Frame::space + mainSlot[0].length()) << mainSlot[0] << std::endl;
-            std::cout << std::left << std::setw(Frame::space + 11) << "\033[1;31mWEAPON 1\033[0m" << std::setw(Frame::space) << mainSlot[1] << "\033[1;31mWEAPON 2\033[0m" << std::endl; 
+            std::cout << std::left << std::setw(Frame::space + 11) << sign[int(Slot::WEAPON1)] << std::setw(Frame::space) << mainSlot[1] << "\033[1;31mWEAPON 2\033[0m" << std::endl; 
             std::cout << std::left << std::setw(Frame::space) << weaponSlot1[0] << std::setw(Frame::space) << mainSlot[2] << std::setw(Frame::space) << weaponSlot2[0] << "Current Tab: " << tabToString(tab) << std::endl;
             std::cout << std::left << std::setw(Frame::space) << weaponSlot1[1] << std::setw(Frame::space) << mainSlot[3] << std::setw(Frame::space) << weaponSlot2[1] << "Current Select: " << slotToString(option) << std::endl;
             std::cout << std::right << std::setw(Frame::space + mainSlot[4].length()) << mainSlot[4] << std::endl;
