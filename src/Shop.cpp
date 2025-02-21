@@ -110,43 +110,40 @@ std::vector <Armor> Shop::filterArmorByType(ArmorType type) {
 }
 
 void Shop::runShop() {
-	bool inShop = true;
-	int shop_option = 0;
+    bool inShop = true;
+    int shop_option = 0;
 
-	while (inShop) {
-		system("cls");
-		displayShop(shop_option);
-		char key_shop = getch();
+    while (inShop) {
+        system("cls");
+        displayShop(shop_option);
+        char key_shop = getch();
 
-		if (key_shop == 'w' || key_shop == 'W') {
-			shop_option = (shop_option > 0) ? shop_option - 1 : SHOP_OPTION - 1;
-		}
-		else if (key_shop == 's' || key_shop == 'S') {
-			shop_option = (shop_option < SHOP_OPTION - 1) ? shop_option + 1 : 0;
-		}
-		else if (key_shop == -32) {
-			key_shop = getch();
+        if (key_shop == 'w' || key_shop == 'W') {
+            shop_option = (shop_option > 0) ? shop_option - 1 : SHOP_OPTION - 1;
+        }
+        else if (key_shop == 's' || key_shop == 'S') {
+            shop_option = (shop_option < SHOP_OPTION - 1) ? shop_option + 1 : 0;
+        }
+        else if (key_shop == -32) {
+            key_shop = getch();
 
-			if (key_shop == 72) {
-				shop_option = (shop_option > 0) ? shop_option - 1 : SHOP_OPTION - 1;
+            if (key_shop == 72) {
+                shop_option = (shop_option > 0) ? shop_option - 1 : SHOP_OPTION - 1;
+            }
+            else if (key_shop == 80) {
+                shop_option = (shop_option < SHOP_OPTION - 1) ? shop_option + 1 : 0;
+            }
+        } else if (key_shop == '\n' || key_shop == '\r') {   // choose the current shop_option
+			if (shop_option == int(SHOP::WEAPONS)) {
+				showWeaponShop();
 			}
-			else if (key_shop == 80) {
-				shop_option = (shop_option < SHOP_OPTION - 1) ? shop_option + 1 : 0;
+			if (shop_option == int(SHOP::ARMORS)) {
+				showArmorShop();
 			}
-			else if (key_shop == '\n' || key_shop == '\r') {   // choose the current shop_option
-				if (shop_option == int(SHOP::WEAPONS)) {
-					system("cls");
-					printAvailableWeapons();
-				}
-				if (shop_option == int(SHOP::ARMORS)) {
-					system("cls");
-					printAvailableArmors();
-				}
-				if (shop_option == int(SHOP::RETURN)) {}
+			if (shop_option == int(SHOP::RETURN)) 
 				break;
-			}
 		}
-	}
+    }
 }
 
 void Shop::displayShop(int opt) {
@@ -208,7 +205,7 @@ void Shop::showWeaponShop() {
 		else if (key == '\r' || key == '\n') {
 			// choose the current item
 			Weapon& selected = _availableWeapons[_currentItemWeaponIndex];
-			std::cout << "\nB?n ?ã ch?n: " << selected.getName() << std::endl;
+			std::cout << "\nB?n ?ï¿½ ch?n: " << selected.getName() << std::endl;
 			// more code to do
 		}
 		
@@ -254,7 +251,7 @@ void Shop::showArmorShop() {
 		else if (key == '\r' || key == '\n') {
 			// choose the current item
 			Armor& selected = _availableArmors[_currentItemArmorIndex];
-			std::cout << "\nB?n ?ã ch?n: " << selected.getName() << std::endl;
+			std::cout << "\nB?n ?ï¿½ ch?n: " << selected.getName() << std::endl;
 			// more code to do
 		}
 	}
@@ -292,12 +289,12 @@ void Shop::printArmorList(int start, int end, int currentIndex) {
 	// print header
 	std::cout << std::left << std::setw(8) << "NUMBER" << " | "
 		<< std::setw(20) << "NAME" << " | "
-		<< std::setw(10) << "CATEGORY" << " | "
+		<< std::setw(11) << "CATEGORY" << " | "
 		<< std::setw(5) << "DEF" << " | "
 		<< std::setw(7) << "HEALTH" << " | "
 		<< std::setw(8) << "WEIGHT" << " | "
 		<< std::setw(6) << "COST" << std::endl;
-	std::cout << std::string(70, '-') << std::endl;
+	std::cout << std::string(81, '-') << std::endl;
 	// print armor list
 	for (int i = start; i < end; i++) {
 		if (i == currentIndex) {

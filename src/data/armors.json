@@ -5,6 +5,7 @@
         "part": "Helmet",
         "health": 100,
         "defense": 10,
+        "weight": 5,
         "cost": 1000
     }
 ]
