@@ -5,22 +5,39 @@
 #include "Player.hpp"
 #include "Armor.hpp"
 #include <vector>
-#include <algorithm>
 #include <iomanip>
+#include <conio.h>
 #include "data/Data.hpp"
+
+#define ITEMS_PER_PAGE 15
+#define SHOP_OPTION 3
+
+enum class SHOP {
+	WEAPONS,
+	ARMORS,
+	RETURN
+};
 
 class Shop
 {
 private:
+	// vector to store available weapon and armor
 	std::vector <Weapon> _availableWeapons;
 	std::vector <Armor> _availableArmors;
+
+	// index to display the current page
+	int _currentItemWeaponIndex;
+	int _firstItemWeaponIndex;
+	int _currentItemArmorIndex;
+	int _firstItemArmorIndex;
+
 public:
 	Shop();
 	~Shop();
 
 	// add more weapon and armor to shop
 	void addWeaponToShop(Weapon weapon);
-	void buyArmorToShop(Armor armor);
+	void addArmorToShop(Armor armor);
 
 	// print available weapon and armor
 	void printAvailableWeapons();
@@ -42,4 +59,11 @@ public:
 	void getWeaponByIndex(Player& player, int index);
 	void getArmorByIndex(Player& player, int index);
 
+	// display shop
+	void displayShop(int opt);
+	void runShop();
+	void showWeaponShop();
+	void showArmorShop();
+	void printWeaponList(int firstIndex, int endIndex, int currentIndex);			// print max 15 weapons
+	void printArmorList(int firstIndex, int endIndex, int currentIndex);			// print max 15 armors
 };

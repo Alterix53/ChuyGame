@@ -1,21 +1,21 @@
 #include "Player.hpp"
 
-Player::Player() : _name("Unknown"), _ID("Unknown"), _points(0), _health(100), _attack(10), _atkSpeed(1), 
+Player::Player() : _name("Unknown"), _ID("Unknown"), _playerCost(0), _health(100), _attack(10), _atkSpeed(1), 
 _defense(10), _weapIndex(WEAPON_INDEX), _weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate() {
 }
 
 Player::Player(std::string name, std::string ID, int points) : 
-	_name(name), _ID(ID), _points(points), _health(100), _attack(10), _atkSpeed(1), _defense(10),
+	_name(name), _ID(ID), _playerCost(points), _health(100), _attack(10), _atkSpeed(1), _defense(10),
 	_weapIndex(WEAPON_INDEX),	_weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate()
 {}
 
 Player::Player(std::string name, std::string ID, int points, int health, int attack, int atkSpeed, int defense) :
-	_name(name), _ID(ID), _points(points), _health(health), _attack(attack), _atkSpeed(atkSpeed), _defense(defense),
+	_name(name), _ID(ID), _playerCost(points), _health(health), _attack(attack), _atkSpeed(atkSpeed), _defense(defense),
 	_weapIndex(WEAPON_INDEX),	_weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate()
 {}
 
 Player::Player(const Player& player) :
-	_name(player._name), _ID(player._ID), _points(player._points), _health(player._health), _attack(player._attack), 
+	_name(player._name), _ID(player._ID), _playerCost(player._playerCost), _health(player._health), _attack(player._attack), 
 	_defense(player._defense), _weapIndex(player._weapIndex), _atkSpeed(player._atkSpeed), _chestplate(player._chestplate),
 	_leggings(player._leggings), _boots(player._boots), _helmet(player._helmet)
 {
@@ -27,11 +27,11 @@ Player::~Player() {}
 
 // below are getter and setter
 void Player::setPoint(int points) {
-	_points = points;
+	_playerCost = points;
 }
 
 int Player::getPoint() {
-	return _points;
+	return _playerCost;
 }
 
 std::string Player::getName() {
@@ -58,25 +58,6 @@ int Player::getAtkSpeed() {
 	return _atkSpeed;
 }
 
-Weapon Player::getWeapon(int index) {
-	return _weapon[index];
-}
-
-Armor Player::getArmor(ArmorPart part) {
-	switch (part) {
-	case ArmorPart::HELMET:
-		return _helmet;
-	case ArmorPart::CHESTPLATE:
-		return _chestplate;
-	case ArmorPart::LEGGINGS:
-		return _leggings;
-	case ArmorPart::BOOTS:
-		return _boots;
-	default:
-		return Armor();
-	}
-}
-
 // int Player::getCritRate() { return _critRate; }
 // int Player::getCritDmg() { return _critDmg; }
 
@@ -89,6 +70,7 @@ void Player::equipWeapon(Weapon weapon) {
 	}
 
 	_weapon[_weapIndex++] = weapon;
+	this->updateStatEquipWeapon(weapon);
 }
 
 void Player::equipArmor(Armor armor) {
@@ -96,13 +78,16 @@ void Player::equipArmor(Armor armor) {
 	ArmorPart part = armor.getPart();
 	switch (part) {
 	case ArmorPart::HELMET:
-		_helmet = armor;
+		_helmet = armor; 
+		this->updateStatEquipArmor(armor);
 		break;
 	case ArmorPart::CHESTPLATE:
 		_chestplate = armor;
+		this->updateStatEquipArmor(armor);
 		break;
 	case ArmorPart::LEGGINGS:
 		_leggings = armor;
+		this->updateStatEquipArmor(armor);
 		break;
 	case ArmorPart::BOOTS:
 		/*if (_boots.getArmorPartString() != "Unknown") {
@@ -110,6 +95,7 @@ void Player::equipArmor(Armor armor) {
 			return;
 		}*/
 		_boots = armor;
+		this->updateStatEquipArmor(armor);
 		break;
 	default:
 		std::cerr << "Invalid armor part!" << std::endl;
@@ -119,27 +105,27 @@ void Player::equipArmor(Armor armor) {
 
 void Player::buyWeapon(Weapon weapon) {
 	int cost = weapon.getCost();
-	if (_points < cost) {
+	if (_playerCost < cost) {
 		std::cerr << "You don't have enough points to buy this weapon!" << std::endl;
 		return;
 	}
 
 	_inventoryWeapon.push_back(weapon);
-	_points -= cost;
-	// if (_inventoryWeapon.push_back(weapon) == false) {return;} else {_points -= cost;}
+	_playerCost -= cost;
+	// if (_inventoryWeapon.push_back(weapon) == false) {return;} else {_playerCost -= cost;}
 }
 
 void Player::buyArmor(Armor armor) {
 
 	int cost = armor.getCost();
-	if (_points < cost) {
+	if (_playerCost < cost) {
 		std::cerr << "You don't have enough points to buy this armor!" << std::endl;
 		return;
 	}
 
 	_inventoryArmor.push_back(armor);
-	_points -= cost;
-	// if (_inventoryArmor.push_back(armor) == false) {return;} else {_points -= cost;}
+	_playerCost -= cost;
+	// if (_inventoryArmor.push_back(armor) == false) {return;} else {_playerCost -= cost;}
 }
 
 void Player::printInfo() {
@@ -147,7 +133,7 @@ void Player::printInfo() {
 	// basic info
 	std::cout << "Player's name: " << _name << std::endl;
 	std::cout << "ID: " << _ID << std::endl;
-	std::cout << "Remainding points: " << _points << std::endl << std::endl;
+	std::cout << "Remainding points: " << _playerCost << std::endl << std::endl;
 
 	// Player's stat
 	std::cout << "Player's current stat: " << std::endl;
@@ -203,17 +189,22 @@ void Player::printInfo() {
 // weapon truyen vao la weapon dang mac, index la slot (ben trai hay phai) cua weapon
 void Player::unequipWeapon(int index) {
 	_weapon[index] = Weapon();
+	this->updateStatUnequipWeapon(_weapon[index]);
 }
 
 void Player::unequipArmor(ArmorPart part) {
 	switch (part) {
 	case ArmorPart::HELMET:
 		_helmet = Armor();
+		this->updateStatUnequipArmor(_helmet);
 		break;
 	case ArmorPart::CHESTPLATE:
 		_chestplate = Armor();
+		this->updateStatUnequipArmor(_chestplate);
 		break;
 	case ArmorPart::LEGGINGS:
+		_leggings = Armor();
+		this->updateStatUnequipArmor(_leggings);
 		break;
 	case ArmorPart::BOOTS:
 		//if (_boots.getArmorPartString() == "Unknown") {
@@ -221,6 +212,7 @@ void Player::unequipArmor(ArmorPart part) {
 		//	return;
 		//}
 		_boots = Armor();
+		this->updateStatUnequipArmor(_boots);
 		break;
 	default:
 		std::cerr << "Invalid armor part!" << std::endl;
@@ -239,11 +231,15 @@ void Player::updateStatUnequipWeapon(Weapon weapon) {
 }
 
 void Player::updateStatEquipArmor(Armor armor) {
+	_health += armor.getHealth();
 	_defense += armor.getDefense();
+	_atkSpeed -= armor.getWeight();
 }
 
 void Player::updateStatUnequipArmor(Armor armor) {
 	_defense -= armor.getDefense();
+	_health -= armor.getHealth();
+	_atkSpeed += armor.getWeight();
 }
 
 // ham nay dung de in ra thong so cua player (khong in ra thong tin cua weapon va armor)
