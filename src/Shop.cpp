@@ -178,7 +178,7 @@ void Shop::showWeaponShop() {
 
 		char key = _getch();
 		if (key == 'w' || key == 'W' || key == -32 && _getch() == 72) {
-			if ((_currentItemWeaponIndex = _firstItemWeaponIndex) && _currentItemWeaponIndex > 0) {
+			if ((_currentItemWeaponIndex == _firstItemWeaponIndex) && _currentItemWeaponIndex > 0) {
 				// case that the current item is the first item in the list and the current item is not the first item in the vector
 				_firstItemWeaponIndex--;
 				_currentItemWeaponIndex--;
@@ -189,7 +189,7 @@ void Shop::showWeaponShop() {
 			}
 		}
 		else if (key == 's' || key == 'S' || key == -32 && _getch() == 80) {
-			if ((_currentItemWeaponIndex = _firstItemWeaponIndex + ITEMS_PER_PAGE - 1) && (_currentItemWeaponIndex < _availableWeapons.size() - 1)) {
+			if ((_currentItemWeaponIndex == _firstItemWeaponIndex + ITEMS_PER_PAGE - 1) && (_currentItemWeaponIndex < _availableWeapons.size() - 1)) {
 				// case that the current item is the last item in the list and the current item is not the last item in the vector
 				_firstItemWeaponIndex++;
 				_currentItemWeaponIndex++;
@@ -224,7 +224,7 @@ void Shop::showArmorShop() {
 		printArmorList(start, end, _currentItemArmorIndex);
 		char key = _getch();
 		if (key == 'w' || key == 'W' || key == -32 && _getch() == 72) {
-			if ((_currentItemArmorIndex = _firstItemArmorIndex) && _currentItemArmorIndex > 0) {
+			if ((_currentItemArmorIndex == _firstItemArmorIndex) && _currentItemArmorIndex > 0) {
 				// case that the current item is the first item in the list and the current item is not the first item in the vector
 				_firstItemArmorIndex--;
 				_currentItemArmorIndex;
@@ -235,7 +235,7 @@ void Shop::showArmorShop() {
 			}
 		}
 		else if (key == 's' || key == 'S' || key == -32 && _getch() == 80) {
-			if ((_currentItemArmorIndex = _firstItemArmorIndex + ITEMS_PER_PAGE - 1) && (_currentItemArmorIndex < _availableArmors.size() - 1)) {
+			if ((_currentItemArmorIndex == _firstItemArmorIndex + ITEMS_PER_PAGE - 1) && (_currentItemArmorIndex < _availableArmors.size() - 1)) {
 				// case that the current item is the last item in the list and the current item is not the last item in the vector
 				_firstItemArmorIndex++;
 				_currentItemArmorIndex++;
