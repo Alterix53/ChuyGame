@@ -4,6 +4,8 @@ namespace Character {
     
     std::string slotToString(Slot slot) {
         switch (slot) {
+            case Slot::CHARACTER: return "Character";
+            case Slot::INVENTORY: return "Inventory";
             case Slot::MAIN: return "Main";
             case Slot::WEAPON1: return "Weapon1";
             case Slot::WEAPON2: return "Weapon2";
@@ -82,19 +84,100 @@ namespace Character {
             system("cls");
             display();
             char key = getch();
-            if (key = 27 || key == 'q' || key == 'Q') { // 27 = esc
+            if (key == 'q' || key == 'Q' || int(key) == 27) { 
                 return;
             } else if (key == 'w' || key == 'W') {
-
+                if (tab == Tab::CHARACTER) {
+                    option = goUp(option);
+                }
             } else if (key == 's' || key == 'S') {
+                if (tab == Tab::CHARACTER) {
+                    option = goDown(option);
+                }
 
             } else if (key == 'a' || key == 'A') {
-
+                if (tab == Tab::CHARACTER) {
+                    option = goLeft(option);
+                }
             } else if (key == 'd' || key == 'D') {
-
+                if (tab == Tab::CHARACTER) {
+                    option = goRight(option);
+                }
             }  else if (key == '\n' || key == '\r') {  // choose the current option
                 break;
             }
         }
     }   
+
+    Slot goUp(const Slot &option) {
+        if (option == Slot::MAIN || option == Slot::WEAPON1 || option == Slot::WEAPON2) {
+            return Slot::CHARACTER;
+        }
+        if (option == Slot::ARMOR1) {
+            return Slot::WEAPON1;
+        }
+        if (option == Slot::ARMOR2 || option == Slot::ARMOR3) {
+            return Slot::MAIN;
+        }
+        if (option == Slot::ARMOR4) {
+            return Slot::WEAPON2;
+        }
+    }
+    
+    Slot goDown(const Slot &option) {
+        if (option == Slot::CHARACTER) {
+            return Slot::WEAPON1;
+        }
+        if (option == Slot::MAIN) {
+            return Slot::ARMOR2;
+        }
+        if (option == Slot::WEAPON1) {
+            return Slot::ARMOR1;
+        }
+        if (option == Slot::WEAPON2) {
+            return Slot::ARMOR4;
+        }
+    }
+
+    Slot goLeft(const Slot &option) {
+        if (option == Slot::INVENTORY) {
+            return Slot::CHARACTER;
+        }
+        if (option == Slot::MAIN) {
+            return Slot::WEAPON1;
+        }
+        if (option == Slot::WEAPON2) {
+            return Slot::MAIN;
+        }
+        if (option == Slot::ARMOR4) {
+            return Slot::ARMOR3;
+        }
+        if (option == Slot::ARMOR3) {
+            return Slot::ARMOR2;
+        }
+        if (option == Slot::ARMOR2) {
+            return Slot::ARMOR1;
+        }
+    }
+    
+    Slot goRight(const Slot &option) {
+        if (option == Slot::CHARACTER) {
+            return Slot::INVENTORY;
+        }
+        if (option == Slot::MAIN) {
+            return Slot::WEAPON2;
+        }
+        if (option == Slot::WEAPON1) {
+            return Slot::MAIN;
+        }
+        if (option == Slot::ARMOR1) {
+            return Slot::ARMOR2;
+        }
+        if (option == Slot::ARMOR2) {
+            return Slot::ARMOR3;
+        }
+        if (option == Slot::ARMOR3) {
+            return Slot::ARMOR4;
+        }
+    }
 }
