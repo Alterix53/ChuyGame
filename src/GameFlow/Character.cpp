@@ -67,15 +67,22 @@ namespace Character {
         Slot option = Slot::WEAPON1;
 
         std::function<void()> display = [&]() -> void {
+            /*
+            std::cout << "\033[1;31m";
+    std::cout << "\t\t\t  CHUYGAME" << "\n\n";
+    std::cout << "\033[0m";
+            */
             std::cout << std::right << std::setw(space) << tabs[0] << std::setw(20) << tabs[1] << std::endl;
             std::cout << "\n\n";
+            std::cout << std::right << std::setw(space + mainSlot[0].length()) << "\033[1;31m" << "MAIN" << "\033[0m" << "\n\n";
             std::cout << std::right << std::setw(space + mainSlot[0].length()) << mainSlot[0] << std::endl;
-            std::cout << std::right << std::setw(space + mainSlot[1].length()) << mainSlot[1] << std::endl;
+            std::cout << std::left << std::setw(space + 11) << "\033[1;31mWEAPON 1\033[0m" << std::setw(space) << mainSlot[1] << "\033[1;31mWEAPON 2\033[0m" << std::endl; 
             std::cout << std::left << std::setw(space) << weaponSlot1[0] << std::setw(space) << mainSlot[2] << std::setw(space) << weaponSlot2[0] << "Current Tab: " << tabToString(tab) << std::endl;
             std::cout << std::left << std::setw(space) << weaponSlot1[1] << std::setw(space) << mainSlot[3] << std::setw(space) << weaponSlot2[1] << "Current Select: " << slotToString(option) << std::endl;
             std::cout << std::right << std::setw(space + mainSlot[4].length()) << mainSlot[4] << std::endl;
             std::cout << std::right << std::setw(space + mainSlot[5].length()) << mainSlot[5] << std::endl;
-            std::cout << "\n\n\n";
+            std::cout << "\n\n";
+            std::cout << std::left << std::setw(space + 11) <<  "\033[1;31mARMOR 1\033[0m" << std::setw(space + 11) << "\033[1;31mARMOR 2\033[0m" << std::setw(space + 11) << "\033[1;31mARMOR 3\033[0m" << std::setw(space) << "\033[1;31mARMOR 4\033[0m" << std::endl;
             std::cout << std::left << std::setw(space) << armorSlot1[0] << std::setw(space) << armorSlot2[0] << std::setw(space) << armorSlot3[0] << std::setw(space) << armorSlot4[0] << std::endl;
             std::cout << std::left << std::setw(space) << armorSlot1[1] << std::setw(space) << armorSlot2[1] << std::setw(space) << armorSlot3[1] << std::setw(space) << armorSlot4[1] << std::endl;
         };
