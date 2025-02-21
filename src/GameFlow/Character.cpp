@@ -80,6 +80,8 @@ namespace Character {
             std::cout << std::left << std::setw(space + 11) <<  "\033[1;31mARMOR 1\033[0m" << std::setw(space + 11) << "\033[1;31mARMOR 2\033[0m" << std::setw(space + 11) << "\033[1;31mARMOR 3\033[0m" << std::setw(space) << "\033[1;31mARMOR 4\033[0m" << std::endl;
             std::cout << std::left << std::setw(space) << armorSlot1[0] << std::setw(space) << armorSlot2[0] << std::setw(space) << armorSlot3[0] << std::setw(space) << armorSlot4[0] << std::endl;
             std::cout << std::left << std::setw(space) << armorSlot1[1] << std::setw(space) << armorSlot2[1] << std::setw(space) << armorSlot3[1] << std::setw(space) << armorSlot4[1] << std::endl;
+            std::cout << "\n\n\n";
+            std::cout << std::right << std::setw(space * 2) << "Press ESC or Q to exit" << std::endl;
         };
 
         while (true) {
