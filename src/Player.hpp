@@ -27,7 +27,7 @@ private:
 	int _attack;
 	int _defense;
 	int _atkSpeed;
-	int _points;		// cost to buy weapon
+	int _playerCost;		// cost to buy weapon
 	int _weapIndex;		// shows the index of the weapon in the array
 	// int _critRate;
 	// int _critDmg;
@@ -53,8 +53,6 @@ public:
 	int getAttack();
 	int getDefense();
 	int getAtkSpeed();
-	Weapon getWeapon(int index);
-	Armor getArmor(ArmorPart part);
 	// int getCritRate();
 	// int getCritDmg();
 

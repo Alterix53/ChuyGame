@@ -6,6 +6,7 @@
 // define the armor's base stat below
 #define BASE_ARMOR_DEFENSE 10
 #define BASE_ARMOR_HEALTH 1000
+#define BASE_ARMOR_WEIGHT 1
 
 enum class ArmorPart{ // rat minecraft
 	HELMET,
@@ -33,13 +34,13 @@ private:
 	// thong so rieng cua armor
 	int _defense;
 	int _health;
-	// int _weight;
+	int _weight; // decrease the player's speed
 
 public:
 
 	// constructor and destructor
 	Armor();
-	Armor(std::string name, ArmorType type, ArmorPart part, int health, int defense, int cost);
+	Armor(std::string name, ArmorType type, ArmorPart part, int health, int defense, int weight, int cost);
 	~Armor();
 
 	// getter and setter
@@ -49,6 +50,7 @@ public:
 	int getDefense();
 	int getHealth();
 	int getCost();
+	int getWeight();
 
 	// calculate the cost of the armor
 	void calculateCost();		// base on hp and def
