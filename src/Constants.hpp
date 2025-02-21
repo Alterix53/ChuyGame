@@ -23,6 +23,15 @@ namespace Constants {
         constexpr int UNDERLINE = 4;
     }
     namespace List {
+        namespace Weapon {
+            constexpr int NUMBER = 8;
+            constexpr int NAME = 20;
+            constexpr int CATEGORY = 10;
+            constexpr int ATK = 5;
+            constexpr int ATKSPD = 7;
+            constexpr int COST = 6;
+            constexpr int SEPARATOR = 70; 
+        }
         namespace Armor {
             constexpr int NUMBER = 8;
             constexpr int NAME = 22;

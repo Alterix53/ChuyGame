@@ -260,13 +260,13 @@ void Shop::showArmorShop() {
 void Shop::printWeaponList(int firstIndex, int endIndex, int currentIndex) {
 
 	// print header
-	std::cout << std::left << std::setw(8) << "NUMBER" << " | "
-		<< std::setw(20) << "NAME" << " | "
-		<< std::setw(10) << "CATEGORY" << " | "
-		<< std::setw(5) << "ATK" << " | "
-		<< std::setw(7) << "ATKSPD" << " | "
-		<< std::setw(6) << "COST" << std::endl;
-	std::cout << std::string(70, '-') << std::endl;
+	std::cout << std::left << std::setw(List::Weapon::NUMBER) << "NUMBER" << " | "
+		<< std::setw(List::Weapon::NAME) << "NAME" << " | "
+		<< std::setw(List::Weapon::CATEGORY) << "CATEGORY" << " | "
+		<< std::setw(List::Weapon::ATK) << "ATK" << " | "
+		<< std::setw(List::Weapon::ATKSPD) << "ATKSPD" << " | "
+		<< std::setw(List::Weapon::COST) << "COST" << std::endl;
+	std::cout << std::string(List::Weapon::SEPARATOR, '-') << std::endl;
 
 	// print weapon list
 	for (int i = firstIndex; i < endIndex; i++) {
@@ -276,12 +276,12 @@ void Shop::printWeaponList(int firstIndex, int endIndex, int currentIndex) {
 		else {
 			std::cout << "  ";
 		}
-		std::cout << std::left << std::setw(6) << i << " | "
-			<< std::setw(20) << _availableWeapons[i].getName() << " | "
-			<< std::setw(10) << _availableWeapons[i].getWeaponTypeString() << " | "
-			<< std::setw(5) << _availableWeapons[i].getDamage() << " | "
-			<< std::setw(7) << _availableWeapons[i].getAtkSpeed() << " | "
-			<< std::setw(6) << _availableWeapons[i].getCost() << std::endl;
+		std::cout << std::left << std::setw(List::Weapon::NUMBER - 2) << i << " | "
+			<< std::setw(List::Weapon::NAME) << _availableWeapons[i].getName() << " | "
+			<< std::setw(List::Weapon::CATEGORY) << _availableWeapons[i].getWeaponTypeString() << " | "
+			<< std::setw(List::Weapon::ATK) << _availableWeapons[i].getDamage() << " | "
+			<< std::setw(List::Weapon::ATKSPD) << _availableWeapons[i].getAtkSpeed() << " | "
+			<< std::setw(List::Weapon::COST) << _availableWeapons[i].getCost() << std::endl;
 	}
 }
 
