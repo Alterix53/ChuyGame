@@ -63,7 +63,7 @@ namespace Choice {
 
     bool show(std::string name) {
         int option = 0;
-        std::cout << "\n\n\n\n";
+        std::cout << "\n\n\n\n\n\n\n";
         while (true) {
             clearLines(6);
             display(name, option);
@@ -72,10 +72,8 @@ namespace Choice {
             if (key == 'a' || key == 'A' || key == 'd' || key == 'D') {
                 option = (option == 0) ? 1 : 0;
             } else if (key == '\r' || key == '\n') {
-                if (option == 0) {
-                    return true;
-                }
-                return false;
+                clearLines(7);
+                return option == 0;
             }
         }
     }

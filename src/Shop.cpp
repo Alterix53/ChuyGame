@@ -208,8 +208,6 @@ void Shop::showWeaponShop() {
 			// more code to do
 			Choice::show(selected.getName());
 			// std::cout << "\nYou have selected : " << selected.getName() << std::endl;
-
-			getch();
 		}
 		
 	}
