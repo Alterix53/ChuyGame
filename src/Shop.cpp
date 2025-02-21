@@ -166,6 +166,10 @@ void Shop::displayShop(int opt) {
 
 void Shop::showWeaponShop() {
 	bool running = true;
+	bool find_weapon = false;
+	bool find_armor = false;
+	std::string search = "";
+
 	while (running) {
 		system("cls");
 
@@ -175,9 +179,44 @@ void Shop::showWeaponShop() {
 			end = _availableWeapons.size();
 		}
 		printWeaponList(start, end, _currentItemWeaponIndex);
+		
+		// print notification that player can search for weapon
+		std::cout << "Press 'F' to search for weapon" << std::endl;
 
 		char key = _getch();
-		if (key == 'w' || key == 'W' || key == -32 && _getch() == 72) {
+		if (key == 'F' || key == 'f')
+		{
+			// change to find box
+			find_weapon = true;
+			while (find_weapon) {
+				//// system("cls");
+				//std::cout << "Enter the name of the weapon you want to search: ";
+				//getline(cin, search);
+				//std::vector <Weapon> filteredWeapons;
+				//for (int i = 0; i < _availableWeapons.size(); i++) {
+				//	if (_availableWeapons[i].getName() == search) {
+				//		filteredWeapons.push_back(_availableWeapons[i]);
+				//	}
+				//}
+				//if (filteredWeapons.size() == 0) {
+				//	std::cout << "No weapon found!" << std::endl;
+				//}
+				//else {
+				//	std::cout << "Weapon found: " << std::endl;
+				//	std::cout << std::left << std::setw(20) << "Name" << std::right << std::setw(8) << "Damage";
+				//	std::cout << std::right << std::setw(8) << "AtkSpeed" << std::right << std::setw(8) << "Cost" << std::endl;
+				//	for (int i = 0; i < filteredWeapons.size(); i++) {
+				//		std::cout << std::left << std::setw(20) << filteredWeapons[i].getName() << std::right << std::setw(8) << filteredWeapons[i].getDamage();
+				//		std::cout << std::right << std::setw(8) << filteredWeapons[i].getAtkSpeed() << std::right << std::setw(8) << filteredWeapons[i].getCost() << std::endl;
+				//	}
+				//}
+				//std::cout << "Press 'R' to return to the shop" << std::endl;
+				//char key_find = _getch();
+				//if (key_find == 'R' || key_find == 'r') {
+				//	find_weapon = false;
+			}
+		}
+		else if (key == 'w' || key == 'W' || key == -32 && _getch() == 72) {
 			if ((_currentItemWeaponIndex == _firstItemWeaponIndex) && _currentItemWeaponIndex > 0) {
 				// case that the current item is the first item in the list and the current item is not the first item in the vector
 				_firstItemWeaponIndex--;
@@ -284,6 +323,8 @@ void Shop::printWeaponList(int firstIndex, int endIndex, int currentIndex) {
 			<< std::setw(List::Weapon::ATKSPD) << _availableWeapons[i].getAtkSpeed() << " | "
 			<< std::setw(List::Weapon::COST) << _availableWeapons[i].getCost() << std::endl;
 	}
+
+	std::cout << std::string(70, '-') << std::endl;
 }
 
 void Shop::printArmorList(int start, int end, int currentIndex) {
@@ -304,6 +345,7 @@ void Shop::printArmorList(int start, int end, int currentIndex) {
 		else {
 			std::cout << "  ";
 		}
+
 		std::cout << std::left << std::setw(List::Armor::NUMBER - 2) << i << " | "
 			<< std::setw(List::Armor::NAME) << _availableArmors[i].getName() << " | "
 			<< std::setw(List::Armor::CATEGORY) << _availableArmors[i].getArmorTypeString() << " | "
@@ -311,5 +353,6 @@ void Shop::printArmorList(int start, int end, int currentIndex) {
 			<< std::setw(List::Armor::HEALTH) << _availableArmors[i].getHealth() << " | "
 			<< std::setw(List::Armor::WEIGHT) << _availableArmors[i].getWeight() << " | "
 			<< std::setw(List::Armor::COST) << _availableArmors[i].getCost() << std::endl;
+
 	}
 }
