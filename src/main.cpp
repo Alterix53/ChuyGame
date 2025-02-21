@@ -95,7 +95,6 @@ int main() {
         } else if (key == '\n' || key == '\r') {   // choose the current option
             if (option == int(Menu::CHARACTER)) {
                 Character::show(player);
-                break;
             } 
             if (option == int(Menu::SHOP)) {
 
