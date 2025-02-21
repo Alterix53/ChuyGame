@@ -288,7 +288,7 @@ void Shop::printWeaponList(int firstIndex, int endIndex, int currentIndex) {
 void Shop::printArmorList(int start, int end, int currentIndex) {
 	// print header
 	std::cout << std::left << std::setw(8) << "NUMBER" << " | "
-		<< std::setw(20) << "NAME" << " | "
+		<< std::setw(22) << "NAME" << " | "
 		<< std::setw(11) << "CATEGORY" << " | "
 		<< std::setw(5) << "DEF" << " | "
 		<< std::setw(7) << "HEALTH" << " | "
@@ -304,8 +304,8 @@ void Shop::printArmorList(int start, int end, int currentIndex) {
 			std::cout << "  ";
 		}
 		std::cout << std::left << std::setw(6) << i << " | "
-			<< std::setw(20) << _availableArmors[i].getName() << " | "
-			<< std::setw(10) << _availableArmors[i].getArmorTypeString() << " | "
+			<< std::setw(22) << _availableArmors[i].getName() << " | "
+			<< std::setw(11) << _availableArmors[i].getArmorTypeString() << " | "
 			<< std::setw(5) << _availableArmors[i].getDefense() << " | "
 			<< std::setw(7) << _availableArmors[i].getHealth() << " | "
 			<< std::setw(8) << _availableArmors[i].getWeight() << " | "
