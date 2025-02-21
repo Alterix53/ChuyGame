@@ -287,14 +287,14 @@ void Shop::printWeaponList(int firstIndex, int endIndex, int currentIndex) {
 
 void Shop::printArmorList(int start, int end, int currentIndex) {
 	// print header
-	std::cout << std::left << std::setw(8) << "NUMBER" << " | "
-		<< std::setw(22) << "NAME" << " | "
-		<< std::setw(11) << "CATEGORY" << " | "
-		<< std::setw(5) << "DEF" << " | "
-		<< std::setw(7) << "HEALTH" << " | "
-		<< std::setw(8) << "WEIGHT" << " | "
-		<< std::setw(6) << "COST" << std::endl;
-	std::cout << std::string(81, '-') << std::endl;
+	std::cout << std::left << std::setw(List::Armor::NUMBER) << "NUMBER" << " | "
+		<< std::setw(List::Armor::NAME) << "NAME" << " | "
+		<< std::setw(List::Armor::CATEGORY) << "CATEGORY" << " | "
+		<< std::setw(List::Armor::DEF) << "DEF" << " | "
+		<< std::setw(List::Armor::HEALTH) << "HEALTH" << " | "
+		<< std::setw(List::Armor::WEIGHT) << "WEIGHT" << " | "
+		<< std::setw(List::Armor::COST) << "COST" << std::endl;
+	std::cout << std::string(List::Armor::SEPARATOR, '-') << std::endl;
 	// print armor list
 	for (int i = start; i < end; i++) {
 		if (i == currentIndex) {
@@ -303,12 +303,12 @@ void Shop::printArmorList(int start, int end, int currentIndex) {
 		else {
 			std::cout << "  ";
 		}
-		std::cout << std::left << std::setw(6) << i << " | "
-			<< std::setw(22) << _availableArmors[i].getName() << " | "
-			<< std::setw(11) << _availableArmors[i].getArmorTypeString() << " | "
-			<< std::setw(5) << _availableArmors[i].getDefense() << " | "
-			<< std::setw(7) << _availableArmors[i].getHealth() << " | "
-			<< std::setw(8) << _availableArmors[i].getWeight() << " | "
-			<< std::setw(6) << _availableArmors[i].getCost() << std::endl;
+		std::cout << std::left << std::setw(List::Armor::NUMBER - 2) << i << " | "
+			<< std::setw(List::Armor::NAME) << _availableArmors[i].getName() << " | "
+			<< std::setw(List::Armor::CATEGORY) << _availableArmors[i].getArmorTypeString() << " | "
+			<< std::setw(List::Armor::DEF) << _availableArmors[i].getDefense() << " | "
+			<< std::setw(List::Armor::HEALTH) << _availableArmors[i].getHealth() << " | "
+			<< std::setw(List::Armor::WEIGHT) << _availableArmors[i].getWeight() << " | "
+			<< std::setw(List::Armor::COST) << _availableArmors[i].getCost() << std::endl;
 	}
 }
