@@ -7,5 +7,149 @@
         "defense": 10,
         "weight": 5,
         "cost": 1000
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Tactical Vest",
+        "part": "Chestplate",
+        "health": 150,
+        "defense": 20,
+        "weight": 8,
+        "cost": 2000
+    },
+    {
+        "type": "Chain",
+        "name": "Reinforced Chainmail",
+        "part": "Leggings",
+        "health": 80,
+        "defense": 15,
+        "weight": 7,
+        "cost": 1200
+    },
+    {
+        "type": "Leather",
+        "name": "Hunter Boots",
+        "part": "Boots",
+        "health": 50,
+        "defense": 5,
+        "weight": 2,
+        "cost": 500
+    },
+    {
+        "type": "Plate",
+        "name": "Knight Helmet",
+        "part": "Helmet",
+        "health": 120,
+        "defense": 25,
+        "weight": 10,
+        "cost": 1800
+    },
+    {
+        "type": "Bulletproof",
+        "name": "SWAT Helmet",
+        "part": "Helmet",
+        "health": 130,
+        "defense": 22,
+        "weight": 6,
+        "cost": 2200
+    },
+    {
+        "type": "Plate",
+        "name": "Steel Chestplate",
+        "part": "Chestplate",
+        "health": 200,
+        "defense": 30,
+        "weight": 12,
+        "cost": 2500
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Military Vest",
+        "part": "Chestplate",
+        "health": 170,
+        "defense": 25,
+        "weight": 9,
+        "cost": 2500
+    },
+    {
+        "type": "Chain",
+        "name": "Templar Leggings",
+        "part": "Leggings",
+        "health": 100,
+        "defense": 18,
+        "weight": 8,
+        "cost": 1400
+    },
+    {
+        "type": "Leather",
+        "name": "Shadow Boots",
+        "part": "Boots",
+        "health": 60,
+        "defense": 7,
+        "weight": 2,
+        "cost": 600
+    },
+    {
+        "type": "Plate",
+        "name": "Dragon Helmet",
+        "part": "Helmet",
+        "health": 140,
+        "defense": 28,
+        "weight": 11,
+        "cost": 2100
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Riot Shield Chestplate",
+        "part": "Chestplate",
+        "health": 180,
+        "defense": 26,
+        "weight": 10,
+        "cost": 2700
+    },
+    {
+        "type": "Plate",
+        "name": "Titan Greaves",
+        "part": "Leggings",
+        "health": 190,
+        "defense": 30,
+        "weight": 13,
+        "cost": 2800
+    },
+    {
+        "type": "Leather",
+        "name": "Nomad Sandals",
+        "part": "Boots",
+        "health": 40,
+        "defense": 4,
+        "weight": 1,
+        "cost": 300
+    },
+    {
+        "type": "Chain",
+        "name": "Ancient Chain Helmet",
+        "part": "Helmet",
+        "health": 90,
+        "defense": 16,
+        "weight": 6,
+        "cost": 1300
+    },
+    {
+        "type": "Leather",
+        "name": "Assassin's Cloak",
+        "part": "Chestplate",
+        "health": 75,
+        "defense": 9,
+        "weight": 3,
+        "cost": 800
+    },
+    {
+        "type": "Plate",
+        "name": "Paladin's Armor",
+        "part": "Chestplate",
+        "health": 220,
+        "defense": 35,
+        "weight": 15,
+        "cost": 3200
     }
 ]

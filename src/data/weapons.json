@@ -12,5 +12,145 @@
         "damage": 50,
         "atkSpeed": 2,
         "cost": 500
+    },
+    {
+        "type": "Sword",
+        "name": "Dragonfang",
+        "damage": 120,
+        "atkSpeed": 1,
+        "cost": 1500
+    },
+    {
+        "type": "Sword",
+        "name": "Shadow Blade",
+        "damage": 90,
+        "atkSpeed": 2,
+        "cost": 1100
+    },
+    {
+        "type": "Sword",
+        "name": "Paladin's Wrath",
+        "damage": 140,
+        "atkSpeed": 1,
+        "cost": 2000
+    },
+    {
+        "type": "Sword",
+        "name": "Runic Saber",
+        "damage": 110,
+        "atkSpeed": 1,
+        "cost": 1300
+    },
+    {
+        "type": "Bow",
+        "name": "Elven Bow",
+        "damage": 60,
+        "atkSpeed": 3,
+        "cost": 700
+    },
+    {
+        "type": "Bow",
+        "name": "Stormshot",
+        "damage": 70,
+        "atkSpeed": 2,
+        "cost": 900
+    },
+    {
+        "type": "Bow",
+        "name": "Phantom Bow",
+        "damage": 80,
+        "atkSpeed": 3,
+        "cost": 1200
+    },
+    {
+        "type": "Bow",
+        "name": "Inferno Bow",
+        "damage": 90,
+        "atkSpeed": 2,
+        "cost": 1400
+    },
+    {
+        "type": "Dagger",
+        "name": "Venom Fang",
+        "damage": 40,
+        "atkSpeed": 5,
+        "cost": 800
+    },
+    {
+        "type": "Dagger",
+        "name": "Silent Stiletto",
+        "damage": 45,
+        "atkSpeed": 4,
+        "cost": 900
+    },
+    {
+        "type": "Dagger",
+        "name": "Shadow Fang",
+        "damage": 50,
+        "atkSpeed": 4,
+        "cost": 1000
+    },
+    {
+        "type": "Dagger",
+        "name": "Assassin's Kiss",
+        "damage": 55,
+        "atkSpeed": 5,
+        "cost": 1100
+    },
+    {
+        "type": "Axe",
+        "name": "Berserker's Fury",
+        "damage": 130,
+        "atkSpeed": 1,
+        "cost": 1800
+    },
+    {
+        "type": "Axe",
+        "name": "Dwarven Cleaver",
+        "damage": 110,
+        "atkSpeed": 2,
+        "cost": 1600
+    },
+    {
+        "type": "Axe",
+        "name": "Bloodthirster",
+        "damage": 140,
+        "atkSpeed": 1,
+        "cost": 2200
+    },
+    {
+        "type": "Axe",
+        "name": "Stormbreaker",
+        "damage": 150,
+        "atkSpeed": 1,
+        "cost": 2500
+    },
+    {
+        "type": "Sword",
+        "name": "Celestial Edge",
+        "damage": 160,
+        "atkSpeed": 1,
+        "cost": 2800
+    },
+    {
+        "type": "Bow",
+        "name": "Moonlight Bow",
+        "damage": 85,
+        "atkSpeed": 3,
+        "cost": 1300
+    },
+    {
+        "type": "Dagger",
+        "name": "Nightpiercer",
+        "damage": 60,
+        "atkSpeed": 5,
+        "cost": 1200
+    },
+    {
+        "type": "Axe",
+        "name": "Titan's Wrath",
+        "damage": 170,
+        "atkSpeed": 1,
+        "cost": 3000
     }
 ]
