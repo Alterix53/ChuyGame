@@ -55,6 +55,8 @@ public:
 	int getAtkSpeed();
 	// int getCritRate();
 	// int getCritDmg();
+	Weapon getWeapon(int index);
+	Armor getArmor(ArmorPart part);
 
 	// adding weapon and armor to inventory
 	void buyWeapon(Weapon weapon);				// buy and add weapon to player's inventory

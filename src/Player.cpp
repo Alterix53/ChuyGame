@@ -58,6 +58,25 @@ int Player::getAtkSpeed() {
 	return _atkSpeed;
 }
 
+Weapon Player::getWeapon(int index) {
+	return _weapon[index];
+}
+
+Armor Player::getArmor(ArmorPart part) {
+	switch (part) {
+	case ArmorPart::HELMET:
+		return _helmet;
+	case ArmorPart::CHESTPLATE:
+		return _chestplate;
+	case ArmorPart::LEGGINGS:
+		return _leggings;
+	case ArmorPart::BOOTS:
+		return _boots;
+	default:
+		return Armor();
+	}
+}
+
 // int Player::getCritRate() { return _critRate; }
 // int Player::getCritDmg() { return _critDmg; }
 

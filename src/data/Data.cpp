@@ -50,9 +50,10 @@ namespace ArmorData {
             ArmorPart part = stringToArmorPart(armor["part"]);
             int health = armor["health"];
             int defense = armor["defense"];
+            int weight = armor["weight"];
             int cost = armor["cost"];
 
-            _availableArmors.push_back(Armor(name, type, part, health, defense, cost));
+            _availableArmors.push_back(Armor(name, type, part, health, defense, weight, cost));
         }
     }
 }
