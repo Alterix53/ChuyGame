@@ -1,20 +1,35 @@
 #include "Character.hpp"
 
 namespace Character {
+    std::vector<std::string> sign = {
+        "\033[1;31mMAIN\033[0m",
+        "\033[1;31mWEAPON1\033[0m",
+        "\033[1;31mWEAPON2\033[0m",
+        "\033[1;31mARMOR1\033[0m",
+        "\033[1;31mARMOR2\033[0m",
+        "\033[1;31mARMOR3\033[0m",
+        "\033[1;31mARMOR4\033[0m"
+    };
     
     std::string slotToString(Slot slot) {
         switch (slot) {
             case Slot::CHARACTER: return "Character";
             case Slot::INVENTORY: return "Inventory";
             case Slot::MAIN: return "Main";
-            case Slot::WEAPON1: return "Weapon1";
-            case Slot::WEAPON2: return "Weapon2";
-            case Slot::ARMOR1: return "Armor1";
-            case Slot::ARMOR2: return "Armor2";
-            case Slot::ARMOR3: return "Armor3";
-            case Slot::ARMOR4: return "Armor4";
+            case Slot::WEAPON1: return "Weapon 1";
+            case Slot::WEAPON2: return "Weapon 2";
+            case Slot::ARMOR1: return "Armor 1";
+            case Slot::ARMOR2: return "Armor 2";
+            case Slot::ARMOR3: return "Armor 3";
+            case Slot::ARMOR4: return "Armor 4";
             default: return "Unknown";
         }
+    }
+
+    std::string slotToStringUpper(Slot slot) {
+        std::string string = slotToString(slot);
+        std::transform(string.begin(), string.end(), string.begin(), ::toupper);
+        return string;
     }
 
     std::string tabToString(Tab tab) {
@@ -25,6 +40,15 @@ namespace Character {
         }
     }
 
+    std::string colorString(std::string str, int color) {
+        return "\033[1;" + std::to_string(color) + "m" + str + "\033[0m";
+    }
+
+    std::string colorString(const Slot &slot, int color, int mode) {
+        std::string str = slotToStringUpper(slot);
+        std::string string = "\033["+ std::to_string(mode) + ";" + std::to_string(color) + "m" + str + "\033[0m";
+        return string;   
+    }
     void show(Player &player) {
         std::vector<std::string> tabs = {
             "Character",
@@ -67,19 +91,21 @@ namespace Character {
         Slot option = Slot::WEAPON1;
 
         std::function<void()> display = [&]() -> void {
-            std::cout << std::right << std::setw(space) << tabs[0] << std::setw(20) << tabs[1] << std::endl;
+            std::cout << std::right << std::setw(Frame::space) << tabs[0] << std::setw(20) << tabs[1] << std::endl;
             std::cout << "\n\n";
-            std::cout << std::right << std::setw(space + mainSlot[0].length() + 4) << "\033[1;31mMAIN\033[0m" << "\n\n";
-            std::cout << std::right << std::setw(space + mainSlot[0].length()) << mainSlot[0] << std::endl;
-            std::cout << std::left << std::setw(space + 11) << "\033[1;31mWEAPON 1\033[0m" << std::setw(space) << mainSlot[1] << "\033[1;31mWEAPON 2\033[0m" << std::endl; 
-            std::cout << std::left << std::setw(space) << weaponSlot1[0] << std::setw(space) << mainSlot[2] << std::setw(space) << weaponSlot2[0] << "Current Tab: " << tabToString(tab) << std::endl;
-            std::cout << std::left << std::setw(space) << weaponSlot1[1] << std::setw(space) << mainSlot[3] << std::setw(space) << weaponSlot2[1] << "Current Select: " << slotToString(option) << std::endl;
-            std::cout << std::right << std::setw(space + mainSlot[4].length()) << mainSlot[4] << std::endl;
-            std::cout << std::right << std::setw(space + mainSlot[5].length()) << mainSlot[5] << std::endl;
+            std::cout << std::right << std::setw(Frame::space + mainSlot[0].length() + 4) << sign[int(Slot::MAIN)] << "\n\n";
+            std::cout << std::right << std::setw(Frame::space + mainSlot[0].length()) << mainSlot[0] << std::endl;
+            std::cout << std::left << std::setw(Frame::space + 11) << sign[int(Slot::WEAPON1)] << std::setw(Frame::space) << mainSlot[1] << "\033[1;31mWEAPON 2\033[0m" << std::endl; 
+            std::cout << std::left << std::setw(Frame::space) << weaponSlot1[0] << std::setw(Frame::space) << mainSlot[2] << std::setw(Frame::space) << weaponSlot2[0] << "Current Tab: " << tabToString(tab) << std::endl;
+            std::cout << std::left << std::setw(Frame::space) << weaponSlot1[1] << std::setw(Frame::space) << mainSlot[3] << std::setw(Frame::space) << weaponSlot2[1] << "Current Select: " << slotToString(option) << std::endl;
+            std::cout << std::right << std::setw(Frame::space + mainSlot[4].length()) << mainSlot[4] << std::endl;
+            std::cout << std::right << std::setw(Frame::space + mainSlot[5].length()) << mainSlot[5] << std::endl;
             std::cout << "\n\n";
-            std::cout << std::left << std::setw(space + 11) <<  "\033[1;31mARMOR 1\033[0m" << std::setw(space + 11) << "\033[1;31mARMOR 2\033[0m" << std::setw(space + 11) << "\033[1;31mARMOR 3\033[0m" << std::setw(space) << "\033[1;31mARMOR 4\033[0m" << std::endl;
-            std::cout << std::left << std::setw(space) << armorSlot1[0] << std::setw(space) << armorSlot2[0] << std::setw(space) << armorSlot3[0] << std::setw(space) << armorSlot4[0] << std::endl;
-            std::cout << std::left << std::setw(space) << armorSlot1[1] << std::setw(space) << armorSlot2[1] << std::setw(space) << armorSlot3[1] << std::setw(space) << armorSlot4[1] << std::endl;
+            std::cout << std::left << std::setw(Frame::space + 11) <<  "\033[1;31mARMOR 1\033[0m" << std::setw(Frame::space + 11) << "\033[1;31mARMOR 2\033[0m" << std::setw(Frame::space + 11) << "\033[1;31mARMOR 3\033[0m" << std::setw(Frame::space) << "\033[1;31mARMOR 4\033[0m" << std::endl;
+            std::cout << std::left << std::setw(Frame::space) << armorSlot1[0] << std::setw(Frame::space) << armorSlot2[0] << std::setw(Frame::space) << armorSlot3[0] << std::setw(Frame::space) << armorSlot4[0] << std::endl;
+            std::cout << std::left << std::setw(Frame::space) << armorSlot1[1] << std::setw(Frame::space) << armorSlot2[1] << std::setw(Frame::space) << armorSlot3[1] << std::setw(Frame::space) << armorSlot4[1] << std::endl;
+            std::cout << "\n\n\n";
+            std::cout << std::right << std::setw(Frame::space * 2) << "Press ESC or Q to exit" << std::endl;
         };
 
         while (true) {

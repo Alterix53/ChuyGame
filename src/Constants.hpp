@@ -10,4 +10,16 @@ namespace Constants {
         constexpr char C = (char)188; // ╝
         constexpr int space = 25;
     }
+    namespace Color {
+        constexpr int RED = 31;
+        constexpr int GREEN = 32;
+        constexpr int YELLOW = 33;
+        constexpr int WHITE = 37;
+        constexpr int CYAN = 36;
+        constexpr int MAGENTA = 35;
+        constexpr int BLUE = 34;
+        constexpr int BOLD = 1;
+        constexpr int NORMAL = 0;
+        constexpr int UNDERLINE = 4;
+    }
 }

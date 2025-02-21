@@ -6,11 +6,13 @@
 #include <conio.h>
 #include <functional>
 #include <regex>
+#include <algorithm>
+#include <cctype>
 #include "../Player.hpp"
 #include "../Constants.hpp"
 #include "../Utils.hpp"
 
-using namespace Constants::Frame;
+using namespace Constants;
 
 namespace Character {
     enum class Tab {
@@ -19,19 +21,24 @@ namespace Character {
     };
 
     enum class Slot {
-        CHARACTER,
-        INVENTORY,
-        MAIN,
-        WEAPON1,
-        WEAPON2,
-        ARMOR1,
-        ARMOR2,
-        ARMOR3,
-        ARMOR4
+        CHARACTER = 7,
+        INVENTORY = 8,
+        MAIN = 0,
+        WEAPON1 = 1,
+        WEAPON2 = 2,
+        ARMOR1 = 3,
+        ARMOR2 = 4,
+        ARMOR3 = 5,
+        ARMOR4 = 6
     };
+    
+    extern std::vector<std::string> sign;
 
     std::string slotToString(Slot slot);
+    std::string slotToStringUpper(Slot slot);
     std::string tabToString(Tab tab);
+    std::string colorString(std::string str, int color);
+    std::string colorString(const Slot &slot, int color, int mode = 0);
     void show(Player &player);   
     Slot goUp(const Slot &option);
     Slot goDown(const Slot &option);
