@@ -8,5 +8,6 @@ namespace Constants {
         constexpr char F = (char)186; // ║
         constexpr char D = (char)200; // ╚
         constexpr char C = (char)188; // ╝
+        constexpr int space = 25;
     }
 }
