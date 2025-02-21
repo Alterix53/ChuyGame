@@ -205,8 +205,11 @@ void Shop::showWeaponShop() {
 		else if (key == '\r' || key == '\n') {
 			// choose the current item
 			Weapon& selected = _availableWeapons[_currentItemWeaponIndex];
-			std::cout << "\nB?n ?� ch?n: " << selected.getName() << std::endl;
 			// more code to do
+			Choice::show(selected.getName());
+			// std::cout << "\nYou have selected : " << selected.getName() << std::endl;
+
+			getch();
 		}
 		
 	}

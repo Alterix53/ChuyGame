@@ -9,6 +9,7 @@
 #include <conio.h>
 #include "data/Data.hpp"
 #include "Constants.hpp"
+#include "Utils.hpp"
 
 #define ITEMS_PER_PAGE 15
 #define SHOP_OPTION 3
