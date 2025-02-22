@@ -4,6 +4,8 @@ Weapon::Weapon() : Item(), _type(WeaponType::BASEWEAPON), _damage(0), _atkSpeed(
 Weapon::Weapon(std::string name, int cost, WeaponType type, int damage, int atkSpeed) :
 	Item(name, cost), _type(type), _damage(damage), _atkSpeed(atkSpeed) {}
 
+Weapon::~Weapon() = default;
+
 std::string Weapon::getName() {
 	return _name;
 }
@@ -56,13 +58,9 @@ void Weapon::printInfoInShort() {
 }
 
 void Weapon::printInfo() {
-	
 	std::cout << "Weapon's name: " << _name << std::endl;
 	std::cout << "Type: " << getWeaponTypeString() << std::endl;
 	std::cout << "Damage: " << _damage << std::endl;
 	std::cout << "Attack Speed: " << _atkSpeed << std::endl;
 	std::cout << "Cost: " << _cost << std::endl;
-
 }
-
-Weapon::~Weapon() {}

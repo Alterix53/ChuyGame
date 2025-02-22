@@ -15,7 +15,6 @@ enum class WeaponType {
 class Weapon : public Item
 {
 private:
-
 	// weapon's only stat
 	int _damage;
 	int _atkSpeed;

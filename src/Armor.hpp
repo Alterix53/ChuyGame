@@ -35,7 +35,6 @@ private:
 	int _defense;
 	int _health;
 	int _weight; // decrease the player's speed
-
 public:
 
 	// constructor and destructor
