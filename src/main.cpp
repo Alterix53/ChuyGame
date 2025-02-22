@@ -58,19 +58,13 @@ int main() {
         displayMenu(option);
 
         char key = getch();        
-        
-        if (key == 'w' || key == 'W') {
+        if (key == -32) { 
+            key = _getch();
+        }
+        if (key == 'w' || key == 'W' || key == 72) {
             option = (option > 0) ? option - 1 : OPTION - 1;
-        } else if (key == 's' || key == 'S') {
+        } else if (key == 's' || key == 'S' || key == 80) {
             option = (option < OPTION - 1) ? option + 1 : 0;
-        } else if (key == -32) {
-            key = getch(); 
-            
-            if (key == 72) {
-                option = (option > 0) ? option - 1 : OPTION - 1;
-            } else if (key == 80) { 
-                option = (option < OPTION - 1) ? option + 1 : 0;
-            }   
         } else if (key == '\n' || key == '\r') {   // choose the current option
             if (option == int(Menu::CHARACTER)) {
                 Character::show(player);
