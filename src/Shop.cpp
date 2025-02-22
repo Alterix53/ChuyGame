@@ -277,6 +277,7 @@ void Shop::printWeaponList(int firstIndex, int endIndex, int currentIndex) {
 		else {
 			std::cout << "  ";
 		}
+		// Number - 2 -> Number - "  " or "> " (length = 2)
 		std::cout << std::left << std::setw(List::Weapon::NUMBER - 2) << i << " | "
 			<< std::setw(List::Weapon::NAME) << _availableWeapons[i].getName() << " | "
 			<< std::setw(List::Weapon::CATEGORY) << _availableWeapons[i].getWeaponTypeString() << " | "
