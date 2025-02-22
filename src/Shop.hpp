@@ -7,6 +7,7 @@
 #include <vector>
 #include <iomanip>
 #include <conio.h>
+#include <functional>
 #include "data/Data.hpp"
 #include "Constants.hpp"
 #include "Utils.hpp"
@@ -31,10 +32,8 @@ private:
 	std::vector <Armor> _availableArmors;
 
 	// index to display the current page
-	int _currentItemWeaponIndex;
-	int _firstItemWeaponIndex;
-	int _currentItemArmorIndex;
-	int _firstItemArmorIndex;
+	int _currentItemIndex;
+	int _firstItemIndex;
 
 public:
 	Shop();
@@ -67,8 +66,10 @@ public:
 	// display shop
 	void displayShop(int opt);
 	void runShop();
+	template <typename T>
+	void showItemShop(std::function<void(std::vector<T>&, int, int, int)> printItemList, std::vector<T> &mainList);
 	void showWeaponShop();
 	void showArmorShop();
 	void printWeaponList(std::vector<Weapon> &list, int firstIndex, int endIndex, int currentIndex);			// print max 15 weapons
-	void printArmorList(int firstIndex, int endIndex, int currentIndex);			// print max 15 armors
+	void printArmorList(std::vector<Armor> &list, int start, int end, int currentIndex);			// print max 15 armors
 };

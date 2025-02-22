@@ -1,6 +1,6 @@
 #include "Shop.hpp"
 
-Shop::Shop() : _currentItemWeaponIndex(0), _firstItemWeaponIndex(0), _firstItemArmorIndex(0), _currentItemArmorIndex(0) {
+Shop::Shop() : _currentItemIndex(0), _firstItemIndex(0) {
 	WeaponData::loadData(this->_availableWeapons);
 	ArmorData::loadData(this->_availableArmors);
 }
@@ -135,10 +135,20 @@ void Shop::runShop() {
             }
         } else if (key_shop == '\n' || key_shop == '\r') {   // choose the current shop_option
 			if (shop_option == int(SHOP::WEAPONS)) {
-				showWeaponShop();
+				showItemShop<Weapon>(
+					[this](std::vector<Weapon>& list, int firstIndex, int endIndex, int currentIndex) {
+						this->printWeaponList(list, firstIndex, endIndex, currentIndex);
+					},
+					_availableWeapons
+				);
 			}
 			if (shop_option == int(SHOP::ARMORS)) {
-				showArmorShop();
+				showItemShop<Armor>(
+					[this](std::vector<Armor>& list, int firstIndex, int endIndex, int currentIndex) {
+						this->printArmorList(list, firstIndex, endIndex, currentIndex);
+					},
+					_availableArmors
+				);
 			}
 			if (shop_option == int(SHOP::RETURN)) 
 				break;
@@ -164,6 +174,97 @@ void Shop::displayShop(int opt) {
 	}
 }
 
+template <typename T>
+void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> printItemList, std::vector<T> &mainList) {
+	bool running = true;
+	bool find = true;
+	std::string search = "";
+	char s;
+
+	std::vector<T> list = mainList;
+	int first = _firstItemIndex;
+	int current = _currentItemIndex;
+	while (running) {
+		system("cls");
+		
+		int end = first + ITEMS_PER_PAGE;
+		if (end > list.size()) {
+			end = list.size();
+		}
+
+		printItemList(list, first, end, current);
+
+		std::cout << "Press 'F' to search" << std::endl;
+		
+		char key = _getch();
+		if (key == 'F' || key == 'f') {
+			find = true;
+			std::vector <T> filteredItems;
+			while(find) {
+				std::cout << "\033[20;0H";
+				std::cout << "Enter the name you want to search: " << search;
+
+				s = _getch();
+				if (s == '\n' || s == '\r') {
+					if (list.size() == mainList.size()) { // demo
+						_currentItemIndex = current;
+						_firstItemIndex = first;
+					}
+					current = 0;
+					first = 0;
+
+					list = filteredItems;
+					find = false;
+					continue;
+				} else if (s == 8) {  //Backspace
+					if (!search.empty()) {
+						search.pop_back();
+					}
+				} else if (s == 27) { // tam thoi bo qua cai nay
+					find = false;
+					continue;
+				} else {
+					search += s;
+				}
+				filteredItems.clear();
+				std::copy_if(mainList.begin(), mainList.end(), std::back_inserter(filteredItems), [&](T& w) {
+					return startsWithIgnoreCase(w.getName(), search);
+				});
+
+				system("cls");
+				printItemList(filteredItems, 0, filteredItems.size() < ITEMS_PER_PAGE ? filteredItems.size() : ITEMS_PER_PAGE, 0);
+			}
+			search = "";
+
+		} else if (key == 'w' || key == 'W' || key == -32 && _getch() == 72) {
+			if (current > 0 && current == first) {
+				current--; first--;
+			} else if (current > 0) {
+				current--;
+			}
+		} else if (key == 's' || key == 'S' || key == -32 && _getch() == 80) {
+			if (current < list.size() - 1 && current == first + ITEMS_PER_PAGE - 1) {
+				current++; first++;
+			} else if (current < list.size() - 1) {
+				current++;
+			}
+		}
+		else if (key == 27) {
+			if (list.size() != mainList.size()) {
+				list = mainList;
+				current = _currentItemIndex;
+				first = _firstItemIndex;
+			}
+			else running = false;
+		} else if (key == '\r' || key == '\n') {
+			T& selected = list[current];
+			// more code to do
+			Choice::show(selected.getName());
+		}
+	}
+	_currentItemIndex = _firstItemIndex = 0;
+}
+
 void Shop::showWeaponShop() {
 	bool running = true;
 	bool find_weapon = false;
@@ -174,12 +275,12 @@ void Shop::showWeaponShop() {
 	while (running) {
 		system("cls");
 
-		int start = _firstItemWeaponIndex;
-		int end = _firstItemWeaponIndex + ITEMS_PER_PAGE;
+		int start = _firstItemIndex;
+		int end = _firstItemIndex + ITEMS_PER_PAGE;
 		if (end > _availableWeapons.size()) {
 			end = _availableWeapons.size();
 		}
-		printWeaponList(_availableWeapons, start, end, _currentItemWeaponIndex);
+		printWeaponList(_availableWeapons, start, end, _currentItemIndex);
 		
 		// print notification that player can search for weapon
 		std::cout << "Press 'F' to search for weapon" << std::endl;
@@ -221,25 +322,25 @@ void Shop::showWeaponShop() {
 			search = "";
 		}
 		else if (key == 'w' || key == 'W' || key == -32 && _getch() == 72) {
-			if ((_currentItemWeaponIndex == _firstItemWeaponIndex) && _currentItemWeaponIndex > 0) {
+			if ((_currentItemIndex == _firstItemIndex) && _currentItemIndex > 0) {
 				// case that the current item is the first item in the list and the current item is not the first item in the vector
-				_firstItemWeaponIndex--;
-				_currentItemWeaponIndex--;
+				_firstItemIndex--;
+				_currentItemIndex--;
 			}
-			else if (_currentItemWeaponIndex > 0) {
+			else if (_currentItemIndex > 0) {
 				// other case
-				_currentItemWeaponIndex--;
+				_firstItemIndex--;
 			}
 		}
 		else if (key == 's' || key == 'S' || key == -32 && _getch() == 80) {
-			if ((_currentItemWeaponIndex == _firstItemWeaponIndex + ITEMS_PER_PAGE - 1) && (_currentItemWeaponIndex < _availableWeapons.size() - 1)) {
+			if ((_currentItemIndex == _firstItemIndex + ITEMS_PER_PAGE - 1) && (_currentItemIndex < _availableWeapons.size() - 1)) {
 				// case that the current item is the last item in the list and the current item is not the last item in the vector
-				_firstItemWeaponIndex++;
-				_currentItemWeaponIndex++;
+				_firstItemIndex++;
+				_currentItemIndex++;
 			}
-			else if (_currentItemWeaponIndex < _availableWeapons.size() - 1) {
+			else if (_currentItemIndex < _availableWeapons.size() - 1) {
 				// other case
-				_currentItemWeaponIndex++;
+				_currentItemIndex;
 			}
 		}
 		else if (key == 27) { // Esc
@@ -247,7 +348,7 @@ void Shop::showWeaponShop() {
 		}
 		else if (key == '\r' || key == '\n') {
 			// choose the current item
-			Weapon& selected = _availableWeapons[_currentItemWeaponIndex];
+			Weapon& selected = _availableWeapons[_currentItemIndex];
 			// more code to do
 			Choice::show(selected.getName());
 			// std::cout << "\nYou have selected : " << selected.getName() << std::endl;
@@ -260,33 +361,33 @@ void Shop::showArmorShop() {
 	bool running = true;
 	while (running) {
 		system("cls");
-		int start = _firstItemArmorIndex;
-		int end = _firstItemArmorIndex + ITEMS_PER_PAGE;
+		int start = _firstItemIndex;
+		int end = _firstItemIndex + ITEMS_PER_PAGE;
 		if (end > _availableArmors.size()) {
 			end = _availableArmors.size();
 		}
-		printArmorList(start, end, _currentItemArmorIndex);
+		printArmorList(_availableArmors, start, end, _currentItemIndex);
 		char key = _getch();
 		if (key == 'w' || key == 'W' || key == -32 && _getch() == 72) {
-			if ((_currentItemArmorIndex == _firstItemArmorIndex) && _currentItemArmorIndex > 0) {
+			if ((_currentItemIndex == _firstItemIndex) && _currentItemIndex > 0) {
 				// case that the current item is the first item in the list and the current item is not the first item in the vector
-				_firstItemArmorIndex--;
-				_currentItemArmorIndex--;
+				_firstItemIndex--;
+				_currentItemIndex--;
 			}
-			else if (_currentItemArmorIndex > 0) {
+			else if (_currentItemIndex > 0) {
 				// other case
-				_currentItemArmorIndex--;
+				_currentItemIndex--;
 			}
 		}
 		else if (key == 's' || key == 'S' || key == -32 && _getch() == 80) {
-			if ((_currentItemArmorIndex == _firstItemArmorIndex + ITEMS_PER_PAGE - 1) && (_currentItemArmorIndex < _availableArmors.size() - 1)) {
+			if ((_currentItemIndex == _firstItemIndex + ITEMS_PER_PAGE - 1) && (_currentItemIndex < _availableArmors.size() - 1)) {
 				// case that the current item is the last item in the list and the current item is not the last item in the vector
-				_firstItemArmorIndex++;
-				_currentItemArmorIndex++;
+				_firstItemIndex++;
+				_currentItemIndex++;
 			}
-			else if (_currentItemArmorIndex < _availableArmors.size() - 1) {
+			else if (_currentItemIndex < _availableArmors.size() - 1) {
 				// other case
-				_currentItemArmorIndex++;
+				_currentItemIndex++;
 			}
 		}
 		else if (key == 27) { // Esc
@@ -294,7 +395,7 @@ void Shop::showArmorShop() {
 		}
 		else if (key == '\r' || key == '\n') {
 			// choose the current item
-			Armor& selected = _availableArmors[_currentItemArmorIndex];
+			Armor& selected = _availableArmors[_currentItemIndex];
 			std::cout << "\nB?n ?� ch?n: " << selected.getName() << std::endl;
 			// more code to do
 		}
@@ -313,8 +414,8 @@ void Shop::printWeaponList(std::vector<Weapon> &list, int firstIndex, int endInd
 	std::cout << std::string(List::Weapon::SEPARATOR, '-') << std::endl;
 
 	if (list.empty()) {
-		// "No weapons are available!" has length = 25 <(")
-		std::cout << std::right << std::setw(List::Weapon::SEPARATOR - 25) << "No weapons are available!" << std::endl;
+		// "No weapons are available!" has length / 2 = 25 / 2 = 12 <(")
+		std::cout << std::right << std::setw(List::Weapon::SEPARATOR / 2 + 12) << "No weapons are available!" << std::endl;
 		std::cout << std::string(List::Weapon::SEPARATOR, '-') << std::endl;
 		return;
 	}
@@ -339,7 +440,7 @@ void Shop::printWeaponList(std::vector<Weapon> &list, int firstIndex, int endInd
 	std::cout << std::string(List::Weapon::SEPARATOR, '-') << std::endl;
 }
 
-void Shop::printArmorList(int start, int end, int currentIndex) {
+void Shop::printArmorList(std::vector<Armor> &list, int start, int end, int currentIndex) {
 	// print header
 	std::cout << std::left << std::setw(List::Armor::NUMBER) << "NUMBER" << " | "
 		<< std::setw(List::Armor::NAME) << "NAME" << " | "
@@ -349,6 +450,14 @@ void Shop::printArmorList(int start, int end, int currentIndex) {
 		<< std::setw(List::Armor::WEIGHT) << "WEIGHT" << " | "
 		<< std::setw(List::Armor::COST) << "COST" << std::endl;
 	std::cout << std::string(List::Armor::SEPARATOR, '-') << std::endl;
+
+	if (list.empty()) {
+		// "No armors are available!" has length / 2 = 24 / 2 = 12 <(")
+		std::cout << std::right << std::setw(List::Armor::SEPARATOR / 2 + 12) << "No armors are available!" << std::endl;
+		std::cout << std::string(List::Armor::SEPARATOR, '-') << std::endl;
+		return;
+	}
+
 	// print armor list
 	for (int i = start; i < end; i++) {
 		if (i == currentIndex) {
@@ -359,12 +468,13 @@ void Shop::printArmorList(int start, int end, int currentIndex) {
 		}
 
 		std::cout << std::left << std::setw(List::Armor::NUMBER - 2) << i << " | "
-			<< std::setw(List::Armor::NAME) << _availableArmors[i].getName() << " | "
-			<< std::setw(List::Armor::CATEGORY) << _availableArmors[i].getArmorTypeString() << " | "
-			<< std::setw(List::Armor::DEF) << _availableArmors[i].getDefense() << " | "
-			<< std::setw(List::Armor::HEALTH) << _availableArmors[i].getHealth() << " | "
-			<< std::setw(List::Armor::WEIGHT) << _availableArmors[i].getWeight() << " | "
-			<< std::setw(List::Armor::COST) << _availableArmors[i].getCost() << std::endl;
-
+			<< std::setw(List::Armor::NAME) << list[i].getName() << " | "
+			<< std::setw(List::Armor::CATEGORY) << list[i].getArmorTypeString() << " | "
+			<< std::setw(List::Armor::DEF) << list[i].getDefense() << " | "
+			<< std::setw(List::Armor::HEALTH) << list[i].getHealth() << " | "
+			<< std::setw(List::Armor::WEIGHT) << list[i].getWeight() << " | "
+			<< std::setw(List::Armor::COST) << list[i].getCost() << std::endl;
 	}
+
+	std::cout << std::string(List::Armor::SEPARATOR, '-') << std::endl;
 }
