@@ -26,6 +26,17 @@ ArmorPart stringToArmorPart(const std::string &partStr) {
     throw std::invalid_argument("Invalid ArmorPart: " + partStr);
 }
 
+std::string toLower(const std::string& str) {
+    std::string result = str;
+    std::transform(result.begin(), result.end(), result.begin(), ::tolower);
+    return result;
+}
+
+bool startsWithIgnoreCase(const std::string& full, const std::string& prefix) {
+    std::string fullLower = toLower(full);
+    std::string prefixLower = toLower(prefix);
+    return fullLower.substr(0, prefixLower.size()) == prefixLower;
+}
 
 namespace dialog {
     namespace Choice {

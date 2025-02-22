@@ -169,6 +169,7 @@ void Shop::showWeaponShop() {
 	bool find_weapon = false;
 	bool find_armor = false;
 	std::string search = "";
+	char s;
 
 	while (running) {
 		system("cls");
@@ -178,7 +179,7 @@ void Shop::showWeaponShop() {
 		if (end > _availableWeapons.size()) {
 			end = _availableWeapons.size();
 		}
-		printWeaponList(start, end, _currentItemWeaponIndex);
+		printWeaponList(_availableWeapons, start, end, _currentItemWeaponIndex);
 		
 		// print notification that player can search for weapon
 		std::cout << "Press 'F' to search for weapon" << std::endl;
@@ -189,32 +190,35 @@ void Shop::showWeaponShop() {
 			// change to find box
 			find_weapon = true;
 			while (find_weapon) {
-				//// system("cls");
-				//std::cout << "Enter the name of the weapon you want to search: ";
-				//getline(cin, search);
-				//std::vector <Weapon> filteredWeapons;
-				//for (int i = 0; i < _availableWeapons.size(); i++) {
-				//	if (_availableWeapons[i].getName() == search) {
-				//		filteredWeapons.push_back(_availableWeapons[i]);
-				//	}
-				//}
-				//if (filteredWeapons.size() == 0) {
-				//	std::cout << "No weapon found!" << std::endl;
-				//}
-				//else {
-				//	std::cout << "Weapon found: " << std::endl;
-				//	std::cout << std::left << std::setw(20) << "Name" << std::right << std::setw(8) << "Damage";
-				//	std::cout << std::right << std::setw(8) << "AtkSpeed" << std::right << std::setw(8) << "Cost" << std::endl;
-				//	for (int i = 0; i < filteredWeapons.size(); i++) {
-				//		std::cout << std::left << std::setw(20) << filteredWeapons[i].getName() << std::right << std::setw(8) << filteredWeapons[i].getDamage();
-				//		std::cout << std::right << std::setw(8) << filteredWeapons[i].getAtkSpeed() << std::right << std::setw(8) << filteredWeapons[i].getCost() << std::endl;
-				//	}
-				//}
-				//std::cout << "Press 'R' to return to the shop" << std::endl;
-				//char key_find = _getch();
-				//if (key_find == 'R' || key_find == 'r') {
-				//	find_weapon = false;
+				std::cout << "\033[20;0H";
+				std::cout << "Enter the name of the weapon you want to search: " << search;
+				// std::getline(std::cin >> std::ws, search);
+				s = _getch();
+				if (s == '\n' || s == '\r') {
+					find_weapon = false;
+					continue;
+				} else if (s == 8) {  //Backspace
+					if (!search.empty()) {
+						search.pop_back();  
+					}
+				} else if (s == 27) { // Esc
+					find_weapon = false;
+					continue;
+				}
+				else {
+					search += s; 
+				}
+
+				std::vector <Weapon> filteredWeapons;
+
+				std::copy_if(_availableWeapons.begin(), _availableWeapons.end(), std::back_inserter(filteredWeapons), [&](Weapon& w) {
+					return startsWithIgnoreCase(w.getName(), search);
+				});
+
+				system("cls");
+				printWeaponList(filteredWeapons, 0, filteredWeapons.size() < ITEMS_PER_PAGE ? filteredWeapons.size() : ITEMS_PER_PAGE, 0);
 			}
+			search = "";
 		}
 		else if (key == 'w' || key == 'W' || key == -32 && _getch() == 72) {
 			if ((_currentItemWeaponIndex == _firstItemWeaponIndex) && _currentItemWeaponIndex > 0) {
@@ -297,7 +301,7 @@ void Shop::showArmorShop() {
 	}
 }
 
-void Shop::printWeaponList(int firstIndex, int endIndex, int currentIndex) {
+void Shop::printWeaponList(std::vector<Weapon> &list, int firstIndex, int endIndex, int currentIndex) {
 
 	// print header
 	std::cout << std::left << std::setw(List::Weapon::NUMBER) << "NUMBER" << " | "
@@ -307,6 +311,13 @@ void Shop::printWeaponList(int firstIndex, int endIndex, int currentIndex) {
 		<< std::setw(List::Weapon::ATKSPD) << "ATKSPD" << " | "
 		<< std::setw(List::Weapon::COST) << "COST" << std::endl;
 	std::cout << std::string(List::Weapon::SEPARATOR, '-') << std::endl;
+
+	if (list.empty()) {
+		// "No weapons are available!" has length = 25 <(")
+		std::cout << std::right << std::setw(List::Weapon::SEPARATOR - 25) << "No weapons are available!" << std::endl;
+		std::cout << std::string(List::Weapon::SEPARATOR, '-') << std::endl;
+		return;
+	}
 
 	// print weapon list
 	for (int i = firstIndex; i < endIndex; i++) {
@@ -318,14 +329,14 @@ void Shop::printWeaponList(int firstIndex, int endIndex, int currentIndex) {
 		}
 		// Number - 2 -> Number - "  " or "> " (length = 2)
 		std::cout << std::left << std::setw(List::Weapon::NUMBER - 2) << i << " | "
-			<< std::setw(List::Weapon::NAME) << _availableWeapons[i].getName() << " | "
-			<< std::setw(List::Weapon::CATEGORY) << _availableWeapons[i].getWeaponTypeString() << " | "
-			<< std::setw(List::Weapon::ATK) << _availableWeapons[i].getDamage() << " | "
-			<< std::setw(List::Weapon::ATKSPD) << _availableWeapons[i].getAtkSpeed() << " | "
-			<< std::setw(List::Weapon::COST) << _availableWeapons[i].getCost() << std::endl;
+			<< std::setw(List::Weapon::NAME) << list[i].getName() << " | "
+			<< std::setw(List::Weapon::CATEGORY) << list[i].getWeaponTypeString() << " | "
+			<< std::setw(List::Weapon::ATK) << list[i].getDamage() << " | "
+			<< std::setw(List::Weapon::ATKSPD) << list[i].getAtkSpeed() << " | "
+			<< std::setw(List::Weapon::COST) << list[i].getCost() << std::endl;
 	}
 
-	std::cout << std::string(70, '-') << std::endl;
+	std::cout << std::string(List::Weapon::SEPARATOR, '-') << std::endl;
 }
 
 void Shop::printArmorList(int start, int end, int currentIndex) {

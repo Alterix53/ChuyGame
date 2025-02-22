@@ -69,6 +69,6 @@ public:
 	void runShop();
 	void showWeaponShop();
 	void showArmorShop();
-	void printWeaponList(int firstIndex, int endIndex, int currentIndex);			// print max 15 weapons
+	void printWeaponList(std::vector<Weapon> &list, int firstIndex, int endIndex, int currentIndex);			// print max 15 weapons
 	void printArmorList(int firstIndex, int endIndex, int currentIndex);			// print max 15 armors
 };
