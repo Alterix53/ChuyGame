@@ -47,7 +47,7 @@ namespace dialog {
             std::vector<std::string> options = {"YES", "NO"};
             int width = std::min(Constants::List::Armor::NAME, int(name.length()) + 1);
             std::cout << A << std::string(width + 34, E) << B << std::endl;
-            std::cout << F << " Are you sure you want to select: " << std::setw(width) << name << F << "\n";
+            std::cout << F << " Are you sure you want to select: " << std::left << std::setw(width) << name << F << "\n";
             std::cout << F << std::string(width + 34, ' ') << F << std::endl;
     
             
@@ -62,7 +62,11 @@ namespace dialog {
             std::cout << std::string(width + 4, ' ') << F << std::endl;
             std::cout << D << std::string(width + 34, E) << C << std::endl;
         }
-    
+        
+        /*
+        * @param name: name of the item
+        * @return true if the user choose YES, false if the user choose NO
+        */
         bool show(std::string name) {
             int option = 0;
             std::cout << "\n\n\n\n\n\n\n";
@@ -73,9 +77,17 @@ namespace dialog {
                 char key = getch();
                 if (key == 'a' || key == 'A' || key == 'd' || key == 'D') {
                     option = (option == 0) ? 1 : 0;
+                } else if(key == -32) {
+                    key = getch();
+                    if (key == 75 || key == 77) {
+                        option = (option == 0) ? 1 : 0;
+                    }
+                } else if (key == 27) {
+                    clearLines(7);
+                    return false;
                 } else if (key == '\r' || key == '\n') {
                     clearLines(7);
-                    return option == 0;
+                    return option == 0; // 0: YES, 1: NO
                 }
             }
         }
