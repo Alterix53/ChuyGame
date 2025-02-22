@@ -86,13 +86,13 @@ namespace dialog {
                 display(name, option);
                 
                 char key = getch();
+                if (key == -32) { 
+                    key = _getch();
+                }
                 if (key == 'a' || key == 'A' || key == 'd' || key == 'D') {
                     option = (option == 0) ? 1 : 0;
-                } else if(key == -32) {
-                    key = getch();
-                    if (key == 75 || key == 77) {
-                        option = (option == 0) ? 1 : 0;
-                    }
+                } else if (key == 75 || key == 77) {
+                    option = (option == 0) ? 1 : 0;
                 } else if (key == 27) {
                     clearLines(7);
                     return false;

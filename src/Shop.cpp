@@ -117,22 +117,17 @@ void Shop::runShop() {
         system("cls");
         displayShop(shop_option);
         char key_shop = getch();
+		if (key_shop == -32) { 
+            key_shop = _getch();
+        }
 
-        if (key_shop == 'w' || key_shop == 'W') {
+        if (key_shop == 'w' || key_shop == 'W' || key_shop == 72) {
             shop_option = (shop_option > 0) ? shop_option - 1 : SHOP_OPTION - 1;
         }
-        else if (key_shop == 's' || key_shop == 'S') {
+        else if (key_shop == 's' || key_shop == 'S' || key_shop == 80) {
             shop_option = (shop_option < SHOP_OPTION - 1) ? shop_option + 1 : 0;
-        }
-        else if (key_shop == -32) {
-            key_shop = getch();
-
-            if (key_shop == 72) {
-                shop_option = (shop_option > 0) ? shop_option - 1 : SHOP_OPTION - 1;
-            }
-            else if (key_shop == 80) {
-                shop_option = (shop_option < SHOP_OPTION - 1) ? shop_option + 1 : 0;
-            }
+        } else if (key_shop == 27) { // esc
+			break;
         } else if (key_shop == '\n' || key_shop == '\r') {   // choose the current shop_option
 			if (shop_option == int(SHOP::WEAPONS)) {
 				showItemShop<Weapon>(
@@ -197,6 +192,9 @@ void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> prin
 		std::cout << "Press 'F' to search" << std::endl;
 		
 		char key = _getch();
+		if (key == -32) { 
+            key = _getch();
+        }
 		if (key == 'F' || key == 'f') {
 			find = true;
 			std::vector <T> filteredItems;
@@ -236,13 +234,13 @@ void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> prin
 			}
 			search = "";
 
-		} else if (key == 'w' || key == 'W' || key == -32 && _getch() == 72) {
+		} else if (key == 'w' || key == 'W' || key == 72) {
 			if (current > 0 && current == first) {
 				current--; first--;
 			} else if (current > 0) {
 				current--;
 			}
-		} else if (key == 's' || key == 'S' || key == -32 && _getch() == 80) {
+		} else if (key == 's' || key == 'S' || key == 80) {
 			if (current < list.size() - 1 && current == first + ITEMS_PER_PAGE - 1) {
 				current++; first++;
 			} else if (current < list.size() - 1) {
