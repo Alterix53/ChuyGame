@@ -15,6 +15,7 @@
 #define SHOP_OPTION 3
 
 using namespace Constants;
+using namespace dialog;
 
 enum class SHOP {
 	WEAPONS,
