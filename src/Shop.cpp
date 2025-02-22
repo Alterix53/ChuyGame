@@ -284,8 +284,7 @@ void Shop::showWeaponShop() {
 		std::cout << "Press 'F' to search for weapon" << std::endl;
 
 		char key = _getch();
-		if (key == 'F' || key == 'f')
-		{
+		if (key == 'F' || key == 'f') {
 			// change to find box
 			find_weapon = true;
 			while (find_weapon) {
@@ -351,7 +350,6 @@ void Shop::showWeaponShop() {
 			Choice::show(selected.getName());
 			// std::cout << "\nYou have selected : " << selected.getName() << std::endl;
 		}
-		
 	}
 }
 

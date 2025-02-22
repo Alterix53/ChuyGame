@@ -42,17 +42,13 @@ void displayMenu(int option) {
 }
 
 int main() {
-
+    std::cout << "\033[?25l"; 
     // inital data
     Shop shop;
-
-    std::cout << "\033[?25l"; 
-    // std::cout << "\xE2\x95\x90";
-    int option = 0;
-    
     Player player;
-    
+    int option = 0;
     bool isHome = true;
+    
     while (isHome) {
         system("cls");
         displayMenu(option);

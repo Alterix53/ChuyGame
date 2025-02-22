@@ -78,7 +78,6 @@ std::string Armor::getArmorTypeString() {
 
 // print armor info
 void Armor::printInfo() {
-
 	std::string part = getArmorPartString();
 	std::string type = getArmorTypeString();
 
