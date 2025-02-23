@@ -60,7 +60,12 @@ int main() {
                 shop.runShop(player);
             }
             if (option == int(Menu::PLAY)) {
-                std::string json = "{\"weapon\":[{\"type\":\"test\",\"name\":\"test\",\"damage\":12, \"atkSpeed\": 1, \"cost\": 1000}],\"armor\":[{\"type\": \"test1\",\"name\":\"test1\", \"part\": \"test\",\"defense\":2,\"health\":141}]}";
+                Weapon w1 = player.getWeapon(0);
+                Weapon w2 = player.getWeapon(1);
+                std::string weaponJson = "{\"weapon\":[{\"type\":\"" + w1.getWeaponTypeString() + "\",\"name\":\"" + w1.getName() + "\",\"damage\":" + std::to_string(w1.getDamage()) + ", \"atkSpeed\": " + std::to_string(w1.getAtkSpeed()) +  ", \"cost\": " + std::to_string(w1.getCost()) + "}, {\"type\":\"" + w1.getWeaponTypeString() + "\",\"name\":\"" + w1.getName() + "\",\"damage\":" + std::to_string(w1.getDamage()) + ", \"atkSpeed\": " + std::to_string(w1.getAtkSpeed()) +  ", \"cost\": " + std::to_string(w1.getCost()) + "}],";
+                // tao ham lam cho nhanh :sob:
+                
+                std::string json = weaponJson + "\"armor\":[{\"type\": \"test1\",\"name\":\"test1\", \"part\": \"test\",\"defense\":2,\"health\":141}]}";
                 json.insert(1, "\"tenNguoiChoi\":\"Player1\",\"idNguoiChoi\":\"1\",");
 
                 std::string eJson = json;
@@ -76,6 +81,7 @@ int main() {
                 if (result != 0) {
                     std::cerr << "loi khi goi API!" << std::endl;
                 }
+                getch();
             }
             if (option == int(Menu::EXIT)) {
                 player.printPlayerInventory();
