@@ -231,7 +231,11 @@ void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> prin
 
 			T& selected = list[current];
 			if (Choice::show(selected.getName()) == true) {
-				buyer.buyItem(selected);
+				if (Weapon* w = dynamic_cast<Weapon*>(&selected)) {
+					buyer.buyWeapon(*w);
+				} else if (Armor* a = dynamic_cast<Armor*>(&selected)) {
+					buyer.buyArmor(*a);
+				}
 			}
 		}
 	}

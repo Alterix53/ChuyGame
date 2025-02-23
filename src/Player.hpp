@@ -4,11 +4,13 @@
 #include "Weapon.hpp"
 #include "Armor.hpp"
 #include <vector>
+#include <type_traits>
+#include <conio.h>
 
 #define MAX_WEAPON 2
 #define WEAPON_INDEX 0
 
-const int BaseCost = 5000; // anh ching thich bao nhieu tien?
+const int BaseCost = 5000; // anh ching thich bao nhieu tien? Chinh: 5 cu duoc khong ?
 
 class Player
 {
@@ -61,10 +63,8 @@ public:
 	Armor getArmor(ArmorPart part);
 
 	// adding weapon and armor to inventory
-	// void buyWeapon(Weapon weapon);				// buy and add weapon to player's inventory
-	// void buyArmor(Armor armor);					// buy and add armor to player's inventory
-	template <typename T>
-	void buyItem(T item);						// buy and add item to player's inventory
+	void buyWeapon(Weapon weapon);				// buy and add weapon to player's inventory
+	void buyArmor(Armor armor);					// buy and add armor to player's inventory
 
 	// equip weapon and armor
 	void equipWeapon(Weapon weapon);					// equip weapon from player's inventory

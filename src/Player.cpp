@@ -122,25 +122,29 @@ void Player::equipArmor(Armor armor) {
 	}
 }
 
-// TODO: sua di ching sua di ching sua di ching
-template <typename T>
-void Player::buyItem(T item) {
-	int cost = item.getCost();
+void Player::buyWeapon(Weapon weapon) {
+	int cost = weapon.getCost();
 	if (_playerCost < cost) {
-		std::cerr << "You don't have enough points to buy this item!" << std::endl;
+		std::cerr << "You don't have enough points to buy this weapon!" << std::endl;
 		return;
 	}
 
-	// TODO: add the way to check the inventory before purchase
-	if (std::is_same<T, Weapon>::value == true) {
-		_inventoryWeapon.push_back(item);
-	}
-	else {
-		_inventoryArmor.push_back(item);
+	_inventoryWeapon.push_back(weapon);
+	_playerCost -= cost;
+	// if (_inventoryWeapon.push_back(weapon) == false) {return;} else {_playerCost -= cost;}
+}
+
+void Player::buyArmor(Armor armor) {
+
+	int cost = armor.getCost();
+	if (_playerCost < cost) {
+		std::cerr << "You don't have enough points to buy this armor!" << std::endl;
+		return;
 	}
 
+	_inventoryArmor.push_back(armor);
 	_playerCost -= cost;
-	std::cout << "Bought " << item.getName() << " successfully!" << std::endl;
+	// if (_inventoryArmor.push_back(armor) == false) {return;} else {_playerCost -= cost;}
 }
 
 void Player::printInfo() {
