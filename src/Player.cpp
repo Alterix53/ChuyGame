@@ -1,16 +1,16 @@
 #include "Player.hpp"
 
-Player::Player() : _name("Unknown"), _ID("Unknown"), _playerCost(0), _health(100), _attack(10), _atkSpeed(1), 
+Player::Player() : _name("Unknown"), _ID("Unknown"), _playerCost(BaseCost), _health(100), _attack(10), _atkSpeed(1), 
 _defense(10), _weapIndex(WEAPON_INDEX), _weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate() {
 }
 
-Player::Player(std::string name, std::string ID, int points) : 
-	_name(name), _ID(ID), _playerCost(points), _health(100), _attack(10), _atkSpeed(1), _defense(10),
+Player::Player(std::string name, std::string ID, int cost) : 
+	_name(name), _ID(ID), _playerCost(cost), _health(100), _attack(10), _atkSpeed(1), _defense(10),
 	_weapIndex(WEAPON_INDEX),	_weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate()
 {}
 
-Player::Player(std::string name, std::string ID, int points, int health, int attack, int atkSpeed, int defense) :
-	_name(name), _ID(ID), _playerCost(points), _health(health), _attack(attack), _atkSpeed(atkSpeed), _defense(defense),
+Player::Player(std::string name, std::string ID, int cost, int health, int attack, int atkSpeed, int defense) :
+	_name(name), _ID(ID), _playerCost(cost), _health(health), _attack(attack), _atkSpeed(atkSpeed), _defense(defense),
 	_weapIndex(WEAPON_INDEX),	_weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate()
 {}
 
@@ -122,29 +122,25 @@ void Player::equipArmor(Armor armor) {
 	}
 }
 
-void Player::buyWeapon(Weapon weapon) {
-	int cost = weapon.getCost();
+// TODO: sua di ching sua di ching sua di ching
+template <typename T>
+void Player::buyItem(T item) {
+	int cost = item.getCost();
 	if (_playerCost < cost) {
-		std::cerr << "You don't have enough points to buy this weapon!" << std::endl;
+		std::cerr << "You don't have enough points to buy this item!" << std::endl;
 		return;
 	}
 
-	_inventoryWeapon.push_back(weapon);
-	_playerCost -= cost;
-	// if (_inventoryWeapon.push_back(weapon) == false) {return;} else {_playerCost -= cost;}
-}
-
-void Player::buyArmor(Armor armor) {
-
-	int cost = armor.getCost();
-	if (_playerCost < cost) {
-		std::cerr << "You don't have enough points to buy this armor!" << std::endl;
-		return;
+	// TODO: add the way to check the inventory before purchase
+	if (std::is_same<T, Weapon>::value == true) {
+		_inventoryWeapon.push_back(item);
+	}
+	else {
+		_inventoryArmor.push_back(item);
 	}
 
-	_inventoryArmor.push_back(armor);
 	_playerCost -= cost;
-	// if (_inventoryArmor.push_back(armor) == false) {return;} else {_playerCost -= cost;}
+	std::cout << "Bought " << item.getName() << " successfully!" << std::endl;
 }
 
 void Player::printInfo() {
@@ -268,6 +264,7 @@ void Player::printPlayerStat() {
 	std::cout << "Defense: " << _defense << std::endl;
 }
 
+// TODO: change the way to print the inventory
 void Player::printPlayerInventory(){
 	std::cout << "Inventory: " << std::endl;
 	std::cout << "Weapons: " << std::endl;

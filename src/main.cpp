@@ -85,11 +85,11 @@ int main() {
                 if (result != 0) {
                     std::cerr << "loi khi goi API!" << std::endl;
                 }
-    
+                // player.printPlayerInventory();
+                // char cdfdf = getch();
                 break;
             }
             if (option == int(Menu::EXIT)) {
-                Shop shop;
                 break;
             }
         }

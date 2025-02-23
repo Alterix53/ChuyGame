@@ -44,50 +44,21 @@ void Shop::printAvailableArmors() {
 	}
 }
 
-void Shop::getWeapon(Player& player, std::string weaponName) {
+// void Shop::getArmor(Player& player, std::string armorName) {
+// 	for (int i = 0; i < _availableArmors.size(); i++) {
 
-	for (int i = 0; i < _availableWeapons.size(); i++) {
+// 		if (_availableArmors[i].getName() != armorName)
+// 			continue;
 
-		if (_availableWeapons[i].getName() != weaponName) 
-			continue;
+// 		player.buyArmor(_availableArmors[i]);
+// 		return;
 
-		player.buyWeapon(_availableWeapons[i]);
-			return;
-	}
+// 	}
 
-	std::cout << "Weapon is not available!" << std::endl;
-}
-
-void Shop::getArmor(Player& player, std::string armorName) {
-	for (int i = 0; i < _availableArmors.size(); i++) {
-
-		if (_availableArmors[i].getName() != armorName)
-			continue;
-
-		player.buyArmor(_availableArmors[i]);
-		return;
-
-	}
-
-	std::cout << "Armor is not available!" << std::endl;
-}
+// 	std::cout << "Armor is not available!" << std::endl;
+// }
 
 // the index is the current index in the vector
-void Shop::getWeaponByIndex(Player& player, int index) {
-	if (index < 0 || index >= _availableWeapons.size()) {
-		std::cout << "Invalid index!" << std::endl;
-		return;
-	}
-	player.buyWeapon(_availableWeapons[index]);
-}
-
-void Shop::getArmorByIndex(Player& player, int index) {
-	if (index < 0 || index >= _availableArmors.size()) {
-		std::cout << "Invalid index!" << std::endl;
-		return;
-	}
-	player.buyArmor(_availableArmors[index]);
-}
 
 std::vector <Weapon> Shop::filterWeaponByType(WeaponType type) {
 	std::vector <Weapon> filteredWeapons;
@@ -257,11 +228,10 @@ void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> prin
 			}
 			else running = false;
 		} else if (key == '\r' || key == '\n') {
+
 			T& selected = list[current];
-			// more code to do
-			if (Choice::show(selected.getName())) {
-				// buy the weapon
-				getWeaponByIndex(buyer, current);
+			if (Choice::show(selected.getName()) == true) {
+				buyer.buyItem(selected);
 			}
 		}
 	}
