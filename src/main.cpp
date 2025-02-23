@@ -66,7 +66,7 @@ int main() {
                 Character::show(player);
             } 
             if (option == int(Menu::SHOP)) {
-                shop.runShop();
+                shop.runShop(player);
             }
             if (option == int(Menu::PLAY)) {
                 std::string json = "{\"weapon\":[{\"type\":\"test\",\"name\":\"test\",\"damage\":12, \"atkSpeed\": 1, \"cost\": 1000}],\"armor\":[{\"type\": \"test1\",\"name\":\"test1\", \"part\": \"test\",\"defense\":2,\"health\":141}]}";

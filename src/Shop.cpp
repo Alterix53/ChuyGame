@@ -109,7 +109,7 @@ std::vector <Armor> Shop::filterArmorByType(ArmorType type) {
 	return filteredArmors;
 }
 
-void Shop::runShop() {
+void Shop::runShop(Player& buyer) {
     bool inShop = true;
     int shop_option = 0;
 
@@ -134,18 +134,20 @@ void Shop::runShop() {
 					[this](std::vector<Weapon>& list, int firstIndex, int endIndex, int currentIndex) {
 						this->printWeaponList(list, firstIndex, endIndex, currentIndex);
 					},
-					_availableWeapons
+					_availableWeapons,
+					buyer
 				);
 			}
-			if (shop_option == int(SHOP::ARMORS)) {
+			else if (shop_option == int(SHOP::ARMORS)) {
 				showItemShop<Armor>(
 					[this](std::vector<Armor>& list, int firstIndex, int endIndex, int currentIndex) {
 						this->printArmorList(list, firstIndex, endIndex, currentIndex);
 					},
-					_availableArmors
+					_availableArmors,
+					buyer
 				);
 			}
-			if (shop_option == int(SHOP::RETURN)) 
+			else if (shop_option == int(SHOP::RETURN)) 
 				break;
 		}
     }
@@ -170,7 +172,7 @@ void Shop::displayShop(int opt) {
 }
 
 template <typename T>
-void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> printItemList, std::vector<T> &mainList) {
+void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> printItemList, std::vector<T> &mainList, Player& buyer) {
 	bool running = true;
 	bool find = true;
 	std::string search = "";
@@ -257,145 +259,13 @@ void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> prin
 		} else if (key == '\r' || key == '\n') {
 			T& selected = list[current];
 			// more code to do
-			Choice::show(selected.getName());
+			if (Choice::show(selected.getName())) {
+				// buy the weapon
+				getWeaponByIndex(buyer, current);
+			}
 		}
 	}
 	_currentItemIndex = _firstItemIndex = 0;
-}
-
-void Shop::showWeaponShop() {
-	bool running = true;
-	bool find_weapon = false;
-	bool find_armor = false;
-	std::string search = "";
-	char s;
-
-	while (running) {
-		system("cls");
-
-		int start = _firstItemIndex;
-		int end = _firstItemIndex + ITEMS_PER_PAGE;
-		if (end > _availableWeapons.size()) {
-			end = _availableWeapons.size();
-		}
-		printWeaponList(_availableWeapons, start, end, _currentItemIndex);
-		
-		// print notification that player can search for weapon
-		std::cout << "Press 'F' to search for weapon" << std::endl;
-
-		char key = _getch();
-		if (key == 'F' || key == 'f') {
-			// change to find box
-			find_weapon = true;
-			while (find_weapon) {
-				std::cout << "\033[20;0H";
-				std::cout << "Enter the name of the weapon you want to search: " << search;
-				// std::getline(std::cin >> std::ws, search);
-				s = _getch();
-				if (s == '\n' || s == '\r') {
-					find_weapon = false;
-					continue;
-				} else if (s == 8) {  //Backspace
-					if (!search.empty()) {
-						search.pop_back();  
-					}
-				} else if (s == 27) { // Esc
-					find_weapon = false;
-					continue;
-				}
-				else {
-					search += s; 
-				}
-
-				std::vector <Weapon> filteredWeapons;
-
-				std::copy_if(_availableWeapons.begin(), _availableWeapons.end(), std::back_inserter(filteredWeapons), [&](Weapon& w) {
-					return startsWithIgnoreCase(w.getName(), search);
-				});
-
-				system("cls");
-				printWeaponList(filteredWeapons, 0, filteredWeapons.size() < ITEMS_PER_PAGE ? filteredWeapons.size() : ITEMS_PER_PAGE, 0);
-			}
-			search = "";
-		}
-		else if (key == 'w' || key == 'W' || key == -32 && _getch() == 72) {
-			if ((_currentItemIndex == _firstItemIndex) && _currentItemIndex > 0) {
-				// case that the current item is the first item in the list and the current item is not the first item in the vector
-				_firstItemIndex--;
-				_currentItemIndex--;
-			}
-			else if (_currentItemIndex > 0) {
-				// other case
-				_firstItemIndex--;
-			}
-		}
-		else if (key == 's' || key == 'S' || key == -32 && _getch() == 80) {
-			if ((_currentItemIndex == _firstItemIndex + ITEMS_PER_PAGE - 1) && (_currentItemIndex < _availableWeapons.size() - 1)) {
-				// case that the current item is the last item in the list and the current item is not the last item in the vector
-				_firstItemIndex++;
-				_currentItemIndex++;
-			}
-			else if (_currentItemIndex < _availableWeapons.size() - 1) {
-				// other case
-				_currentItemIndex;
-			}
-		}
-		else if (key == 27) { // Esc
-			running = false; // or break
-		}
-		else if (key == '\r' || key == '\n') {
-			// choose the current item
-			Weapon& selected = _availableWeapons[_currentItemIndex];
-			// more code to do
-			Choice::show(selected.getName());
-			// std::cout << "\nYou have selected : " << selected.getName() << std::endl;
-		}
-	}
-}
-
-void Shop::showArmorShop() {
-	bool running = true;
-	while (running) {
-		system("cls");
-		int start = _firstItemIndex;
-		int end = _firstItemIndex + ITEMS_PER_PAGE;
-		if (end > _availableArmors.size()) {
-			end = _availableArmors.size();
-		}
-		printArmorList(_availableArmors, start, end, _currentItemIndex);
-		char key = _getch();
-		if (key == 'w' || key == 'W' || key == -32 && _getch() == 72) {
-			if ((_currentItemIndex == _firstItemIndex) && _currentItemIndex > 0) {
-				// case that the current item is the first item in the list and the current item is not the first item in the vector
-				_firstItemIndex--;
-				_currentItemIndex--;
-			}
-			else if (_currentItemIndex > 0) {
-				// other case
-				_currentItemIndex--;
-			}
-		}
-		else if (key == 's' || key == 'S' || key == -32 && _getch() == 80) {
-			if ((_currentItemIndex == _firstItemIndex + ITEMS_PER_PAGE - 1) && (_currentItemIndex < _availableArmors.size() - 1)) {
-				// case that the current item is the last item in the list and the current item is not the last item in the vector
-				_firstItemIndex++;
-				_currentItemIndex++;
-			}
-			else if (_currentItemIndex < _availableArmors.size() - 1) {
-				// other case
-				_currentItemIndex++;
-			}
-		}
-		else if (key == 27) { // Esc
-			running = false; // or break
-		}
-		else if (key == '\r' || key == '\n') {
-			// choose the current item
-			Armor& selected = _availableArmors[_currentItemIndex];
-			std::cout << "\nB?n ?� ch?n: " << selected.getName() << std::endl;
-			// more code to do
-		}
-	}
 }
 
 void Shop::printWeaponList(std::vector<Weapon> &list, int firstIndex, int endIndex, int currentIndex) {

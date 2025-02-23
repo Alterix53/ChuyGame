@@ -65,11 +65,9 @@ public:
 
 	// display shop
 	void displayShop(int opt);
-	void runShop();
+	void runShop(Player& buyer);
 	template <typename T>
-	void showItemShop(std::function<void(std::vector<T>&, int, int, int)> printItemList, std::vector<T> &mainList);
-	void showWeaponShop();
-	void showArmorShop();
+	void showItemShop(std::function<void(std::vector<T>&, int, int, int)> printItemList, std::vector<T> &mainList, Player& buyer);
 	void printWeaponList(std::vector<Weapon> &list, int firstIndex, int endIndex, int currentIndex);			// print max 15 weapons
 	void printArmorList(std::vector<Armor> &list, int start, int end, int currentIndex);			// print max 15 armors
 };
