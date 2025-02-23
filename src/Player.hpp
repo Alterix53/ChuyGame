@@ -8,6 +8,8 @@
 #define MAX_WEAPON 2
 #define WEAPON_INDEX 0
 
+const int BaseCost = 5000; // anh ching thich bao nhieu tien?
+
 class Player
 {
 private:
@@ -39,8 +41,8 @@ private:
 public:
 	// constructor and destructor
 	Player();													// default constructor
-	Player(std::string name, std::string ID, int points);		// constructor with parameters, contain basic player's info only
-	Player(std::string name, std::string ID, int points, int health, int attack, int defense, int atkSpeed); // constructor with parameters, contain all player's info
+	Player(std::string name, std::string ID, int cost);		// constructor with parameters, contain basic player's info only
+	Player(std::string name, std::string ID, int cost, int health, int attack, int defense, int atkSpeed); // constructor with parameters, contain all player's info
 	Player(const Player& player); // copy de chi khong biet
 	~Player();
 
@@ -59,8 +61,10 @@ public:
 	Armor getArmor(ArmorPart part);
 
 	// adding weapon and armor to inventory
-	void buyWeapon(Weapon weapon);				// buy and add weapon to player's inventory
-	void buyArmor(Armor armor);					// buy and add armor to player's inventory
+	// void buyWeapon(Weapon weapon);				// buy and add weapon to player's inventory
+	// void buyArmor(Armor armor);					// buy and add armor to player's inventory
+	template <typename T>
+	void buyItem(T item);						// buy and add item to player's inventory
 
 	// equip weapon and armor
 	void equipWeapon(Weapon weapon);					// equip weapon from player's inventory
@@ -79,5 +83,7 @@ public:
 	// print info
 	void printInfo();
 	void printPlayerStat();					// only print stat
-	void printPlayerInventory();			// shows inventory	
+
+	// print inventory
+	void printPlayerInventory();			
 };

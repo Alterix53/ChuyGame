@@ -7,6 +7,8 @@
 #include <vector>
 #include <iomanip>
 #include <conio.h>
+#include <windows.h> // sleep
+#include <type_traits> // typeid
 #include <functional>
 #include "data/Data.hpp"
 #include "Constants.hpp"
@@ -55,13 +57,13 @@ public:
 	std::vector <Weapon> filterWeaponByType(WeaponType type);
 	std::vector <Armor> filterArmorByType(ArmorType type);
 
-	// buy weapon by name
-	void getWeapon(Player& player, std::string weaponName); // minh dinh tim theo ID nhung ma chua biet lam (minh troll)
-	void getArmor(Player& player, std::string armorName); 
+	// buy weapon by name (not used)
+	// void getWeapon(Player& player, std::string weaponName); // minh dinh tim theo ID nhung ma chua biet lam (minh troll)
+	// void getArmor(Player& player, std::string armorName); 
 
-	// buy weapon by current index
-	void getWeaponByIndex(Player& player, int index);
-	void getArmorByIndex(Player& player, int index);
+	// buy weapon by current index (not used)
+	// void getWeaponByIndex(Player& player, int index);
+	// void getArmorByIndex(Player& player, int index);
 
 	// display shop
 	void displayShop(int opt);
