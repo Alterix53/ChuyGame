@@ -10,7 +10,7 @@ protected:
 public:
 	Item();
 	Item(std::string name, int cost);
-	~Item();
+	virtual ~Item();
 
 	// getter and setter
 	std::string getName();
