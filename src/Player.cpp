@@ -271,7 +271,7 @@ void Player::printPlayerStat() {
 // TODO: change the way to print the inventory
 void Player::printPlayerInventory(){
 	std::cout << "Inventory: " << std::endl;
-	std::cout << "Weapons: " << std::endl;
+	std::cout << "Weapons: " << (!_inventoryWeapon.empty() ? _inventoryWeapon.size() : 0) << std::endl;
 	if (_inventoryWeapon.empty()) {
 		std::cout << "No weapons!" << std::endl;
 	}
@@ -281,7 +281,7 @@ void Player::printPlayerInventory(){
 			_inventoryWeapon[i].printInfoInShort();
 		}
 	}
-	std::cout << "Armors: " << std::endl;
+	std::cout << "Armors: " << (!_inventoryArmor.empty() ? _inventoryArmor.size() : 0) << std::endl;
 	if (_inventoryArmor.empty()) {
 		std::cout << "No armors!" << std::endl;
 	}
