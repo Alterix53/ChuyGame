@@ -6,7 +6,6 @@
 #include <vector>
 #include "GameFlow/Character.hpp"
 
-const int EQUIP_SLOT = 6;
 const int OPTION = 4;
 
 enum class Menu {
@@ -14,14 +13,6 @@ enum class Menu {
     SHOP,
     PLAY,
     EXIT
-};
-
-enum class CharacterPagePosition {
-    CHARACTER,
-	INVENTORY,
-	WEAPON1,
-	WEAPON2,
-
 };
 
 void displayMenu(int option) {
@@ -85,11 +76,10 @@ int main() {
                 if (result != 0) {
                     std::cerr << "loi khi goi API!" << std::endl;
                 }
-                // player.printPlayerInventory();
-                // char cdfdf = getch();
-                break;
             }
             if (option == int(Menu::EXIT)) {
+                player.printPlayerInventory();
+                getch();
                 break;
             }
         }
