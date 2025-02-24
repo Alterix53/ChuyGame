@@ -143,12 +143,12 @@ namespace Character {
             }  else if (key == '\n' || key == '\r') {  // choose the current option
 
                 // TODO: implement the action for each option
-                // if (option == Slot::CHARACTER) {
-                //     tab = Tab::CHARACTER;
-                // } else if (option == Slot::INVENTORY) {
-                //     tab = Tab::INVENTORY;
-                //     showInventory(player);
-                // } 
+                if (option == Slot::CHARACTER) {
+                    tab = Tab::CHARACTER;
+                } else if (option == Slot::INVENTORY) {
+                    tab = Tab::INVENTORY;
+                    Inventory::displayInventory(player);
+                } 
                 break;
             } else {
                 move = false;
