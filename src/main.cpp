@@ -65,7 +65,7 @@ int main() {
                 std::string armorJson = "\"armor\":[" + makeJsonArmor(player.getArmor(ArmorPart::HELMET)) + "," + makeJsonArmor(player.getArmor(ArmorPart::LEGGINGS)) + "," + makeJsonArmor(player.getArmor(ArmorPart::BOOTS)) + "," + makeJsonArmor(player.getArmor(ArmorPart::CHESTPLATE)) + "]}";
                 
                 std::string json = weaponJson + armorJson;
-                json.insert(1, "\"tenNguoiChoi\":\"" + player.getName() + "\",\"idNguoiChoi\":\"" + player.getID() + "\",");
+                json.insert(1, "\"name\":\"" + player.getName() + "\",\"id\":\"" + player.getID() + "\",");
 
                 std::string eJson = json;
                 size_t position = 0;

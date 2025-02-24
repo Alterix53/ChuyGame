@@ -50,7 +50,6 @@ public:
 	int getHealth() const;
 	int getCost() const;
 	int getWeight() const;
-
 	
 	// get the armor type and part string
 	std::string getArmorPartString() const;
