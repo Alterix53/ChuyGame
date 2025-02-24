@@ -162,13 +162,16 @@ void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> prin
 
 		printItemList(list, first, end, current);
 
-		std::cout << "Press 'F' to search" << std::endl;
+		std::cout << "\nPress 'F' to search" << std::endl;
 		
 		char key = _getch();
 		if (key == -32) { 
             key = _getch();
         }
-		if (key == 'F' || key == 'f') {
+		if (key >= '1' && key <= '9') {
+			first = (key - '0' - 1) * ITEMS_PER_PAGE;
+			current = first;
+		} else if (key == 'F' || key == 'f') {
 			find = true;
 			std::vector <T> filteredItems;
 			while(find) {
@@ -243,7 +246,16 @@ void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> prin
 }
 
 void Shop::printWeaponList(std::vector<Weapon> &list, int firstIndex, int endIndex, int currentIndex) {
-
+	std::cout << "\033[s";  // save cursor position
+	std::cout << "\033[19;0H"; 
+	if (!list.empty()) {
+		int page = std::ceil(((double)currentIndex + 1) / ITEMS_PER_PAGE);
+		int totalPage = std::ceil(((double)list.size() + 1) / ITEMS_PER_PAGE);
+		if (page > totalPage) totalPage = -1;
+		std::cout << std::right << std::setw(List::Weapon::SEPARATOR / 2 - 3) << page << "/" <<  (totalPage != -1 ? std::to_string(totalPage) : "?");
+	}
+	std::cout << "\033[u";  // restore cursor position
+	
 	// print header
 	std::cout << std::left << std::setw(List::Weapon::NUMBER) << "NUMBER" << " | "
 		<< std::setw(List::Weapon::NAME) << "NAME" << " | "
@@ -261,9 +273,11 @@ void Shop::printWeaponList(std::vector<Weapon> &list, int firstIndex, int endInd
 	}
 
 	// print weapon list
+	bool isExistPage = false;
 	for (int i = firstIndex; i < endIndex; i++) {
 		if (i == currentIndex) {
 			std::cout << "> "; // shows that player are choosing this weapon
+			isExistPage = true;
 		}
 		else {
 			std::cout << "  ";
@@ -276,11 +290,24 @@ void Shop::printWeaponList(std::vector<Weapon> &list, int firstIndex, int endInd
 			<< std::setw(List::Weapon::ATKSPD) << list[i].getAtkSpeed() << " | "
 			<< std::setw(List::Weapon::COST) << list[i].getCost() << std::endl;
 	}
-
+	if (!isExistPage) {
+		std::cout << std::right << std::setw(List::Weapon::SEPARATOR / 2 + 6) << "This page is empty" << std::endl;
+	}
+	
 	std::cout << std::string(List::Weapon::SEPARATOR, '-') << std::endl;
 }
 
 void Shop::printArmorList(std::vector<Armor> &list, int start, int end, int currentIndex) {
+	std::cout << "\033[s";  
+	std::cout << "\033[19;0H"; 
+	if (!list.empty()) {
+		int page = std::ceil(((double)currentIndex + 1) / ITEMS_PER_PAGE);
+		int totalPage = std::ceil(((double)list.size() + 1) / ITEMS_PER_PAGE);
+		if (page > totalPage) totalPage = -1;
+		std::cout << std::right << std::setw(List::Weapon::SEPARATOR / 2 - 3) << page << "/" <<  (totalPage != -1 ? std::to_string(totalPage) : "?");
+	}
+	std::cout << "\033[u";  
+
 	// print header
 	std::cout << std::left << std::setw(List::Armor::NUMBER) << "NUMBER" << " | "
 		<< std::setw(List::Armor::NAME) << "NAME" << " | "
@@ -299,9 +326,11 @@ void Shop::printArmorList(std::vector<Armor> &list, int start, int end, int curr
 	}
 
 	// print armor list
+	bool isExistPage = false;
 	for (int i = start; i < end; i++) {
 		if (i == currentIndex) {
 			std::cout << "> "; // shows that player are choosing this armor
+			isExistPage = true;
 		}
 		else {
 			std::cout << "  ";
@@ -314,6 +343,9 @@ void Shop::printArmorList(std::vector<Armor> &list, int start, int end, int curr
 			<< std::setw(List::Armor::HEALTH) << list[i].getHealth() << " | "
 			<< std::setw(List::Armor::WEIGHT) << list[i].getWeight() << " | "
 			<< std::setw(List::Armor::COST) << list[i].getCost() << std::endl;
+	}
+	if (!isExistPage) {
+		std::cout << std::right << std::setw(List::Armor::SEPARATOR / 2 + 6) << "This page is empty" << std::endl;
 	}
 
 	std::cout << std::string(List::Armor::SEPARATOR, '-') << std::endl;
