@@ -13,11 +13,11 @@ public:
 	virtual ~Item();
 
 	// getter and setter
-	std::string getName();
-	int getCost();
+	std::string getName() const;
+	int getCost() const;
 
 	// functions
 	virtual void calculateCost() = 0;
-	virtual void printInfo() = 0;
-	virtual void printInfoInShort() = 0;
+	virtual void printInfo() const = 0;
+	virtual void printInfoInShort() const = 0;
 };

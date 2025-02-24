@@ -5,6 +5,7 @@
 #include "data/Data.hpp"
 #include <vector>
 #include "GameFlow/Character.hpp"
+#include "Utils.hpp"
 
 const int OPTION = 4;
 
@@ -60,13 +61,11 @@ int main() {
                 shop.runShop(player);
             }
             if (option == int(Menu::PLAY)) {
-                Weapon w1 = player.getWeapon(0);
-                Weapon w2 = player.getWeapon(1);
-                std::string weaponJson = "{\"weapon\":[{\"type\":\"" + w1.getWeaponTypeString() + "\",\"name\":\"" + w1.getName() + "\",\"damage\":" + std::to_string(w1.getDamage()) + ", \"atkSpeed\": " + std::to_string(w1.getAtkSpeed()) +  ", \"cost\": " + std::to_string(w1.getCost()) + "}, {\"type\":\"" + w1.getWeaponTypeString() + "\",\"name\":\"" + w1.getName() + "\",\"damage\":" + std::to_string(w1.getDamage()) + ", \"atkSpeed\": " + std::to_string(w1.getAtkSpeed()) +  ", \"cost\": " + std::to_string(w1.getCost()) + "}],";
-                // tao ham lam cho nhanh :sob:
+                std::string weaponJson = "{\"weapon\":[" + makeJsonWeapon(player.getWeapon(0)) + "," + makeJsonWeapon(player.getWeapon(1)) +  "],";
+                std::string armorJson = "\"armor\":[" + makeJsonArmor(player.getArmor(ArmorPart::HELMET)) + "," + makeJsonArmor(player.getArmor(ArmorPart::LEGGINGS)) + "," + makeJsonArmor(player.getArmor(ArmorPart::BOOTS)) + "," + makeJsonArmor(player.getArmor(ArmorPart::CHESTPLATE)) + "]}";
                 
-                std::string json = weaponJson + "\"armor\":[{\"type\": \"test1\",\"name\":\"test1\", \"part\": \"test\",\"defense\":2,\"health\":141}]}";
-                json.insert(1, "\"tenNguoiChoi\":\"Player1\",\"idNguoiChoi\":\"1\",");
+                std::string json = weaponJson + armorJson;
+                json.insert(1, "\"tenNguoiChoi\":\"" + player.getName() + "\",\"idNguoiChoi\":\"" + player.getID() + "\",");
 
                 std::string eJson = json;
                 size_t position = 0;
@@ -85,7 +84,6 @@ int main() {
             }
             if (option == int(Menu::EXIT)) {
                 player.printPlayerInventory();
-                getch();
                 break;
             }
         }
