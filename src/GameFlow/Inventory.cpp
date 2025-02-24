@@ -1,7 +1,7 @@
 #include "Inventory.hpp"
 
 namespace Inventory {
-    static std::vector<std::string> items;
+    std::vector<std::string> items;
 
     void addItem(const std::string& item) {
         items.push_back(item);
@@ -15,36 +15,39 @@ namespace Inventory {
         return std::find(items.begin(), items.end(), item) != items.end();
     }
 
-    // void listItems() {
+    void listItems() {
+        for (size_t i = 0; i < items.size(); i += itemsPerPage) {
+            /*
+                Duy oi, dinh nghia boxHeight nam o dau vay
+                                        |
+                                        v
+            */
+            // for (int row = 0; row < boxHeight; ++row) {
+            //     for (size_t j = i; j < i + itemsPerPage && j < items.size(); ++j) {
+            //         std::cout << "+------------------+ ";
+            //     }
+            //     std::cout << std::endl;
 
+            //     for (size_t j = i; j < i + itemsPerPage && j < items.size(); ++j) {
+            //         std::cout << "| " << std::setw(boxWidth - 3) << std::left;
+            //         if (row == 0) {
+            //             std::cout << items[j].substr(0, boxWidth - 3);
+            //         } else if (row == 1) {
+            //             std::cout << "Type: " << "Weapon/Armor"; // Replace with actual type
+            //         } else if (row == 2) {
+            //             std::cout << "Attribute: " << "AttributeValue"; // Replace with actual attribute
+            //         }
+            //         std::cout << " | ";
+            //     }
+            //     std::cout << std::endl;
+            // }
 
-    //     for (size_t i = 0; i < items.size(); i += itemsPerPage) {
-    //         for (int row = 0; row < boxHeight; ++row) {
-    //             for (size_t j = i; j < i + itemsPerPage && j < items.size(); ++j) {
-    //                 std::cout << "+------------------+ ";
-    //             }
-    //             std::cout << std::endl;
-
-    //             for (size_t j = i; j < i + itemsPerPage && j < items.size(); ++j) {
-    //                 std::cout << "| " << std::setw(boxWidth - 3) << std::left;
-    //                 if (row == 0) {
-    //                     std::cout << items[j].substr(0, boxWidth - 3);
-    //                 } else if (row == 1) {
-    //                     std::cout << "Type: " << "Weapon/Armor"; // Replace with actual type
-    //                 } else if (row == 2) {
-    //                     std::cout << "Attribute: " << "AttributeValue"; // Replace with actual attribute
-    //                 }
-    //                 std::cout << " | ";
-    //             }
-    //             std::cout << std::endl;
-    //         }
-
-    //         for (size_t j = i; j < i + itemsPerPage && j < items.size(); ++j) {
-    //             std::cout << "+------------------+ ";
-    //         }
-    //         std::cout << std::endl;
-    //     }
-    // }
+            for (size_t j = i; j < i + itemsPerPage && j < items.size(); ++j) {
+                std::cout << "+------------------+ ";
+            }
+            std::cout << std::endl;
+        }
+    }
 
     void show(Player &player) {
         bool inInventory = true;
@@ -114,4 +117,5 @@ namespace Inventory {
             }
         }
     }
+    void displayInventory(Player &player) {}
 }
