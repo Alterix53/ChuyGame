@@ -87,5 +87,9 @@ public:
 	void printPlayerStat() const;					// only print stat
 
 	// print inventory
-	void printPlayerInventory() const;			
+	void printPlayerInventory() const;	
+	
+	// get inventory
+	std::vector <Weapon> getWeaponList();
+  std::vector <Armor> getArmorList();
 };

@@ -11,6 +11,7 @@
 #include "../Player.hpp"
 #include "../Constants.hpp"
 #include "../Utils.hpp"
+#include "Inventory.hpp" // shows inventory
 
 using namespace Constants;
 

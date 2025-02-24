@@ -297,3 +297,6 @@ void Player::printPlayerInventory() const {
 		}
 	}
 }
+
+std::vector <Weapon> Player::getWeaponList() { return _inventoryWeapon; }
+std::vector <Armor> Player::getArmorList() {return _inventoryArmor; }
