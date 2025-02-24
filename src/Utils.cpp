@@ -38,6 +38,16 @@ bool startsWithIgnoreCase(const std::string& full, const std::string& prefix) {
     return fullLower.substr(0, prefixLower.size()) == prefixLower;
 }
 
+std::string makeJsonWeapon(Weapon &weapon) {
+    std::string weaponJson = "{\"type\":\"" + weapon.getWeaponTypeString() + "\",\"name\":\"" + weapon.getName() + "\",\"damage\":" + std::to_string(weapon.getDamage()) + ", \"atkSpeed\": " + std::to_string(weapon.getAtkSpeed()) +  ", \"cost\": " + std::to_string(weapon.getCost()) + "}";
+    return weaponJson;
+}
+
+std::string makeJsonArmor(Armor &armor) {
+    std::string armorJson = "{\"type\": \"" + armor.getArmorTypeString() + "\",\"name\":\"" + armor.getName() + "\", \"part\": \"" + armor.getArmorPartString() + "\",\"health\":" + std::to_string(armor.getHealth()) + ",\"defense\":" + std::to_string(armor.getDefense()) + ",\"weight\":" + std::to_string(armor.getWeight()) + ",\"cost\":" + std::to_string(armor.getCost()) + "}";
+    return armorJson;
+}
+
 namespace dialog {
     namespace Choice {
         
