@@ -57,6 +57,8 @@ public:
 	int getAttack() const;
 	int getDefense() const;
 	int getAtkSpeed() const;
+	std::vector<Armor> getInventoryArmor() const;
+	std::vector<Weapon> getInventoryWeapon() const;
 	// int getCritRate();
 	// int getCritDmg();
 	Weapon getWeapon(int index) const;
