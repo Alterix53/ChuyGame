@@ -112,6 +112,26 @@ namespace Inventory {
                 case 27: // Escape key
                     inInventory = false;
                     break;
+                case 13: // Enter key
+                    int index = (currentPage - 1) * 16 + inventoryPos.first + inventoryPos.second * itemsPerRow;
+                    Item& selected = *items[index];
+                    bool isEquipped = selected.checkIsEquipped();
+                    if (Choice::showEquip(selected.getName(), isEquipped) == true) {
+                        if (isEquipped) {
+                            // if (Weapon* w = dynamic_cast<Weapon*>(&selected)) {
+                            //     player.unequipWeapon(*w);
+                            // } else if (Armor* a = dynamic_cast<Armor*>(&selected)) {
+                            //     player.unequipArmor(*a);
+                            // }
+                        } else {
+                            if (Weapon* w = dynamic_cast<Weapon*>(&selected)) {
+                                player.equipWeapon(*w);
+                            } else if (Armor* a = dynamic_cast<Armor*>(&selected)) {
+                                player.equipArmor(*a);
+                            }
+                    }
+                    
+                    break;
                 default:
                     break;
             }

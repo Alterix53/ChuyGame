@@ -5,11 +5,14 @@
 #include <iostream>
 #include <iomanip>
 #include "../Player.hpp"
+#include "../Utils.hpp"
 
 // attribute of each box (box show an item)
 const int itemsPerPage = 16;
 const int itemsPerRow = 4;
 const int itemsPerCol = 4;
+
+using namespace dialog;
 
 namespace Inventory {
     extern std::vector<std::string> items;
