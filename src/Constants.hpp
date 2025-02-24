@@ -43,4 +43,7 @@ namespace Constants {
             constexpr int SEPARATOR = 84; 
         }
     }
+    namespace others {
+        constexpr int TIME_DELAY = 1405;
+    }
 }
