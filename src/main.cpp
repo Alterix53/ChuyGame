@@ -61,8 +61,8 @@ int main() {
                 shop.runShop(player);
             }
             if (option == int(Menu::PLAY)) {
-                std::string weaponJson = "{\"weapon\":[" + makeJsonWeapon(player.getWeapon(0)) + "," + makeJsonWeapon(player.getWeapon(1)) +  "],";
-                std::string armorJson = "\"armor\":[" + makeJsonArmor(player.getArmor(ArmorPart::HELMET)) + "," + makeJsonArmor(player.getArmor(ArmorPart::LEGGINGS)) + "," + makeJsonArmor(player.getArmor(ArmorPart::BOOTS)) + "," + makeJsonArmor(player.getArmor(ArmorPart::CHESTPLATE)) + "]}";
+                std::string weaponJson = "{\"weapon\":[" + utils::makeJsonWeapon(player.getWeapon(0)) + "," + utils::makeJsonWeapon(player.getWeapon(1)) +  "],";
+                std::string armorJson = "\"armor\":[" + utils::makeJsonArmor(player.getArmor(ArmorPart::HELMET)) + "," + utils::makeJsonArmor(player.getArmor(ArmorPart::LEGGINGS)) + "," + utils::makeJsonArmor(player.getArmor(ArmorPart::BOOTS)) + "," + utils::makeJsonArmor(player.getArmor(ArmorPart::CHESTPLATE)) + "]}";
                 
                 std::string json = weaponJson + armorJson;
                 json.insert(1, "\"name\":\"" + player.getName() + "\",\"id\":\"" + player.getID() + "\",");

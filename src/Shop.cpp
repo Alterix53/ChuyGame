@@ -128,7 +128,7 @@ void Shop::displayShop(int opt) {
 	std::string options[] = { "Weapon", "Armor", "Return" };
 
 	std::cout << "\033[1;31m";
-	std::cout << "\t\t\t  CHOOSE THE ITEM'S CATEGORY" << "\n\n";
+	std::cout << "\t\t CHOOSE THE ITEM'S CATEGORY" << "\n\n";
 	std::cout << "\033[0m";
 	for (int i = 0; i < SHOP_OPTION; i++) {
 		if (i == opt) {
@@ -199,7 +199,7 @@ void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> prin
 				}
 				filteredItems.clear();
 				std::copy_if(mainList.begin(), mainList.end(), std::back_inserter(filteredItems), [&](T& w) {
-					return startsWithIgnoreCase(w.getName(), search);
+					return utils::startsWithIgnoreCase(w.getName(), search);
 				});
 
 				system("cls");

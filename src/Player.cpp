@@ -122,7 +122,8 @@ void Player::equipArmor(Armor armor) {
 void Player::buyWeapon(Weapon weapon) {
 	int cost = weapon.getCost();
 	if (_playerCost < cost) {
-		std::cerr << "You don't have enough points to buy this weapon!" << std::endl;
+		std::cerr << utils::colorString("You don't have enough points to buy this weapon!", Constants::Color::RED) << std::endl;
+		Sleep(1405);
 		return;
 	}
 
@@ -135,7 +136,8 @@ void Player::buyArmor(Armor armor) {
 
 	int cost = armor.getCost();
 	if (_playerCost < cost) {
-		std::cerr << "You don't have enough points to buy this armor!" << std::endl;
+		std::cerr << utils::colorString("You don't have enough points to buy this armor!", Constants::Color::RED) << std::endl;
+		Sleep(1405);
 		return;
 	}
 
