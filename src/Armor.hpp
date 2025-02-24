@@ -43,22 +43,24 @@ public:
 	~Armor();
 
 	// getter and setter
-	std::string getName();
-	ArmorType getType();
-	ArmorPart getPart();
-	int getDefense();
-	int getHealth();
-	int getCost();
-	int getWeight();
+	std::string getName() const;
+	ArmorType getType() const;
+	ArmorPart getPart() const;
+	int getDefense() const;
+	int getHealth() const;
+	int getCost() const;
+	int getWeight() const;
+	
+	// get the armor type and part string
+	std::string getArmorPartString() const;
+	std::string getArmorTypeString() const;
+
+	// override
 
 	// calculate the cost of the armor
-	void calculateCost();		// base on hp and def
-
-	// get the armor type and part string
-	std::string getArmorPartString();
-	std::string getArmorTypeString();
-
+	void calculateCost() override;		// base on hp and def
+	
 	// print the armor's info
-	void printInfo();
-	void printInfoInShort();
+	void printInfo() const override;
+	void printInfoInShort() const override;
 };

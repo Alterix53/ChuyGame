@@ -1,11 +1,11 @@
 Weapon data:
 ```json
 {
-        "type": "string",
-        "name": "string",
-        "damage": "number",
-        "atkSpeed": "number",
-        "cost": "number"
+    "type": "string",
+    "name": "string",
+    "damage": "number",
+    "atkSpeed": "number",
+    "cost": "number"
 },
 ```
 Armor data:

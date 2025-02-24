@@ -27,21 +27,24 @@ public:
 	~Weapon();
 
 	// getter and setter
-	std::string getName();
 	void setDamage(int damage);	
-	int getDamage();
-	int getAtkSpeed();
 	void setCost(int cost);
-	int getCost();
-	WeaponType getType();
+
+	std::string getName() const;
+	int getDamage() const;
+	int getAtkSpeed() const;
+	int getCost() const;
+	WeaponType getType() const;
 
 	// get weapon type string
-	std::string getWeaponTypeString();
+	std::string getWeaponTypeString() const;
+
+	// override
 
 	// calculate the cost of the weapon
-	void calculateCost(); // base on damage and atk speed
+	void calculateCost() override; // base on damage and atk speed
 
 	// print info
-	void printInfo();
-	void printInfoInShort(); // in thong tin tren 1 hang
+	void printInfo() const override;
+	void printInfoInShort() const override; // in thong tin tren 1 hang
 };

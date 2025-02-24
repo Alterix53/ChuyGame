@@ -5,6 +5,7 @@
 #include "data/Data.hpp"
 #include <vector>
 #include "GameFlow/Character.hpp"
+#include "Utils.hpp"
 
 const int OPTION = 4;
 
@@ -60,8 +61,11 @@ int main() {
                 shop.runShop(player);
             }
             if (option == int(Menu::PLAY)) {
-                std::string json = "{\"weapon\":[{\"type\":\"test\",\"name\":\"test\",\"damage\":12, \"atkSpeed\": 1, \"cost\": 1000}],\"armor\":[{\"type\": \"test1\",\"name\":\"test1\", \"part\": \"test\",\"defense\":2,\"health\":141}]}";
-                json.insert(1, "\"tenNguoiChoi\":\"Player1\",\"idNguoiChoi\":\"1\",");
+                std::string weaponJson = "{\"weapon\":[" + makeJsonWeapon(player.getWeapon(0)) + "," + makeJsonWeapon(player.getWeapon(1)) +  "],";
+                std::string armorJson = "\"armor\":[" + makeJsonArmor(player.getArmor(ArmorPart::HELMET)) + "," + makeJsonArmor(player.getArmor(ArmorPart::LEGGINGS)) + "," + makeJsonArmor(player.getArmor(ArmorPart::BOOTS)) + "," + makeJsonArmor(player.getArmor(ArmorPart::CHESTPLATE)) + "]}";
+                
+                std::string json = weaponJson + armorJson;
+                json.insert(1, "\"name\":\"" + player.getName() + "\",\"id\":\"" + player.getID() + "\",");
 
                 std::string eJson = json;
                 size_t position = 0;
@@ -76,10 +80,10 @@ int main() {
                 if (result != 0) {
                     std::cerr << "loi khi goi API!" << std::endl;
                 }
+                getch();
             }
             if (option == int(Menu::EXIT)) {
                 player.printPlayerInventory();
-                getch();
                 break;
             }
         }

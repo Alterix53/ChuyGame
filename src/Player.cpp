@@ -30,39 +30,39 @@ void Player::setPoint(int points) {
 	_playerCost = points;
 }
 
-int Player::getPoint() {
+int Player::getPoint() const {
 	return _playerCost;
 }
 
-std::string Player::getName() {
+std::string Player::getName() const {
 	return _name;
 }
 
-std::string Player::getID() {
+std::string Player::getID() const {
 	return _ID;
 }
 
-int Player::getHealth() {
+int Player::getHealth() const {
 	return _health;
 }
 
-int Player::getAttack() {
+int Player::getAttack() const {
 	return _attack;
 }
 
-int Player::getDefense() {
+int Player::getDefense() const {
 	return _defense;
 }
 
-int Player::getAtkSpeed() {
+int Player::getAtkSpeed() const {
 	return _atkSpeed;
 }
 
-Weapon Player::getWeapon(int index) {
+Weapon Player::getWeapon(int index) const {
 	return _weapon[index];
 }
 
-Armor Player::getArmor(ArmorPart part) {
+Armor Player::getArmor(ArmorPart part) const {
 	switch (part) {
 	case ArmorPart::HELMET:
 		return _helmet;
@@ -76,9 +76,6 @@ Armor Player::getArmor(ArmorPart part) {
 		return Armor();
 	}
 }
-
-// int Player::getCritRate() { return _critRate; }
-// int Player::getCritDmg() { return _critDmg; }
 
 // below are the functions to add weapon and armor
 
@@ -147,7 +144,7 @@ void Player::buyArmor(Armor armor) {
 	// if (_inventoryArmor.push_back(armor) == false) {return;} else {_playerCost -= cost;}
 }
 
-void Player::printInfo() {
+void Player::printInfo() const {
 
 	// basic info
 	std::cout << "Player's name: " << _name << std::endl;
@@ -262,14 +259,14 @@ void Player::updateStatUnequipArmor(Armor armor) {
 }
 
 // ham nay dung de in ra thong so cua player (khong in ra thong tin cua weapon va armor)
-void Player::printPlayerStat() {
+void Player::printPlayerStat() const {
 	std::cout << "Health: " << _health << std::endl;
 	std::cout << "Attack: " << _attack << std::endl;
 	std::cout << "Defense: " << _defense << std::endl;
 }
 
 // TODO: change the way to print the inventory
-void Player::printPlayerInventory(){
+void Player::printPlayerInventory() const {
 	std::cout << "Inventory: " << std::endl;
 	std::cout << "Weapons: " << (!_inventoryWeapon.empty() ? _inventoryWeapon.size() : 0) << std::endl;
 	if (_inventoryWeapon.empty()) {

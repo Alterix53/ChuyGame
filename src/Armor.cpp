@@ -10,31 +10,31 @@ Armor::Armor(std::string name, ArmorType type, ArmorPart part, int health, int d
 Armor::~Armor() {}
 
 // getter and setter
-std::string Armor::getName() {
+std::string Armor::getName() const {
 	return _name;
 }
 
-ArmorType Armor::getType() {
+ArmorType Armor::getType() const {
 	return _type;
 }
 
-ArmorPart Armor::getPart() {
+ArmorPart Armor::getPart() const {
 	return _part;
 }
 
-int Armor::getDefense() {
+int Armor::getDefense() const {
 	return _defense;
 }
 
-int Armor::getCost() {
+int Armor::getCost() const {
 	return _cost;
 }
 
-int Armor::getHealth() {
+int Armor::getHealth() const {
 	return _health;
 }
 
-int Armor::getWeight() {
+int Armor::getWeight() const {
 	return _weight;
 }
 
@@ -45,7 +45,7 @@ void Armor::calculateCost() {
 }
 
 // get armor part string
-std::string Armor::getArmorPartString() {
+std::string Armor::getArmorPartString() const {
 	switch (_part) {
 	case ArmorPart::HELMET:
 		return "Helmet";
@@ -61,7 +61,7 @@ std::string Armor::getArmorPartString() {
 }
 
 // get armor type string
-std::string Armor::getArmorTypeString() {
+std::string Armor::getArmorTypeString() const {
 	switch (_type) {
 	case ArmorType::BULLETPROOF:
 		return "Bulletproof";
@@ -77,7 +77,7 @@ std::string Armor::getArmorTypeString() {
 }
 
 // print armor info
-void Armor::printInfo() {
+void Armor::printInfo() const {
 	std::string part = getArmorPartString();
 	std::string type = getArmorTypeString();
 
@@ -91,6 +91,6 @@ void Armor::printInfo() {
 
 }
 
-void Armor::printInfoInShort() {
+void Armor::printInfoInShort() const {
 	std::cout << _name << " - " << _health << " health - " << _defense << " defense - " << _cost << " points" << std::endl;
 }
