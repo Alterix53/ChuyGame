@@ -118,6 +118,17 @@ namespace Character {
             display();
             char key = getch();
             if (key == 'q' || key == 'Q' || int(key) == 27) { 
+                sign = {
+                    "\033[0;33m" + slotToStringUpper(Slot::MAIN) + "\033[0m",
+                    "\033[0;31m" + slotToStringUpper(Slot::WEAPON1) + "\033[0m",
+                    "\033[0;31m" + slotToStringUpper(Slot::WEAPON2) + "\033[0m",
+                    "\033[0;31m" + slotToStringUpper(Slot::ARMOR1) + "\033[0m",
+                    "\033[0;31m" + slotToStringUpper(Slot::ARMOR2) + "\033[0m",
+                    "\033[0;31m" + slotToStringUpper(Slot::ARMOR3) + "\033[0m",
+                    "\033[0;31m" + slotToStringUpper(Slot::ARMOR4) + "\033[0m",
+                    "\033[0;31m" + slotToStringUpper(Slot::CHARACTER) + "\033[0m",
+                    "\033[0;31m" + slotToStringUpper(Slot::INVENTORY) + "\033[0m",
+                };
                 return;
             } else if (key == 'w' || key == 'W') {
                 move = true;
