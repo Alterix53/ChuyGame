@@ -122,26 +122,32 @@ void Player::equipArmor(Armor armor) {
 void Player::buyWeapon(Weapon weapon) {
 	int cost = weapon.getCost();
 	if (_playerCost < cost) {
-		std::cerr << "You don't have enough points to buy this weapon!" << std::endl;
+		std::cerr << utils::colorString("You don't have enough points to buy this weapon!", Constants::Color::RED) << std::endl;
+		Sleep(Constants::others::TIME_DELAY);
 		return;
 	}
 
 	_inventoryWeapon.push_back(weapon);
 	_playerCost -= cost;
-	// if (_inventoryWeapon.push_back(weapon) == false) {return;} else {_playerCost -= cost;}
+
+	std::cerr << utils::colorString("You have successfully purchased this weapon!", Constants::Color::GREEN);
+	Sleep(Constants::others::TIME_DELAY);
 }
 
 void Player::buyArmor(Armor armor) {
 
 	int cost = armor.getCost();
 	if (_playerCost < cost) {
-		std::cerr << "You don't have enough points to buy this armor!" << std::endl;
+		std::cerr << utils::colorString("You don't have enough points to buy this armor!", Constants::Color::RED) << std::endl;
+		Sleep(Constants::others::TIME_DELAY);
 		return;
 	}
 
 	_inventoryArmor.push_back(armor);
 	_playerCost -= cost;
-	// if (_inventoryArmor.push_back(armor) == false) {return;} else {_playerCost -= cost;}
+
+	std::cerr << utils::colorString("You have successfully purchased this armor!", Constants::Color::GREEN);
+	Sleep(Constants::others::TIME_DELAY);
 }
 
 std::vector<Weapon> Player::getInventoryWeapon() const {

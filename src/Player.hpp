@@ -6,6 +6,9 @@
 #include <vector>
 #include <type_traits>
 #include <conio.h>
+#include <windows.h>
+#include "Utils.hpp"
+#include "Constants.hpp"
 
 #define MAX_WEAPON 2
 #define WEAPON_INDEX 0
