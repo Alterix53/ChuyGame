@@ -6,34 +6,32 @@ Weapon::Weapon(std::string name, int cost, WeaponType type, int damage, int atkS
 
 Weapon::~Weapon() = default;
 
-std::string Weapon::getName() {
-	return _name;
-}
-int Weapon::getCost() {
-	return _cost;	
-}
-
 void Weapon::setCost(int cost) {
 	_cost = cost;
-}
-
-int Weapon::getDamage() {
-	return _damage;
 }
 
 void Weapon::setDamage(int damage) {
 	_damage = damage;
 }
-
-int Weapon::getAtkSpeed() {
+ 
+std::string Weapon::getName() const {
+	return _name;
+}
+int Weapon::getCost() const {
+	return _cost;	
+}
+int Weapon::getDamage() const {
+	return _damage;
+}
+int Weapon::getAtkSpeed() const {
 	return _atkSpeed;
 }
 
-WeaponType Weapon::getType() {
+WeaponType Weapon::getType() const {
 	return _type;
 }
 
-std::string Weapon::getWeaponTypeString() {
+std::string Weapon::getWeaponTypeString() const {
 	switch (_type) {
 	case WeaponType::SWORD:
 		return "Sword";
@@ -53,11 +51,11 @@ void Weapon::calculateCost() {
 	_cost = _damage * 2 + _atkSpeed * 10 + 12;
 }
 
-void Weapon::printInfoInShort() {
+void Weapon::printInfoInShort() const {
 	std::cout << _name << " - " << _damage << " damage - " << _atkSpeed << " atk speed - " << _cost << " points" << std::endl;
 }
 
-void Weapon::printInfo() {
+void Weapon::printInfo() const {
 	std::cout << "Weapon's name: " << _name << std::endl;
 	std::cout << "Type: " << getWeaponTypeString() << std::endl;
 	std::cout << "Damage: " << _damage << std::endl;

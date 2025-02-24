@@ -21,7 +21,7 @@ app.get("/players/:id", (req, res) => {
 });
 
 app.post("/players", (req, res) => {
-    const { weapon, armor, tenNguoiChoi, idNguoiChoi } = req.body;
+    const { weapon, armor, name, id } = req.body;
 
     if (!Array.isArray(weapon) || !Array.isArray(armor)) {
         return res.status(400).json({ message: "weapon va armor phai la mang" });
@@ -54,8 +54,8 @@ app.post("/players", (req, res) => {
     const newPlayer = {
         weapon,
         armor,
-        tenNguoiChoi,
-        idNguoiChoi,
+        name,
+        id,
         createdAt: new Date()
     };
 

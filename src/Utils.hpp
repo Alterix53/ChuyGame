@@ -15,6 +15,8 @@ ArmorType stringToArmorType(const std::string &typeStr);
 ArmorPart stringToArmorPart(const std::string &partStr);
 std::string toLower(const std::string& str);
 bool startsWithIgnoreCase(const std::string& full, const std::string& prefix);
+std::string makeJsonWeapon(const Weapon &weapon);
+std::string makeJsonArmor(const Armor &armor);
 
 namespace dialog {
     namespace Choice {

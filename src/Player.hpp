@@ -50,17 +50,19 @@ public:
 
 	// getter and setter
 	void setPoint(int points);
-	int getPoint();
-	std::string getName();
-	std::string getID();
-	int getHealth();
-	int getAttack();
-	int getDefense();
-	int getAtkSpeed();
+	int getPoint() const;
+	std::string getName() const;
+	std::string getID() const;
+	int getHealth() const;
+	int getAttack() const;
+	int getDefense() const;
+	int getAtkSpeed() const;
+	std::vector<Armor> getInventoryArmor() const;
+	std::vector<Weapon> getInventoryWeapon() const;
 	// int getCritRate();
 	// int getCritDmg();
-	Weapon getWeapon(int index);
-	Armor getArmor(ArmorPart part);
+	Weapon getWeapon(int index) const;
+	Armor getArmor(ArmorPart part) const;
 
 	// adding weapon and armor to inventory
 	void buyWeapon(Weapon weapon);				// buy and add weapon to player's inventory
@@ -81,13 +83,13 @@ public:
 	void updateStatUnequipArmor(Armor armor);		// update player's stat when unequip an item
 
 	// print info
-	void printInfo();
-	void printPlayerStat();					// only print stat
+	void printInfo() const;
+	void printPlayerStat() const;					// only print stat
 
 	// print inventory
-	void printPlayerInventory();	
+	void printPlayerInventory() const;	
 	
 	// get inventory
 	std::vector <Weapon> getWeaponList();
-    std::vector <Armor> getArmorList();
+  std::vector <Armor> getArmorList();
 };
