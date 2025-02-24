@@ -24,6 +24,8 @@ namespace utils {
         namespace Choice {
             void clearLastTwoLines();
             void clearLines(int n);
+            void equip(std::string name, int option, bool isEquip);
+            bool showEquip(std::string name, bool isEquip);
             void display(std::string name, int option);
             bool show(std::string name = "");
         }

@@ -94,5 +94,5 @@ public:
 	
 	// get inventory
 	std::vector <Weapon> getWeaponList();
-  std::vector <Armor> getArmorList();
+    std::vector <Armor> getArmorList();
 };

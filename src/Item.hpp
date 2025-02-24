@@ -7,6 +7,7 @@ class Item
 protected:
 	std::string _name;
 	int _cost;
+	bool _isEquipped;
 public:
 	Item();
 	Item(std::string name, int cost);
@@ -15,6 +16,7 @@ public:
 	// getter and setter
 	std::string getName() const;
 	int getCost() const;
+	bool checkIsEquipped() const;
 
 	// functions
 	virtual void calculateCost() = 0;
