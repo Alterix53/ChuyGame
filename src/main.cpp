@@ -61,15 +61,8 @@ int main() {
                 shop.runShop(player);
             }
             if (option == int(Menu::PLAY)) {
-                Weapon w1 = player.getWeapon(0);
-                Weapon w2 = player.getWeapon(1);
-                Armor a = player.getArmor(ArmorPart::HELMET);
-                Armor b = player.getArmor(ArmorPart::LEGGINGS);
-                Armor c = player.getArmor(ArmorPart::BOOTS);
-                Armor d = player.getArmor(ArmorPart::CHESTPLATE);
-
-                std::string weaponJson = "{\"weapon\":[" + makeJsonWeapon(w1) + "," + makeJsonWeapon(w2) +  "],";
-                std::string armorJson = "\"armor\":[" + makeJsonArmor(a) + "," + makeJsonArmor(b) + "," + makeJsonArmor(c) + "," + makeJsonArmor(d) + "]}";
+                std::string weaponJson = "{\"weapon\":[" + makeJsonWeapon(player.getWeapon(0)) + "," + makeJsonWeapon(player.getWeapon(1)) +  "],";
+                std::string armorJson = "\"armor\":[" + makeJsonArmor(player.getArmor(ArmorPart::HELMET)) + "," + makeJsonArmor(player.getArmor(ArmorPart::LEGGINGS)) + "," + makeJsonArmor(player.getArmor(ArmorPart::BOOTS)) + "," + makeJsonArmor(player.getArmor(ArmorPart::CHESTPLATE)) + "]}";
                 
                 std::string json = weaponJson + armorJson;
                 json.insert(1, "\"tenNguoiChoi\":\"" + player.getName() + "\",\"idNguoiChoi\":\"" + player.getID() + "\",");
