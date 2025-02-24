@@ -144,6 +144,14 @@ void Player::buyArmor(Armor armor) {
 	// if (_inventoryArmor.push_back(armor) == false) {return;} else {_playerCost -= cost;}
 }
 
+std::vector<Weapon> Player::getInventoryWeapon() const {
+	return _inventoryWeapon;
+}
+
+std::vector<Armor> Player::getInventoryArmor() const {
+	return _inventoryArmor;
+}
+
 void Player::printInfo() const {
 
 	// basic info
