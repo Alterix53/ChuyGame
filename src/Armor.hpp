@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include "Item.hpp"
+#include <iomanip>
+#include <cmath>
 
 // define the armor's base stat below
 #define BASE_ARMOR_DEFENSE 10
@@ -64,4 +66,6 @@ public:
 	// print the armor's info
 	void printInfo() const override;
 	void printInfoInShort() const override;
+
+	std::string toString() const override;
 };

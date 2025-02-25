@@ -71,3 +71,12 @@ void Weapon::printInfo() const {
 	std::cout << "Attack Speed: " << _atkSpeed << std::endl;
 	std::cout << "Cost: " << _cost << std::endl;
 }
+
+std::string Weapon::toString() const {
+	std::stringstream ss;
+	ss << "name: " << _name << "\n"
+	   << "type: " << getWeaponTypeString() << "\n"
+	   << "damage: " << _damage << "\n"
+	   << "atkspd: " << std::fixed << std::setprecision(2) << _atkSpeed;
+	return ss.str();
+}
