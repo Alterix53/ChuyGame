@@ -3,153 +3,1035 @@
         "type": "Bulletproof",
         "name": "Vest",
         "part": "Helmet",
-        "health": 100,
-        "defense": 10,
-        "weight": 5,
-        "cost": 1000
+        "health": 95,
+        "defense": 15,
+        "weight": 7,
+        "cost": 298
     },
     {
         "type": "Bulletproof",
         "name": "Tactical Vest",
         "part": "Chestplate",
-        "health": 150,
-        "defense": 20,
+        "health": 87,
+        "defense": 25,
         "weight": 8,
-        "cost": 2000
+        "cost": 349
     },
     {
         "type": "Chain",
         "name": "Reinforced Chainmail",
         "part": "Leggings",
-        "health": 80,
-        "defense": 15,
-        "weight": 7,
-        "cost": 1200
+        "health": 59,
+        "defense": 11,
+        "weight": 6,
+        "cost": 204
     },
     {
         "type": "Leather",
         "name": "Hunter Boots",
         "part": "Boots",
-        "health": 50,
-        "defense": 5,
-        "weight": 2,
-        "cost": 500
+        "health": 13,
+        "defense": 24,
+        "weight": 1,
+        "cost": 193
     },
     {
         "type": "Plate",
         "name": "Knight Helmet",
         "part": "Helmet",
-        "health": 120,
-        "defense": 25,
+        "health": 86,
+        "defense": 16,
         "weight": 10,
-        "cost": 1800
+        "cost": 286
     },
     {
         "type": "Bulletproof",
         "name": "SWAT Helmet",
         "part": "Helmet",
-        "health": 130,
-        "defense": 22,
-        "weight": 6,
-        "cost": 2200
+        "health": 82,
+        "defense": 17,
+        "weight": 7,
+        "cost": 284
     },
     {
         "type": "Plate",
         "name": "Steel Chestplate",
         "part": "Chestplate",
-        "health": 200,
-        "defense": 30,
-        "weight": 12,
-        "cost": 2500
+        "health": 87,
+        "defense": 17,
+        "weight": 9,
+        "cost": 294
     },
     {
         "type": "Bulletproof",
         "name": "Military Vest",
         "part": "Chestplate",
-        "health": 170,
-        "defense": 25,
-        "weight": 9,
-        "cost": 2500
+        "health": 85,
+        "defense": 15,
+        "weight": 8,
+        "cost": 278
     },
     {
         "type": "Chain",
         "name": "Templar Leggings",
         "part": "Leggings",
-        "health": 100,
-        "defense": 18,
-        "weight": 8,
-        "cost": 1400
+        "health": 58,
+        "defense": 11,
+        "weight": 6,
+        "cost": 202
     },
     {
         "type": "Leather",
         "name": "Shadow Boots",
         "part": "Boots",
-        "health": 60,
-        "defense": 7,
+        "health": 35,
+        "defense": 25,
         "weight": 2,
-        "cost": 600
+        "cost": 245
     },
     {
         "type": "Plate",
         "name": "Dragon Helmet",
         "part": "Helmet",
-        "health": 140,
-        "defense": 28,
-        "weight": 11,
-        "cost": 2100
+        "health": 70,
+        "defense": 25,
+        "weight": 10,
+        "cost": 315
     },
     {
         "type": "Bulletproof",
-        "name": "Riot Shield Chestplate",
+        "name": "Riot Shield",
         "part": "Chestplate",
-        "health": 180,
-        "defense": 26,
+        "health": 95,
+        "defense": 24,
         "weight": 10,
-        "cost": 2700
+        "cost": 357
     },
     {
         "type": "Plate",
         "name": "Titan Greaves",
         "part": "Leggings",
-        "health": 190,
-        "defense": 30,
-        "weight": 13,
-        "cost": 2800
+        "health": 77,
+        "defense": 19,
+        "weight": 10,
+        "cost": 286
     },
     {
         "type": "Leather",
         "name": "Nomad Sandals",
         "part": "Boots",
-        "health": 40,
-        "defense": 4,
-        "weight": 1,
-        "cost": 300
+        "health": 33,
+        "defense": 15,
+        "weight": 2,
+        "cost": 174
     },
     {
         "type": "Chain",
-        "name": "Ancient Chain Helmet",
+        "name": "Ancient Chain",
         "part": "Helmet",
-        "health": 90,
-        "defense": 16,
-        "weight": 6,
-        "cost": 1300
+        "health": 45,
+        "defense": 12,
+        "weight": 5,
+        "cost": 181
     },
     {
         "type": "Leather",
         "name": "Assassin's Cloak",
         "part": "Chestplate",
-        "health": 75,
-        "defense": 9,
-        "weight": 3,
-        "cost": 800
+        "health": 40,
+        "defense": 10,
+        "weight": 2,
+        "cost": 161
     },
     {
         "type": "Plate",
         "name": "Paladin's Armor",
         "part": "Chestplate",
-        "health": 220,
-        "defense": 35,
-        "weight": 15,
-        "cost": 3200
+        "health": 94,
+        "defense": 18,
+        "weight": 8,
+        "cost": 314
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Lightbringer Leggings",
+        "part": "Helmet",
+        "health": 93,
+        "defense": 22,
+        "weight": 8,
+        "cost": 339
+    },
+    {
+        "type": "Chain",
+        "name": "Warborn Leggings",
+        "part": "Chestplate",
+        "health": 68,
+        "defense": 14,
+        "weight": 5,
+        "cost": 238
+    },
+    {
+        "type": "Chain",
+        "name": "Aegis Boots",
+        "part": "Chestplate",
+        "health": 48,
+        "defense": 15,
+        "weight": 5,
+        "cost": 204
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Ironfury Leggings",
+        "part": "Helmet",
+        "health": 88,
+        "defense": 24,
+        "weight": 10,
+        "cost": 343
+    },
+    {
+        "type": "Chain",
+        "name": "Nightshade Chestplate",
+        "part": "Leggings",
+        "health": 69,
+        "defense": 13,
+        "weight": 6,
+        "cost": 234
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Phantom Cloak Boots",
+        "part": "Helmet",
+        "health": 87,
+        "defense": 20,
+        "weight": 8,
+        "cost": 313
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Stormplate Chestplate",
+        "part": "Boots",
+        "health": 88,
+        "defense": 22,
+        "weight": 8,
+        "cost": 329
+    },
+    {
+        "type": "Plate",
+        "name": "Stoneplate Leggings",
+        "part": "Chestplate",
+        "health": 85,
+        "defense": 25,
+        "weight": 9,
+        "cost": 345
+    },
+    {
+        "type": "Chain",
+        "name": "Sunfire Boots",
+        "part": "Leggings",
+        "health": 64,
+        "defense": 11,
+        "weight": 5,
+        "cost": 214
+    },
+    {
+        "type": "Chain",
+        "name": "Titanbane Helmet",
+        "part": "Chestplate",
+        "health": 64,
+        "defense": 10,
+        "weight": 4,
+        "cost": 209
+    },
+    {
+        "type": "Leather",
+        "name": "Thunderclad Chestplate",
+        "part": "Helmet",
+        "health": 18,
+        "defense": 19,
+        "weight": 1,
+        "cost": 168
+    },
+    {
+        "type": "Plate",
+        "name": "Bloodfang Chestplate",
+        "part": "Chestplate",
+        "health": 98,
+        "defense": 25,
+        "weight": 7,
+        "cost": 371
+    },
+    {
+        "type": "Chain",
+        "name": "Frostbound Chestplate",
+        "part": "Boots",
+        "health": 54,
+        "defense": 10,
+        "weight": 4,
+        "cost": 189
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Titanbane Boots",
+        "part": "Helmet",
+        "health": 89,
+        "defense": 22,
+        "weight": 8,
+        "cost": 331
+    },
+    {
+        "type": "Chain",
+        "name": "Aegis Helmet",
+        "part": "Helmet",
+        "health": 48,
+        "defense": 12,
+        "weight": 4,
+        "cost": 187
+    },
+    {
+        "type": "Leather",
+        "name": "Titanbane Helmet",
+        "part": "Boots",
+        "health": 15,
+        "defense": 23,
+        "weight": 1,
+        "cost": 190
+    },
+    {
+        "type": "Leather",
+        "name": "Warborn Leggings",
+        "part": "Chestplate",
+        "health": 39,
+        "defense": 25,
+        "weight": 1,
+        "cost": 253
+    },
+    {
+        "type": "Chain",
+        "name": "Aegis Leggings",
+        "part": "Leggings",
+        "health": 57,
+        "defense": 13,
+        "weight": 6,
+        "cost": 210
+    },
+    {
+        "type": "Chain",
+        "name": "Stoneplate Helmet",
+        "part": "Boots",
+        "health": 61,
+        "defense": 12,
+        "weight": 5,
+        "cost": 213
+    },
+    {
+        "type": "Leather",
+        "name": "Titanbane Chestplate",
+        "part": "Chestplate",
+        "health": 36,
+        "defense": 20,
+        "weight": 2,
+        "cost": 211
+    },
+    {
+        "type": "Leather",
+        "name": "Bloodfang Boots",
+        "part": "Boots",
+        "health": 35,
+        "defense": 24,
+        "weight": 1,
+        "cost": 237
+    },
+    {
+        "type": "Chain",
+        "name": "Doomward Boots",
+        "part": "Helmet",
+        "health": 43,
+        "defense": 12,
+        "weight": 5,
+        "cost": 177
+    },
+    {
+        "type": "Plate",
+        "name": "Frostbound Boots",
+        "part": "Leggings",
+        "health": 86,
+        "defense": 21,
+        "weight": 10,
+        "cost": 318
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Celestial Ward Boots",
+        "part": "Helmet",
+        "health": 100,
+        "defense": 20,
+        "weight": 10,
+        "cost": 339
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Venomscale Boots",
+        "part": "Leggings",
+        "health": 96,
+        "defense": 20,
+        "weight": 8,
+        "cost": 331
+    },
+    {
+        "type": "Leather",
+        "name": "Venomscale Leggings",
+        "part": "Boots",
+        "health": 28,
+        "defense": 8,
+        "weight": 3,
+        "cost": 128
+    },
+    {
+        "type": "Plate",
+        "name": "Frostbound Boots",
+        "part": "Chestplate",
+        "health": 93,
+        "defense": 15,
+        "weight": 7,
+        "cost": 294
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Aegis Helmet",
+        "part": "Leggings",
+        "health": 96,
+        "defense": 20,
+        "weight": 10,
+        "cost": 331
+    },
+    {
+        "type": "Plate",
+        "name": "Frostbound Boots",
+        "part": "Chestplate",
+        "health": 86,
+        "defense": 15,
+        "weight": 9,
+        "cost": 280
+    },
+    {
+        "type": "Chain",
+        "name": "Shadowguard Boots",
+        "part": "Chestplate",
+        "health": 68,
+        "defense": 12,
+        "weight": 5,
+        "cost": 227
+    },
+    {
+        "type": "Plate",
+        "name": "Bloodfang Helmet",
+        "part": "Leggings",
+        "health": 87,
+        "defense": 16,
+        "weight": 10,
+        "cost": 288
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Phantom Cloak Boots",
+        "part": "Chestplate",
+        "health": 91,
+        "defense": 24,
+        "weight": 10,
+        "cost": 349
+    },
+    {
+        "type": "Chain",
+        "name": "Doomward Helmet",
+        "part": "Boots",
+        "health": 45,
+        "defense": 10,
+        "weight": 4,
+        "cost": 171
+    },
+    {
+        "type": "Plate",
+        "name": "Doomward Helmet",
+        "part": "Leggings",
+        "health": 71,
+        "defense": 21,
+        "weight": 8,
+        "cost": 288
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Phantom Cloak Boots",
+        "part": "Helmet",
+        "health": 92,
+        "defense": 19,
+        "weight": 7,
+        "cost": 316
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Sunfire Helmet",
+        "part": "Boots",
+        "health": 99,
+        "defense": 20,
+        "weight": 10,
+        "cost": 337
+    },
+    {
+        "type": "Leather",
+        "name": "Moonveil Helmet",
+        "part": "Helmet",
+        "health": 34,
+        "defense": 12,
+        "weight": 1,
+        "cost": 159
+    },
+    {
+        "type": "Leather",
+        "name": "Venomscale Leggings",
+        "part": "Boots",
+        "health": 22,
+        "defense": 19,
+        "weight": 1,
+        "cost": 176
+    },
+    {
+        "type": "Plate",
+        "name": "Celestial Ward",
+        "part": "Boots",
+        "health": 73,
+        "defense": 17,
+        "weight": 8,
+        "cost": 266
+    },
+    {
+        "type": "Chain",
+        "name": "Stoneplate Chestplate",
+        "part": "Leggings",
+        "health": 40,
+        "defense": 14,
+        "weight": 5,
+        "cost": 182
+    },
+    {
+        "type": "Leather",
+        "name": "Stormplate Chestplate",
+        "part": "Boots",
+        "health": 18,
+        "defense": 23,
+        "weight": 2,
+        "cost": 196
+    },
+    {
+        "type": "Chain",
+        "name": "Phantom Cloak Helmet",
+        "part": "Leggings",
+        "health": 53,
+        "defense": 14,
+        "weight": 4,
+        "cost": 208
+    },
+    {
+        "type": "Chain",
+        "name": "Phantom Cloak Leggings",
+        "part": "Helmet",
+        "health": 42,
+        "defense": 14,
+        "weight": 5,
+        "cost": 186
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Titanbane Helmet",
+        "part": "Chestplate",
+        "health": 78,
+        "defense": 19,
+        "weight": 8,
+        "cost": 288
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Ironfury Leggings",
+        "part": "Chestplate",
+        "health": 93,
+        "defense": 15,
+        "weight": 7,
+        "cost": 294
+    },
+    {
+        "type": "Leather",
+        "name": "Nightshade Leggings",
+        "part": "Helmet",
+        "health": 21,
+        "defense": 20,
+        "weight": 3,
+        "cost": 181
+    },
+    {
+        "type": "Leather",
+        "name": "Doomward Boots",
+        "part": "Helmet",
+        "health": 21,
+        "defense": 13,
+        "weight": 1,
+        "cost": 138
+    },
+    {
+        "type": "Chain",
+        "name": "Nightshade Boots",
+        "part": "Leggings",
+        "health": 48,
+        "defense": 14,
+        "weight": 4,
+        "cost": 198
+    },
+    {
+        "type": "Leather",
+        "name": "Moonveil Boots",
+        "part": "Leggings",
+        "health": 20,
+        "defense": 11,
+        "weight": 1,
+        "cost": 126
+    },
+    {
+        "type": "Leather",
+        "name": "Moonveil Chestplate",
+        "part": "Leggings",
+        "health": 19,
+        "defense": 19,
+        "weight": 2,
+        "cost": 170
+    },
+    {
+        "type": "Chain",
+        "name": "Titanbane Boots",
+        "part": "Chestplate",
+        "health": 64,
+        "defense": 15,
+        "weight": 5,
+        "cost": 236
+    },
+    {
+        "type": "Plate",
+        "name": "Bloodfang Leggings",
+        "part": "Helmet",
+        "health": 100,
+        "defense": 23,
+        "weight": 7,
+        "cost": 360
+    },
+    {
+        "type": "Plate",
+        "name": "Bloodfang Leggings",
+        "part": "Chestplate",
+        "health": 76,
+        "defense": 15,
+        "weight": 8,
+        "cost": 260
+    },
+    {
+        "type": "Chain",
+        "name": "Moonveil Leggings",
+        "part": "Chestplate",
+        "health": 50,
+        "defense": 11,
+        "weight": 5,
+        "cost": 186
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Titanbane Boots",
+        "part": "Boots",
+        "health": 70,
+        "defense": 23,
+        "weight": 7,
+        "cost": 300
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Venomscale Helmet",
+        "part": "Leggings",
+        "health": 85,
+        "defense": 15,
+        "weight": 8,
+        "cost": 278
+    },
+    {
+        "type": "Plate",
+        "name": "Nightshade Helmet",
+        "part": "Leggings",
+        "health": 75,
+        "defense": 24,
+        "weight": 9,
+        "cost": 317
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Titanbane Helmet",
+        "part": "Chestplate",
+        "health": 75,
+        "defense": 24,
+        "weight": 8,
+        "cost": 317
+    },
+    {
+        "type": "Leather",
+        "name": "Dragonhide Leggings",
+        "part": "Leggings",
+        "health": 33,
+        "defense": 18,
+        "weight": 1,
+        "cost": 192
+    },
+    {
+        "type": "Plate",
+        "name": "Titanbane Leggings",
+        "part": "Boots",
+        "health": 84,
+        "defense": 22,
+        "weight": 8,
+        "cost": 321
+    },
+    {
+        "type": "Leather",
+        "name": "Frostbound Helmet",
+        "part": "Chestplate",
+        "health": 10,
+        "defense": 8,
+        "weight": 3,
+        "cost": 92
+    },
+    {
+        "type": "Leather",
+        "name": "Thunderclad Leggings",
+        "part": "Leggings",
+        "health": 26,
+        "defense": 5,
+        "weight": 1,
+        "cost": 113
+    },
+    {
+        "type": "Chain",
+        "name": "Stormplate Leggings",
+        "part": "Chestplate",
+        "health": 48,
+        "defense": 13,
+        "weight": 4,
+        "cost": 192
+    },
+    {
+        "type": "Chain",
+        "name": "Venomscale Boots",
+        "part": "Leggings",
+        "health": 54,
+        "defense": 13,
+        "weight": 4,
+        "cost": 204
+    },
+    {
+        "type": "Plate",
+        "name": "Doomward Chestplate",
+        "part": "Helmet",
+        "health": 82,
+        "defense": 17,
+        "weight": 7,
+        "cost": 284
+    },
+    {
+        "type": "Leather",
+        "name": "Nightshade Boots",
+        "part": "Boots",
+        "health": 11,
+        "defense": 17,
+        "weight": 1,
+        "cost": 142
+    },
+    {
+        "type": "Plate",
+        "name": "Thunderclad Chestplate",
+        "part": "Chestplate",
+        "health": 98,
+        "defense": 22,
+        "weight": 10,
+        "cost": 349
+    },
+    {
+        "type": "Chain",
+        "name": "Lightbringer Helmet",
+        "part": "Boots",
+        "health": 61,
+        "defense": 13,
+        "weight": 6,
+        "cost": 218
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Nightshade Leggings",
+        "part": "Leggings",
+        "health": 75,
+        "defense": 17,
+        "weight": 10,
+        "cost": 270
+    },
+    {
+        "type": "Leather",
+        "name": "Warden's Mantle",
+        "part": "Helmet",
+        "health": 25,
+        "defense": 18,
+        "weight": 1,
+        "cost": 176
+    },
+    {
+        "type": "Chain",
+        "name": "Warborn Leggings",
+        "part": "Leggings",
+        "health": 47,
+        "defense": 10,
+        "weight": 4,
+        "cost": 175
+    },
+    {
+        "type": "Plate",
+        "name": "Warborn Helmet",
+        "part": "Helmet",
+        "health": 70,
+        "defense": 15,
+        "weight": 9,
+        "cost": 248
+    },
+    {
+        "type": "Leather",
+        "name": "Stoneplate Helmet",
+        "part": "Chestplate",
+        "health": 32,
+        "defense": 7,
+        "weight": 3,
+        "cost": 132
+    },
+    {
+        "type": "Plate",
+        "name": "Warborn Boots",
+        "part": "Boots",
+        "health": 86,
+        "defense": 20,
+        "weight": 10,
+        "cost": 311
+    },
+    {
+        "type": "Chain",
+        "name": "Sunfire Chestplate",
+        "part": "Helmet",
+        "health": 60,
+        "defense": 15,
+        "weight": 5,
+        "cost": 228
+    },
+    {
+        "type": "Leather",
+        "name": "Stoneplate Helmet",
+        "part": "Chestplate",
+        "health": 33,
+        "defense": 20,
+        "weight": 3,
+        "cost": 205
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Moonveil Boots",
+        "part": "Helmet",
+        "health": 70,
+        "defense": 17,
+        "weight": 8,
+        "cost": 260
+    },
+    {
+        "type": "Chain",
+        "name": "Celestial Ward Boots",
+        "part": "Helmet",
+        "health": 63,
+        "defense": 11,
+        "weight": 5,
+        "cost": 212
+    },
+    {
+        "type": "Leather",
+        "name": "Frostbound Helmet",
+        "part": "Boots",
+        "health": 40,
+        "defense": 14,
+        "weight": 2,
+        "cost": 182
+    },
+    {
+        "type": "Plate",
+        "name": "Ironfury Boots",
+        "part": "Leggings",
+        "health": 82,
+        "defense": 15,
+        "weight": 10,
+        "cost": 272
+    },
+    {
+        "type": "Chain",
+        "name": "Venomscale Helmet",
+        "part": "Helmet",
+        "health": 58,
+        "defense": 14,
+        "weight": 4,
+        "cost": 218
+    },
+    {
+        "type": "Chain",
+        "name": "Bloodfang Boots",
+        "part": "Leggings",
+        "health": 42,
+        "defense": 15,
+        "weight": 6,
+        "cost": 192
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Titanbane Leggings",
+        "part": "Chestplate",
+        "health": 72,
+        "defense": 20,
+        "weight": 7,
+        "cost": 283
+    },
+    {
+        "type": "Chain",
+        "name": "Stormplate Helmet",
+        "part": "Leggings",
+        "health": 59,
+        "defense": 14,
+        "weight": 4,
+        "cost": 220
+    },
+    {
+        "type": "Leather",
+        "name": "Sunfire Chestplate",
+        "part": "Chestplate",
+        "health": 29,
+        "defense": 10,
+        "weight": 1,
+        "cost": 139
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Thunderclad Helmet",
+        "part": "Chestplate",
+        "health": 90,
+        "defense": 22,
+        "weight": 8,
+        "cost": 333
+    },
+    {
+        "type": "Plate",
+        "name": "Shadowguard Leggings",
+        "part": "Leggings",
+        "health": 91,
+        "defense": 23,
+        "weight": 10,
+        "cost": 342
+    },
+    {
+        "type": "Leather",
+        "name": "Lightbringer",
+        "part": "Boots",
+        "health": 21,
+        "defense": 12,
+        "weight": 1,
+        "cost": 133
+    },
+    {
+        "type": "Chain",
+        "name": "Moonveil Leggings",
+        "part": "Helmet",
+        "health": 53,
+        "defense": 11,
+        "weight": 6,
+        "cost": 192
+    },
+    {
+        "type": "Leather",
+        "name": "Aegis Boots",
+        "part": "Boots",
+        "health": 25,
+        "defense": 7,
+        "weight": 2,
+        "cost": 118
+    },
+    {
+        "type": "Plate",
+        "name": "Nightshade Helmet",
+        "part": "Boots",
+        "health": 95,
+        "defense": 18,
+        "weight": 9,
+        "cost": 316
+    },
+    {
+        "type": "Plate",
+        "name": "Nightshade Helmet",
+        "part": "Chestplate",
+        "health": 73,
+        "defense": 17,
+        "weight": 8,
+        "cost": 266
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Thunderclad Helmet",
+        "part": "Boots",
+        "health": 96,
+        "defense": 23,
+        "weight": 7,
+        "cost": 352
+    },
+    {
+        "type": "Leather",
+        "name": "Titanbane Helmet",
+        "part": "Chestplate",
+        "health": 38,
+        "defense": 13,
+        "weight": 3,
+        "cost": 172
+    },
+    {
+        "type": "Leather",
+        "name": "Titanbane Helmet",
+        "part": "Helmet",
+        "health": 31,
+        "defense": 20,
+        "weight": 3,
+        "cost": 201
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Doomward Boots",
+        "part": "Boots",
+        "health": 72,
+        "defense": 17,
+        "weight": 9,
+        "cost": 264
+    },
+    {
+        "type": "Leather",
+        "name": "Nightshade Boots",
+        "part": "Boots",
+        "health": 26,
+        "defense": 13,
+        "weight": 2,
+        "cost": 148
+    },
+    {
+        "type": "Bulletproof",
+        "name": "Bloodfang Leggings",
+        "part": "Boots",
+        "health": 86,
+        "defense": 23,
+        "weight": 7,
+        "cost": 332
     }
 ]

@@ -1,156 +1,555 @@
 [
     {
         "type": "Sword",
-        "name": "Excalibur",
-        "damage": 100,
-        "atkSpeed": 1,
-        "cost": 1000
-    },
-    {
-        "type": "Bow",
-        "name": "Longbow",
-        "damage": 50,
-        "atkSpeed": 2,
-        "cost": 500
-    },
-    {
-        "type": "Sword",
-        "name": "Dragonfang",
-        "damage": 120,
-        "atkSpeed": 1,
-        "cost": 1500
-    },
-    {
-        "type": "Sword",
-        "name": "Shadow Blade",
-        "damage": 90,
-        "atkSpeed": 2,
-        "cost": 1100
-    },
-    {
-        "type": "Sword",
-        "name": "Paladin's Wrath",
-        "damage": 140,
-        "atkSpeed": 1,
-        "cost": 2000
-    },
-    {
-        "type": "Sword",
-        "name": "Runic Saber",
-        "damage": 110,
-        "atkSpeed": 1,
-        "cost": 1300
-    },
-    {
-        "type": "Bow",
-        "name": "Elven Bow",
-        "damage": 60,
-        "atkSpeed": 3,
-        "cost": 700
-    },
-    {
-        "type": "Bow",
-        "name": "Stormshot",
-        "damage": 70,
-        "atkSpeed": 2,
-        "cost": 900
-    },
-    {
-        "type": "Bow",
-        "name": "Phantom Bow",
-        "damage": 80,
-        "atkSpeed": 3,
-        "cost": 1200
-    },
-    {
-        "type": "Bow",
-        "name": "Inferno Bow",
-        "damage": 90,
-        "atkSpeed": 2,
-        "cost": 1400
-    },
-    {
-        "type": "Dagger",
-        "name": "Venom Fang",
-        "damage": 40,
+        "name": "Blazing Katana",
+        "damage": 20,
         "atkSpeed": 5,
-        "cost": 800
+        "cost": 185
+    },
+    {
+        "type": "Sword",
+        "name": "Eclipse Blade",
+        "damage": 21,
+        "atkSpeed": 6,
+        "cost": 203
+    },
+    {
+        "type": "Sword",
+        "name": "Infernal Claymore",
+        "damage": 20,
+        "atkSpeed": 4,
+        "cost": 170
+    },
+    {
+        "type": "Bow",
+        "name": "Hawk's Talon",
+        "damage": 8,
+        "atkSpeed": 9,
+        "cost": 209
+    },
+    {
+        "type": "Bow",
+        "name": "Windpiercer",
+        "damage": 7,
+        "atkSpeed": 9,
+        "cost": 206
+    },
+    {
+        "type": "Bow",
+        "name": "Golden Phoenix",
+        "damage": 10,
+        "atkSpeed": 8,
+        "cost": 200
     },
     {
         "type": "Dagger",
-        "name": "Silent Stiletto",
-        "damage": 45,
+        "name": "Dagger of Shadows",
+        "damage": 7,
+        "atkSpeed": 7,
+        "cost": 176
+    },
+    {
+        "type": "Dagger",
+        "name": "Phantom Stiletto",
+        "damage": 15,
+        "atkSpeed": 9,
+        "cost": 230
+    },
+    {
+        "type": "Dagger",
+        "name": "Venomous Shiv",
+        "damage": 11,
+        "atkSpeed": 10,
+        "cost": 233
+    },
+    {
+        "type": "Axe",
+        "name": "Mountain Cleaver",
+        "damage": 33,
+        "atkSpeed": 3,
+        "cost": 194
+    },
+    {
+        "type": "Axe",
+        "name": "Thunder Axe",
+        "damage": 31,
+        "atkSpeed": 1,
+        "cost": 158
+    },
+    {
+        "type": "Axe",
+        "name": "Savage Reaper",
+        "damage": 31,
+        "atkSpeed": 2,
+        "cost": 173
+    },
+    {
+        "type": "Sword",
+        "name": "Frostbrand",
+        "damage": 21,
         "atkSpeed": 4,
-        "cost": 900
+        "cost": 173
+    },
+    {
+        "type": "Sword",
+        "name": "Doomfang",
+        "damage": 17,
+        "atkSpeed": 4,
+        "cost": 161
+    },
+    {
+        "type": "Bow",
+        "name": "Silver Arrow",
+        "damage": 10,
+        "atkSpeed": 10,
+        "cost": 230
+    },
+    {
+        "type": "Bow",
+        "name": "Darkshot",
+        "damage": 15,
+        "atkSpeed": 10,
+        "cost": 245
+    },
+    {
+        "type": "Dagger",
+        "name": "Silent Fang",
+        "damage": 14,
+        "atkSpeed": 8,
+        "cost": 212
+    },
+    {
+        "type": "Dagger",
+        "name": "Poisoned Fang",
+        "damage": 5,
+        "atkSpeed": 8,
+        "cost": 185
+    },
+    {
+        "type": "Axe",
+        "name": "Firestorm Cleaver",
+        "damage": 27,
+        "atkSpeed": 2,
+        "cost": 161
+    },
+    {
+        "type": "Axe",
+        "name": "Earthshaker",
+        "damage": 29,
+        "atkSpeed": 3,
+        "cost": 182
+    },
+    {
+        "type": "Sword",
+        "name": "Lunar Saber",
+        "damage": 20,
+        "atkSpeed": 4,
+        "cost": 170
+    },
+    {
+        "type": "Sword",
+        "name": "Eldritch Blade",
+        "damage": 17,
+        "atkSpeed": 6,
+        "cost": 191
+    },
+    {
+        "type": "Bow",
+        "name": "Stormseeker",
+        "damage": 7,
+        "atkSpeed": 7,
+        "cost": 176
+    },
+    {
+        "type": "Dagger",
+        "name": "Deathwhisper",
+        "damage": 13,
+        "atkSpeed": 9,
+        "cost": 224
+    },
+    {
+        "type": "Axe",
+        "name": "Glacial Maul",
+        "damage": 32,
+        "atkSpeed": 3,
+        "cost": 191
+    },
+    {
+        "type": "Axe",
+        "name": "Titan Cleaver",
+        "damage": 38,
+        "atkSpeed": 3,
+        "cost": 209
+    },
+    {
+        "type": "Sword",
+        "name": "Dark Requiem",
+        "damage": 25,
+        "atkSpeed": 4,
+        "cost": 185
+    },
+    {
+        "type": "Sword",
+        "name": "Phantom Edge",
+        "damage": 24,
+        "atkSpeed": 6,
+        "cost": 212
+    },
+    {
+        "type": "Bow",
+        "name": "Shadowflight",
+        "damage": 7,
+        "atkSpeed": 10,
+        "cost": 221
+    },
+    {
+        "type": "Dagger",
+        "name": "Viper's Fang",
+        "damage": 9,
+        "atkSpeed": 8,
+        "cost": 197
+    },
+    {
+        "type": "Dagger",
+        "name": "Black Widow",
+        "damage": 14,
+        "atkSpeed": 9,
+        "cost": 227
+    },
+    {
+        "type": "Sword",
+        "name": "Blade of Fury",
+        "damage": 24,
+        "atkSpeed": 6,
+        "cost": 212
+    },
+    {
+        "type": "Axe",
+        "name": "Executioner",
+        "damage": 30,
+        "atkSpeed": 2,
+        "cost": 170
+    },
+    {
+        "type": "Bow",
+        "name": "Windforce",
+        "damage": 7,
+        "atkSpeed": 9,
+        "cost": 206
+    },
+    {
+        "type": "Dagger",
+        "name": "Shadowstrike",
+        "damage": 9,
+        "atkSpeed": 10,
+        "cost": 227
+    },
+    {
+        "type": "Dagger",
+        "name": "Hammer of Justice",
+        "damage": 12,
+        "atkSpeed": 7,
+        "cost": 191
+    },
+    {
+        "type": "Sword",
+        "name": "Dragon's Breath",
+        "damage": 25,
+        "atkSpeed": 6,
+        "cost": 215
+    },
+    {
+        "type": "Bow",
+        "name": "Bolter",
+        "damage": 7,
+        "atkSpeed": 7,
+        "cost": 176
+    },
+    {
+        "type": "Dagger",
+        "name": "Arcane Focus",
+        "damage": 15,
+        "atkSpeed": 7,
+        "cost": 200
+    },
+    {
+        "type": "Sword",
+        "name": "Colossus",
+        "damage": 16,
+        "atkSpeed": 4,
+        "cost": 158
+    },
+    {
+        "type": "Axe",
+        "name": "Glaive of Ruin",
+        "damage": 35,
+        "atkSpeed": 3,
+        "cost": 200
+    },
+    {
+        "type": "Sword",
+        "name": "Reaper's Toll",
+        "damage": 25,
+        "atkSpeed": 4,
+        "cost": 185
+    },
+    {
+        "type": "Sword",
+        "name": "Muramasa",
+        "damage": 23,
+        "atkSpeed": 6,
+        "cost": 209
+    },
+    {
+        "type": "Dagger",
+        "name": "Skullcrusher",
+        "damage": 10,
+        "atkSpeed": 10,
+        "cost": 230
+    },
+    {
+        "type": "Bow",
+        "name": "Pike of Destiny",
+        "damage": 8,
+        "atkSpeed": 7,
+        "cost": 179
+    },
+    {
+        "type": "Bow",
+        "name": "Fencer's Delight",
+        "damage": 11,
+        "atkSpeed": 7,
+        "cost": 188
+    },
+    {
+        "type": "Sword",
+        "name": "Chain of Torment",
+        "damage": 18,
+        "atkSpeed": 4,
+        "cost": 164
+    },
+    {
+        "type": "Bow",
+        "name": "Eagle's Eye",
+        "damage": 8,
+        "atkSpeed": 7,
+        "cost": 179
+    },
+    {
+        "type": "Bow",
+        "name": "Mjolnir",
+        "damage": 6,
+        "atkSpeed": 7,
+        "cost": 173
+    },
+    {
+        "type": "Dagger",
+        "name": "Desert Wind",
+        "damage": 9,
+        "atkSpeed": 8,
+        "cost": 197
+    },
+    {
+        "type": "Dagger",
+        "name": "Poseidon's Wrath",
+        "damage": 13,
+        "atkSpeed": 8,
+        "cost": 209
+    },
+    {
+        "type": "Axe",
+        "name": "Warmonger",
+        "damage": 28,
+        "atkSpeed": 3,
+        "cost": 179
+    },
+    {
+        "type": "Sword",
+        "name": "Swiftblade",
+        "damage": 22,
+        "atkSpeed": 5,
+        "cost": 191
+    },
+    {
+        "type": "Axe",
+        "name": "Moonlight",
+        "damage": 30,
+        "atkSpeed": 1,
+        "cost": 155
+    },
+    {
+        "type": "Sword",
+        "name": "Highlander",
+        "damage": 15,
+        "atkSpeed": 5,
+        "cost": 170
+    },
+    {
+        "type": "Sword",
+        "name": "Thunderstrike",
+        "damage": 24,
+        "atkSpeed": 6,
+        "cost": 212
+    },
+    {
+        "type": "Axe",
+        "name": "Crimson Edge",
+        "damage": 27,
+        "atkSpeed": 3,
+        "cost": 176
+    },
+    {
+        "type": "Axe",
+        "name": "Earthshaker",
+        "damage": 29,
+        "atkSpeed": 2,
+        "cost": 167
+    },
+    {
+        "type": "Dagger",
+        "name": "Sea Wolf",
+        "damage": 10,
+        "atkSpeed": 7,
+        "cost": 185
+    },
+    {
+        "type": "Sword",
+        "name": "Widowmaker",
+        "damage": 23,
+        "atkSpeed": 5,
+        "cost": 194
+    },
+    {
+        "type": "Sword",
+        "name": "Dragon's Tail",
+        "damage": 21,
+        "atkSpeed": 5,
+        "cost": 188
+    },
+    {
+        "type": "Sword",
+        "name": "Grim Reaper",
+        "damage": 22,
+        "atkSpeed": 5,
+        "cost": 191
+    },
+    {
+        "type": "Bow",
+        "name": "Corsair's Wrath",
+        "damage": 12,
+        "atkSpeed": 7,
+        "cost": 191
+    },
+    {
+        "type": "Bow",
+        "name": "Impaler",
+        "damage": 7,
+        "atkSpeed": 10,
+        "cost": 221
+    },
+    {
+        "type": "Dagger",
+        "name": "Pharaoh's Curse",
+        "damage": 15,
+        "atkSpeed": 7,
+        "cost": 200
+    },
+    {
+        "type": "Dagger",
+        "name": "Needlepoint",
+        "damage": 8,
+        "atkSpeed": 7,
+        "cost": 179
+    },
+    {
+        "type": "Bow",
+        "name": "Ravager",
+        "damage": 12,
+        "atkSpeed": 10,
+        "cost": 236
     },
     {
         "type": "Dagger",
         "name": "Shadow Fang",
-        "damage": 50,
-        "atkSpeed": 4,
-        "cost": 1000
-    },
-    {
-        "type": "Dagger",
-        "name": "Assassin's Kiss",
-        "damage": 55,
-        "atkSpeed": 5,
-        "cost": 1100
-    },
-    {
-        "type": "Axe",
-        "name": "Berserker's Fury",
-        "damage": 130,
-        "atkSpeed": 1,
-        "cost": 1800
-    },
-    {
-        "type": "Axe",
-        "name": "Dwarven Cleaver",
-        "damage": 110,
-        "atkSpeed": 2,
-        "cost": 1600
-    },
-    {
-        "type": "Axe",
-        "name": "Bloodthirster",
-        "damage": 140,
-        "atkSpeed": 1,
-        "cost": 2200
-    },
-    {
-        "type": "Axe",
-        "name": "Stormbreaker",
-        "damage": 150,
-        "atkSpeed": 1,
-        "cost": 2500
+        "damage": 12,
+        "atkSpeed": 10,
+        "cost": 236
     },
     {
         "type": "Sword",
-        "name": "Celestial Edge",
-        "damage": 160,
-        "atkSpeed": 1,
-        "cost": 2800
+        "name": "Dragon's Spear",
+        "damage": 16,
+        "atkSpeed": 5,
+        "cost": 173
     },
     {
-        "type": "Bow",
-        "name": "Moonlight Bow",
-        "damage": 85,
-        "atkSpeed": 3,
-        "cost": 1300
+        "type": "Sword",
+        "name": "Painbringer",
+        "damage": 25,
+        "atkSpeed": 5,
+        "cost": 200
     },
     {
         "type": "Dagger",
-        "name": "Nightpiercer",
-        "damage": 60,
-        "atkSpeed": 5,
-        "cost": 1200
+        "name": "Tiger's Claw",
+        "damage": 14,
+        "atkSpeed": 8,
+        "cost": 212
     },
     {
         "type": "Axe",
-        "name": "Titan's Wrath",
-        "damage": 170,
+        "name": "Leviathan",
+        "damage": 36,
+        "atkSpeed": 3,
+        "cost": 203
+    },
+    {
+        "type": "Sword",
+        "name": "Ironclad",
+        "damage": 25,
+        "atkSpeed": 5,
+        "cost": 200
+    },
+    {
+        "type": "Axe",
+        "name": "Crescent Moon",
+        "damage": 30,
         "atkSpeed": 1,
-        "cost": 3000
+        "cost": 155
+    },
+    {
+        "type": "Sword",
+        "name": "Soulreaper",
+        "damage": 22,
+        "atkSpeed": 6,
+        "cost": 206
+    },
+    {
+        "type": "Axe",
+        "name": "Doombringer",
+        "damage": 39,
+        "atkSpeed": 1,
+        "cost": 182
+    },
+    {
+        "type": "Axe",
+        "name": "Eclipse",
+        "damage": 33,
+        "atkSpeed": 3,
+        "cost": 194
+    },
+    {
+        "type": "Dagger",
+        "name": "Duelist's Pride",
+        "damage": 8,
+        "atkSpeed": 8,
+        "cost": 194
+    },
+    {
+        "type": "Dagger",
+        "name": "Titan's Grasp",
+        "damage": 14,
+        "atkSpeed": 9,
+        "cost": 227
     }
 ]

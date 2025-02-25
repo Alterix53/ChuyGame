@@ -1,13 +1,17 @@
 #include "Weapon.hpp"
 
-Weapon::Weapon() : Item(), _type(WeaponType::BASEWEAPON), _damage(0), _atkSpeed(0) {}
-Weapon::Weapon(std::string name, int cost, WeaponType type, int damage, int atkSpeed) :
+Weapon::Weapon() : Item(), _type(WeaponType::BASEWEAPON), _damage(0), _atkSpeed(0.0f) {}
+Weapon::Weapon(std::string name, int cost, WeaponType type, int damage, float atkSpeed) :
 	Item(name, cost), _type(type), _damage(damage), _atkSpeed(atkSpeed) {}
 
 Weapon::~Weapon() = default;
 
 void Weapon::setCost(int cost) {
 	_cost = cost;
+}
+
+void Weapon::setAtkSpeed(float atkSpeed) {
+	_atkSpeed = atkSpeed;
 }
 
 void Weapon::setDamage(int damage) {
@@ -50,9 +54,10 @@ std::string Weapon::getWeaponTypeString() const {
 	}
 }
 
-void Weapon::calculateCost() {
+int Weapon::calculateCost() {
 	// lai nua, hay thay cong thuc theo y cua ban <(") (hien tai la 2*dam + 10*atk + 12)
-	_cost = _damage * 2 + _atkSpeed * 10 + 12;
+	_cost = _damage * 3 + _atkSpeed * 15 + 20;
+	return _cost;
 }
 
 void Weapon::printInfoInShort() const {
@@ -65,4 +70,13 @@ void Weapon::printInfo() const {
 	std::cout << "Damage: " << _damage << std::endl;
 	std::cout << "Attack Speed: " << _atkSpeed << std::endl;
 	std::cout << "Cost: " << _cost << std::endl;
+}
+
+std::string Weapon::toString() const {
+	std::stringstream ss;
+	ss << "name: " << _name << "\n"
+	   << "type: " << getWeaponTypeString() << "\n"
+	   << "damage: " << _damage << "\n"
+	   << "atkspd: " << std::fixed << std::setprecision(2) << _atkSpeed;
+	return ss.str();
 }

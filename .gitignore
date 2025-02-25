@@ -5,3 +5,5 @@ config.py
 __pycache__/
 
 *.log
+
+__test__/

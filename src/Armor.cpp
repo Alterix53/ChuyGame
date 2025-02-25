@@ -43,9 +43,10 @@ void Armor::setEquipped(bool Equipped) {
 }
 
 // calculate the cost of the armor
-void Armor::calculateCost() {
+int Armor::calculateCost() {
 	// hay thay cong thuc theo y cua ban <(") (hien tai la 10hp + 2def + 12)
-	_cost = _defense * 2 + _health * 10 + 12; 
+	_cost = _defense * 2 + _health * 10 + 12;
+	return _cost;
 }
 
 // get armor part string
@@ -97,4 +98,13 @@ void Armor::printInfo() const {
 
 void Armor::printInfoInShort() const {
 	std::cout << _name << " - " << _health << " health - " << _defense << " defense - " << _cost << " points" << std::endl;
+}
+
+std::string Armor::toString() const {
+	std::stringstream ss;
+	ss << "name: " << _name << "\n"
+	   << "type: " << getArmorTypeString() << "\n"
+	   << "part: " << getArmorPartString() << "\n"
+	   << "hp: " << _health << std::right << std::setw(std::max(0, int(26   - (3 + std::to_string(_health).length()) - std::to_string(_defense).length()))) << "def: " << _defense << "\n";
+	return ss.str();
 }

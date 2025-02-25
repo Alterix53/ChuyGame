@@ -73,7 +73,7 @@ namespace utils {
             void equip(std::string name, int option, bool isEquip) {
                 std::vector<std::string> options = {"YES", "NO"};
                 int width = std::min(Constants::List::Armor::NAME, int(name.length()) + 1);
-                int numberLines = isEquip ? 23 : 25;
+                int numberLines = !isEquip ? 23 : 25;
                 int changed = numberLines - 24;
                 
                 std::cout << A << std::string(width + numberLines, E) << B << std::endl;

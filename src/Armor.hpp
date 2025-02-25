@@ -2,11 +2,13 @@
 #include <iostream>
 #include <string>
 #include "Item.hpp"
+#include <iomanip>
+#include <cmath>
 
 // define the armor's base stat below
 #define BASE_ARMOR_DEFENSE 10
 #define BASE_ARMOR_HEALTH 1000
-#define BASE_ARMOR_WEIGHT 1
+#define BASE_ARMOR_WEIGHT 0
 
 enum class ArmorPart{ // rat minecraft
 	HELMET,
@@ -59,9 +61,11 @@ public:
 	// override
 
 	// calculate the cost of the armor
-	void calculateCost() override;		// base on hp and def
+	int calculateCost() override;		// base on hp and def
 	
 	// print the armor's info
 	void printInfo() const override;
 	void printInfoInShort() const override;
+
+	std::string toString() const override;
 };

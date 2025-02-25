@@ -1,19 +1,19 @@
 #include "Inventory.hpp"
 
 namespace Inventory {
-    std::vector<std::string> items;
+    // std::vector<std::string> items;
 
-    void addItem(const std::string& item) {
-        items.push_back(item);
-    }
+    // void addItem(const std::string& item) {
+    //     items.push_back(item);
+    // }
 
-    void removeItem(const std::string& item) {
-        items.erase(std::remove(items.begin(), items.end(), item), items.end());
-    }
+    // void removeItem(const std::string& item) {
+    //     items.erase(std::remove(items.begin(), items.end(), item), items.end());
+    // }
 
-    bool hasItem(const std::string& item) {
-        return std::find(items.begin(), items.end(), item) != items.end();
-    }
+    // bool hasItem(const std::string& item) {
+    //     return std::find(items.begin(), items.end(), item) != items.end();
+    // }
     
     void show(Player &player) {
         bool inInventory = true;
@@ -29,24 +29,14 @@ namespace Inventory {
         for (auto& w : ws) items.push_back(&w);
         for (auto& a : as) items.push_back(&a);
 
-        // so trang can co cua inventory
-        int maxPage = (items.size()) / 16 + 1;
-        int start = (currentPage - 1) * 16;                                         // index dau tien cua trang hien tai
-        int end = (start + 16 < (int) items.size()) ? start + 16 : items.size();    // index cuoi cung cua trang hien tai
+        int maxPage = items.size() / 16 + 1;
+        int start = (currentPage - 1) * 16;
+        int end = (start + 16 < (int) items.size()) ? start + 16 : items.size();
 
         while (inInventory) {
             system("cls");
-
-            std::cout << "Inventory: " << std::endl;
-
-            // ham display de in ra cac item co index tu start den end
-            // displayInventory(player, inventoryPos);
-
-            // sau khi code xong ham display, xoa 3 dong duoi
-            for (int i = start; i < end; i++) {
-                std::cout << items[i]->getName() << std::endl;
-            }
-
+            displayInventory(items, player, inventoryPos, currentPage);
+    
             std::cout << "Press 'esc' to exit inventory, 'e' for next page, 'q' for previous page" << std::endl;
             
             char key = _getch();
@@ -81,7 +71,7 @@ namespace Inventory {
                     }
                     break;
                 case 'q': // previous page
-                    if (currentPage > 0) {
+                    if (currentPage > 1) {
                         currentPage--;
                     }
                     break;
@@ -94,8 +84,6 @@ namespace Inventory {
                     if (pos >= (int) items.size()) {
                         break;
                     }
-                    
-                    // show the item detail
                     Item& select = *items[pos];
                     bool Equipped = select.checkIsEquipped();
                     if (Choice::showEquip(select.getName(), Equipped) == true) {
@@ -170,7 +158,76 @@ namespace Inventory {
         std::cout << "|                          |         //   |                          |" << std::endl;
         std::cout << "|__________________________|        //    |__________________________|" << std::endl;
     }
+
+    std::vector<std::string> splitLines(const std::string& text) {
+        std::vector<std::string> lines;
+        std::stringstream ss(text);
+        std::string line;
+        while (std::getline(ss, line, '\n')) {
+            lines.push_back(line);
+        }
+        return lines;
+    }
     
-    // ching add ham ben duoi nhe
-    void displayInventory(Player &player, std::pair<int, int> inventoryPos) {}
+    void drawGrid(const std::vector<Item*>& data, int cols, int rows, int pageNumber) {
+        int colWidth = 28;
+        int totalWidth = cols * (colWidth + 1) + 1;
+        int consoleWidth = 166; // ~ mode con / columns ~ 166 (my computer <("))
+        int padding = std::max(0, consoleWidth - totalWidth) - 10; // can chinh qua ben phai man hinh de, lam gi thi khong biet...
+    
+        int itemsPerPage = rows * cols;
+        int startIndex = (pageNumber - 1) * itemsPerPage;
+        int index = startIndex;
+
+        char topLeft = 218, topRight = 191, bottomLeft = 192, bottomRight = 217;
+        char horizontal = 196, vertical = 179, cross = 197;
+        char topMid = 194, bottomMid = 193, leftMid = 195, rightMid = 180;
+
+        std::cout << std::string(padding, ' ');
+        for (int j = 0; j < cols; j++) {
+            std::cout << (j == 0 ? topLeft : topMid) << std::string(colWidth, horizontal);
+        }
+        std::cout << topRight << '\n';
+
+        for (int i = 0; i < rows; i++) {
+            std::vector<std::vector<std::string>> rowLines(cols);
+        
+            for (int j = 0; j < cols; j++) {
+                if (index < data.size()) {
+                    rowLines[j] = splitLines(data[index]->toString());
+                    index++;
+                }
+            }
+        
+            int maxLines = 4;
+        
+            for (int lineIndex = 0; lineIndex < maxLines; lineIndex++) {
+                std::cout << std::string(padding, ' ');
+                for (int j = 0; j < cols; j++) {
+                    std::string text = (lineIndex < rowLines[j].size()) ? rowLines[j][lineIndex] : "";
+                    std::cout << vertical << std::left << std::setw(colWidth) << text;
+                }
+                std::cout << vertical << '\n';
+            }
+        
+            if (i < rows - 1) {
+                std::cout << std::string(padding, ' ');
+                for (int j = 0; j < cols; j++) {
+                    std::cout << (j == 0 ? leftMid : cross) << std::string(colWidth, horizontal);
+                }
+                std::cout << rightMid << '\n';
+            }
+        }
+        
+        std::cout << std::string(padding, ' ');
+        for (int j = 0; j < cols; j++) {
+            std::cout << (j == 0 ? bottomLeft : bottomMid) << std::string(colWidth, horizontal);
+        }
+        std::cout << bottomRight << '\n';
+    }
+    
+    void displayInventory(std::vector<Item*> &items, Player &player, std::pair<int, int> inventoryPos, int pageNumber) {
+        system("cls");
+        drawGrid(items, 4, 4, pageNumber);
+    }
 }

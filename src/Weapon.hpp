@@ -2,7 +2,8 @@
 #include <iostream>
 #include <string>
 #include "Item.hpp"
-
+#include <sstream>
+#include <iomanip>
 
 enum class WeaponType {
 	SWORD,
@@ -23,12 +24,13 @@ private:
 	WeaponType _type;
 public:
 	Weapon();
-	Weapon(std::string name, int cost, WeaponType type, int damage, int atkSpeed);
+	Weapon(std::string name, int cost, WeaponType type, int damage, float atkSpeed);
 	~Weapon();
 
 	// getter and setter
 	void setDamage(int damage);	
 	void setCost(int cost);
+	void setAtkSpeed(float atkSpeed);
 
 	std::string getName() const;
 	int getDamage() const;
@@ -43,9 +45,11 @@ public:
 	// override
 
 	// calculate the cost of the weapon
-	void calculateCost() override; // base on damage and atk speed
+	int calculateCost() override; // base on damage and atk speed
 
 	// print info
 	void printInfo() const override;
 	void printInfoInShort() const override; // in thong tin tren 1 hang
+
+	std::string toString() const override;
 };
