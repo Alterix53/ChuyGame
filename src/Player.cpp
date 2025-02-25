@@ -96,8 +96,8 @@ float Player::effectiveAtkspeed(float atkSpeed) const {
 }
 
 float Player::calculateEffectiveAtkspeedAll() {
-	this->_weapon[0].setAtkSpeed(effectiveAtkspeed(this->_weapon[0].getAtkSpeed()));
-	this->_weapon[1].setAtkSpeed(effectiveAtkspeed(this->_weapon[1].getAtkSpeed()));
+	this->_weapon1.setAtkSpeed(effectiveAtkspeed(this->_weapon1.getAtkSpeed()));
+	this->_weapon2.setAtkSpeed(effectiveAtkspeed(this->_weapon2.getAtkSpeed()));
 }
 
 // below are the functions to add weapon and armor
