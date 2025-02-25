@@ -137,5 +137,5 @@ namespace Inventory {
             }
         }
     }
-    void displayInventory(Player &player) {}
+    void displayInventory(Player &player);
 }
