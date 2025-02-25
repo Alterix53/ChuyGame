@@ -288,7 +288,7 @@ void Shop::printWeaponList(std::vector<Weapon> &list, int firstIndex, int endInd
 			<< std::setw(List::Weapon::CATEGORY) << list[i].getWeaponTypeString() << " | "
 			<< std::setw(List::Weapon::ATK) << list[i].getDamage() << " | "
 			<< std::setw(List::Weapon::ATKSPD) << list[i].getAtkSpeed() << " | "
-			<< std::setw(List::Weapon::COST) << list[i].getCost() << std::endl;
+			<< std::setw(List::Weapon::COST) << list[i].calculateCost() << std::endl;
 	}
 	if (!isExistPage) {
 		std::cout << std::right << std::setw(List::Weapon::SEPARATOR / 2 + 6) << "This page is empty" << std::endl;
@@ -304,7 +304,7 @@ void Shop::printArmorList(std::vector<Armor> &list, int start, int end, int curr
 		int page = std::ceil(((double)currentIndex + 1) / ITEMS_PER_PAGE);
 		int totalPage = std::ceil(((double)list.size() + 1) / ITEMS_PER_PAGE);
 		if (page > totalPage) totalPage = -1;
-		std::cout << std::right << std::setw(List::Weapon::SEPARATOR / 2 - 3) << page << "/" <<  (totalPage != -1 ? std::to_string(totalPage) : "?");
+		std::cout << std::right << std::setw(List::Armor::SEPARATOR / 2 - 3) << page << "/" <<  (totalPage != -1 ? std::to_string(totalPage) : "?");
 	}
 	std::cout << "\033[u";  
 
@@ -342,7 +342,7 @@ void Shop::printArmorList(std::vector<Armor> &list, int start, int end, int curr
 			<< std::setw(List::Armor::DEF) << list[i].getDefense() << " | "
 			<< std::setw(List::Armor::HEALTH) << list[i].getHealth() << " | "
 			<< std::setw(List::Armor::WEIGHT) << list[i].getWeight() << " | "
-			<< std::setw(List::Armor::COST) << list[i].getCost() << std::endl;
+			<< std::setw(List::Armor::COST) << list[i].calculateCost() << std::endl;
 	}
 	if (!isExistPage) {
 		std::cout << std::right << std::setw(List::Armor::SEPARATOR / 2 + 6) << "This page is empty" << std::endl;

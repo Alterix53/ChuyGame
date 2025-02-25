@@ -58,7 +58,7 @@ public:
 	// override
 
 	// calculate the cost of the armor
-	void calculateCost() override;		// base on hp and def
+	int calculateCost() override;		// base on hp and def
 	
 	// print the armor's info
 	void printInfo() const override;

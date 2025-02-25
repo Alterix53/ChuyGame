@@ -39,9 +39,10 @@ int Armor::getWeight() const {
 }
 
 // calculate the cost of the armor
-void Armor::calculateCost() {
+int Armor::calculateCost() {
 	// hay thay cong thuc theo y cua ban <(") (hien tai la 10hp + 2def + 12)
-	_cost = _defense * 2 + _health * 10 + 12; 
+	_cost = _defense * 2 + _health * 10 + 12;
+	return _cost;
 }
 
 // get armor part string
