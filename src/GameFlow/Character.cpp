@@ -11,7 +11,6 @@ namespace Character {
         "\033[0;31m" + slotToStringUpper(Slot::ARMOR4) + "\033[0m",
         "\033[0;31m" + slotToStringUpper(Slot::CHARACTER) + "\033[0m",
         "\033[0;31m" + slotToStringUpper(Slot::INVENTORY) + "\033[0m",
-
     };
     
     std::string slotToString(Slot slot) {
@@ -118,17 +117,7 @@ namespace Character {
             display();
             char key = getch();
             if (key == 'q' || key == 'Q' || int(key) == 27) { 
-                sign = {
-                    "\033[0;33m" + slotToStringUpper(Slot::MAIN) + "\033[0m",
-                    "\033[0;31m" + slotToStringUpper(Slot::WEAPON1) + "\033[0m",
-                    "\033[0;31m" + slotToStringUpper(Slot::WEAPON2) + "\033[0m",
-                    "\033[0;31m" + slotToStringUpper(Slot::ARMOR1) + "\033[0m",
-                    "\033[0;31m" + slotToStringUpper(Slot::ARMOR2) + "\033[0m",
-                    "\033[0;31m" + slotToStringUpper(Slot::ARMOR3) + "\033[0m",
-                    "\033[0;31m" + slotToStringUpper(Slot::ARMOR4) + "\033[0m",
-                    "\033[0;31m" + slotToStringUpper(Slot::CHARACTER) + "\033[0m",
-                    "\033[0;31m" + slotToStringUpper(Slot::INVENTORY) + "\033[0m",
-                };
+                saveSlotSign();
                 return;
             } else if (key == 'w' || key == 'W') {
                 move = true;
@@ -158,10 +147,8 @@ namespace Character {
                     tab = Tab::CHARACTER;
                 } else if (option == Slot::INVENTORY) {
                     tab = Tab::INVENTORY;
-                    // Inventory::displayInventory(player);
-                    Inventory::show(player); // minh doan la goi ham show
+                    Inventory::show(player);
                 } 
-                break;
             } else {
                 move = false;
             }
@@ -175,6 +162,20 @@ namespace Character {
             }
         }
     }   
+
+    void saveSlotSign() {
+        sign = {
+            "\033[0;33m" + slotToStringUpper(Slot::MAIN) + "\033[0m",
+            "\033[0;31m" + slotToStringUpper(Slot::WEAPON1) + "\033[0m",
+            "\033[0;31m" + slotToStringUpper(Slot::WEAPON2) + "\033[0m",
+            "\033[0;31m" + slotToStringUpper(Slot::ARMOR1) + "\033[0m",
+            "\033[0;31m" + slotToStringUpper(Slot::ARMOR2) + "\033[0m",
+            "\033[0;31m" + slotToStringUpper(Slot::ARMOR3) + "\033[0m",
+            "\033[0;31m" + slotToStringUpper(Slot::ARMOR4) + "\033[0m",
+            "\033[0;31m" + slotToStringUpper(Slot::CHARACTER) + "\033[0m",
+            "\033[0;31m" + slotToStringUpper(Slot::INVENTORY) + "\033[0m",
+        };
+    }
 
     Slot goUp(const Slot &option) {
         if (option == Slot::MAIN || option == Slot::WEAPON1 || option == Slot::WEAPON2) {
