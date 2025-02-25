@@ -19,7 +19,7 @@ namespace WeaponData {
         for (auto &weapon : data) {
             std::string name = weapon["name"];
             int cost = weapon["cost"];
-            WeaponType type = stringToWeaponType(weapon["type"]);
+            WeaponType type = utils::stringToWeaponType(weapon["type"]);
             int damage = weapon["damage"];
             int atkSpeed = weapon["atkSpeed"];
             _availableWeapons.push_back(Weapon(name, cost, type, damage, atkSpeed));
@@ -46,8 +46,8 @@ namespace ArmorData {
         json data = getArmors();
         for (auto &armor : data) {
             std::string name = armor["name"];
-            ArmorType type = stringToArmorType(armor["type"]);
-            ArmorPart part = stringToArmorPart(armor["part"]);
+            ArmorType type = utils::stringToArmorType(armor["type"]);
+            ArmorPart part = utils::stringToArmorPart(armor["part"]);
             int health = armor["health"];
             int defense = armor["defense"];
             int weight = armor["weight"];
