@@ -1,13 +1,17 @@
 #include "Weapon.hpp"
 
-Weapon::Weapon() : Item(), _type(WeaponType::BASEWEAPON), _damage(0), _atkSpeed(0) {}
-Weapon::Weapon(std::string name, int cost, WeaponType type, int damage, int atkSpeed) :
+Weapon::Weapon() : Item(), _type(WeaponType::BASEWEAPON), _damage(0), _atkSpeed(0.0f) {}
+Weapon::Weapon(std::string name, int cost, WeaponType type, int damage, float atkSpeed) :
 	Item(name, cost), _type(type), _damage(damage), _atkSpeed(atkSpeed) {}
 
 Weapon::~Weapon() = default;
 
 void Weapon::setCost(int cost) {
 	_cost = cost;
+}
+
+void Weapon::setAtkSpeed(float atkSpeed) {
+	_atkSpeed = atkSpeed;
 }
 
 void Weapon::setDamage(int damage) {
@@ -23,7 +27,7 @@ int Weapon::getCost() const {
 int Weapon::getDamage() const {
 	return _damage;
 }
-int Weapon::getAtkSpeed() const {
+float Weapon::getAtkSpeed() const {
 	return _atkSpeed;
 }
 
