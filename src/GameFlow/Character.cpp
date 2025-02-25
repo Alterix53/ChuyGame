@@ -158,7 +158,8 @@ namespace Character {
                     tab = Tab::CHARACTER;
                 } else if (option == Slot::INVENTORY) {
                     tab = Tab::INVENTORY;
-                    Inventory::displayInventory(player);
+                    // Inventory::displayInventory(player);
+                    Inventory::show(player); // minh doan la goi ham show
                 } 
                 break;
             } else {

@@ -12,7 +12,7 @@ const int itemsPerPage = 16;
 const int itemsPerRow = 4;
 const int itemsPerCol = 4;
 
-using namespace dialog;
+using namespace utils::dialog;
 
 namespace Inventory {
     extern std::vector<std::string> items;
