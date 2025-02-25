@@ -66,12 +66,12 @@ namespace Character {
             "Defense: " + std::to_string(player.getDefense())
         };
         std::vector<std::string> weaponSlot1 = {
-            "Type: " + player.getWeapon(0).getWeaponTypeString(),
-            "Name: " + player.getWeapon(0).getName(),
+            "Type: " + player.getFirstWeapon().getWeaponTypeString(),
+            "Name: " + player.getFirstWeapon().getName(),
         };    
         std::vector<std::string> weaponSlot2 = {
-            "Type: " + player.getWeapon(1).getWeaponTypeString(),
-            "Name: " + player.getWeapon(1).getName(),
+            "Type: " + player.getSecondWeapon().getWeaponTypeString(),
+            "Name: " + player.getSecondWeapon().getName(),
         };
         std::vector<std::string> armorSlot1 = {
             "Type: " + player.getArmor(ArmorPart::HELMET).getArmorTypeString(),

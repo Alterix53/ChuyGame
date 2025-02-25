@@ -15,3 +15,7 @@ int Item::getCost() const {
 bool Item::checkIsEquipped() const {
 	return _isEquipped;
 }
+
+void Item::setEquipped(bool Equipped) {
+	_isEquipped = Equipped;
+}

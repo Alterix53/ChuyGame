@@ -38,6 +38,10 @@ int Armor::getWeight() const {
 	return _weight;
 }
 
+void Armor::setEquipped(bool Equipped) {
+	_isEquipped = Equipped;
+}
+
 // calculate the cost of the armor
 void Armor::calculateCost() {
 	// hay thay cong thuc theo y cua ban <(") (hien tai la 10hp + 2def + 12)

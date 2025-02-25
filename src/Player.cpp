@@ -1,26 +1,26 @@
 #include "Player.hpp"
 
 Player::Player() : _name("Unknown"), _ID("Unknown"), _playerCost(BaseCost), _health(100), _attack(10), _atkSpeed(1), 
-_defense(10), _weapIndex(WEAPON_INDEX), _weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate() {
+_defense(10),_weapon1(), _weapon2() , _helmet(), _leggings(), _boots(), _chestplate() {
 }
 
 Player::Player(std::string name, std::string ID, int cost) : 
 	_name(name), _ID(ID), _playerCost(cost), _health(100), _attack(10), _atkSpeed(1), _defense(10),
-	_weapIndex(WEAPON_INDEX),	_weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate()
+	_weapon1(), _weapon2(), _helmet(), _leggings(), _boots(), _chestplate()
 {}
 
 Player::Player(std::string name, std::string ID, int cost, int health, int attack, int atkSpeed, int defense) :
 	_name(name), _ID(ID), _playerCost(cost), _health(health), _attack(attack), _atkSpeed(atkSpeed), _defense(defense),
-	_weapIndex(WEAPON_INDEX),	_weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate()
+	_weapon1(), _weapon2(), _helmet(), _leggings(), _boots(), _chestplate()
 {}
 
 Player::Player(const Player& player) :
 	_name(player._name), _ID(player._ID), _playerCost(player._playerCost), _health(player._health), _attack(player._attack), 
-	_defense(player._defense), _weapIndex(player._weapIndex), _atkSpeed(player._atkSpeed), _chestplate(player._chestplate),
+	_defense(player._defense), _atkSpeed(player._atkSpeed), _chestplate(player._chestplate),
 	_leggings(player._leggings), _boots(player._boots), _helmet(player._helmet)
 {
-	_weapon[0] = player._weapon[0];
-	_weapon[1] = player._weapon[1];
+	_weapon1 = player._weapon1;
+	_weapon2 = player._weapon2;
 }
 
 Player::~Player() {}
@@ -58,8 +58,12 @@ int Player::getAtkSpeed() const {
 	return _atkSpeed;
 }
 
-Weapon Player::getWeapon(int index) const {
-	return _weapon[index];
+Weapon Player::getFirstWeapon() const {
+	return _weapon1;
+}
+
+Weapon Player::getSecondWeapon() const {
+	return _weapon2;
 }
 
 Armor Player::getArmor(ArmorPart part) const {
@@ -78,15 +82,21 @@ Armor Player::getArmor(ArmorPart part) const {
 }
 
 // below are the functions to add weapon and armor
-
-void Player::equipWeapon(Weapon weapon) {
-	if (_weapIndex >= 2) {
-		std::cerr << "You can only have 2 weapons!" << std::endl;
-		return;
+// slot are 1 and 2, 1 is left, 2 is right
+void Player::equipWeapon(Weapon weapon, int slot) {
+	if (slot == 1) {
+		weapon.setEquipped(true);
+		_weapon1 = weapon;
+		this->updateStatEquipWeapon(weapon);
 	}
-
-	_weapon[_weapIndex++] = weapon;
-	this->updateStatEquipWeapon(weapon);
+	else if (slot == 2) {
+		weapon.setEquipped(true);
+		_weapon2 = weapon;
+		this->updateStatEquipWeapon(weapon);
+	}
+	else {
+		std::cerr << "Invalid slot!" << std::endl;
+	}
 }
 
 void Player::equipArmor(Armor armor) {
@@ -94,22 +104,22 @@ void Player::equipArmor(Armor armor) {
 	ArmorPart part = armor.getPart();
 	switch (part) {
 	case ArmorPart::HELMET:
+		armor.setEquipped(true);
 		_helmet = armor; 
 		this->updateStatEquipArmor(armor);
 		break;
 	case ArmorPart::CHESTPLATE:
+		armor.setEquipped(true);
 		_chestplate = armor;
 		this->updateStatEquipArmor(armor);
 		break;
 	case ArmorPart::LEGGINGS:
+		armor.setEquipped(true);
 		_leggings = armor;
 		this->updateStatEquipArmor(armor);
 		break;
 	case ArmorPart::BOOTS:
-		/*if (_boots.getArmorPartString() != "Unknown") {
-			std::cerr << "You already have boots!" << std::endl;
-			return;
-		}*/
+		armor.setEquipped(true);
 		_boots = armor;
 		this->updateStatEquipArmor(armor);
 		break;
@@ -173,14 +183,18 @@ void Player::printInfo() const {
 
 	// weapons
 	std::cout << "Weapons: ";
-	if (_weapIndex == 0) {
+	if (_weapon1.getName() == "Unknown" && _weapon2.getName() == "Unknown") {
 		std::cout << "No weapons!" << std::endl;
 	}
 	else {
 		std::cout << std::endl;
-		for (int i = 0; i < _weapIndex; i++) {
-			std::cout << "Weapon " << i + 1 << ": " << std::endl;
-			_weapon[i].printInfo();
+		if (_weapon1.getName() != "Unknown") {
+			std::cout << "Weapon 1: " << std::endl;
+			_weapon1.printInfo();
+		}
+		if (_weapon2.getName() != "Unknown") {
+			std::cout << "Weapon 1: " << std::endl;
+			_weapon1.printInfo();
 		}
 	}
 
@@ -218,31 +232,46 @@ void Player::printInfo() const {
 
 // weapon truyen vao la weapon dang mac, index la slot (ben trai hay phai) cua weapon
 void Player::unequipWeapon(int index) {
-	_weapon[index] = Weapon();
-	this->updateStatUnequipWeapon(_weapon[index]);
+	if (index == 1) {
+		_weapon1.setEquipped(false);
+		this->updateStatUnequipWeapon(_weapon1);
+		_weapon1 = Weapon();
+	}
+	else if (index == 2) {
+		_weapon2.setEquipped(false);
+		this->updateStatUnequipWeapon(_weapon2);
+		_weapon2 = Weapon();
+	}
+	else {
+		std::cerr << "Invalid slot!" << std::endl;
+	}
 }
 
 void Player::unequipArmor(ArmorPart part) {
 	switch (part) {
 	case ArmorPart::HELMET:
-		_helmet = Armor();
 		this->updateStatUnequipArmor(_helmet);
+		_helmet.setEquipped(false);
+		_helmet = Armor();
 		break;
 	case ArmorPart::CHESTPLATE:
-		_chestplate = Armor();
+		_chestplate.setEquipped(false);
 		this->updateStatUnequipArmor(_chestplate);
+		_chestplate = Armor();
 		break;
 	case ArmorPart::LEGGINGS:
-		_leggings = Armor();
+		_leggings.setEquipped(false);
 		this->updateStatUnequipArmor(_leggings);
+		_leggings = Armor();
 		break;
 	case ArmorPart::BOOTS:
 		//if (_boots.getArmorPartString() == "Unknown") {
 		//	std::cerr << "You don't have boots!" << std::endl;
 		//	return;
 		//}
-		_boots = Armor();
+		_boots.setEquipped(false);
 		this->updateStatUnequipArmor(_boots);
+		_boots = Armor();
 		break;
 	default:
 		std::cerr << "Invalid armor part!" << std::endl;

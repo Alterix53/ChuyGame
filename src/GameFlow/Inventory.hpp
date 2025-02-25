@@ -26,6 +26,8 @@ namespace Inventory {
     // bool hasWeapon(Player &player, const Weapon& weapon);
     // bool hasArmor(Player &player, const Armor& armor);
     void show(Player &player);
+    void compareWeapon(Player &player, Weapon w1, Weapon w2);
+    void compareArmor(Player &player, Armor a1, Armor a2);   
     // void listWeapons(Player &player);
     // void listArmors(Player &player);
     

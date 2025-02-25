@@ -17,6 +17,7 @@ public:
 	std::string getName() const;
 	int getCost() const;
 	bool checkIsEquipped() const;
+	void setEquipped(bool Equipped);
 
 	// functions
 	virtual void calculateCost() = 0;

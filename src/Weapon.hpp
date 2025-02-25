@@ -17,7 +17,7 @@ class Weapon : public Item
 private:
 	// weapon's only stat
 	int _damage;
-	int _atkSpeed;
+	float _atkSpeed;
 
 	// phan loai cua weapon
 	WeaponType _type;
@@ -32,10 +32,11 @@ public:
 
 	std::string getName() const;
 	int getDamage() const;
-	int getAtkSpeed() const;
+	float getAtkSpeed() const;
 	int getCost() const;
 	WeaponType getType() const;
-
+	void setEquipped(bool Equipped);
+	
 	// get weapon type string
 	std::string getWeaponTypeString() const;
 

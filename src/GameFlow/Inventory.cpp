@@ -14,41 +14,7 @@ namespace Inventory {
     bool hasItem(const std::string& item) {
         return std::find(items.begin(), items.end(), item) != items.end();
     }
-
-    void listItems() {
-        for (size_t i = 0; i < items.size(); i += itemsPerPage) {
-            /*
-                Duy oi, dinh nghia boxHeight nam o dau vay
-                                        |
-                                        v
-            */
-            // for (int row = 0; row < boxHeight; ++row) {
-            //     for (size_t j = i; j < i + itemsPerPage && j < items.size(); ++j) {
-            //         std::cout << "+------------------+ ";
-            //     }
-            //     std::cout << std::endl;
-
-            //     for (size_t j = i; j < i + itemsPerPage && j < items.size(); ++j) {
-            //         std::cout << "| " << std::setw(boxWidth - 3) << std::left;
-            //         if (row == 0) {
-            //             std::cout << items[j].substr(0, boxWidth - 3);
-            //         } else if (row == 1) {
-            //             std::cout << "Type: " << "Weapon/Armor"; // Replace with actual type
-            //         } else if (row == 2) {
-            //             std::cout << "Attribute: " << "AttributeValue"; // Replace with actual attribute
-            //         }
-            //         std::cout << " | ";
-            //     }
-            //     std::cout << std::endl;
-            // }
-
-            for (size_t j = i; j < i + itemsPerPage && j < items.size(); ++j) {
-                std::cout << "+------------------+ ";
-            }
-            std::cout << std::endl;
-        }
-    }
-
+    
     void show(Player &player) {
         bool inInventory = true;
         std::pair<int, int> inventoryPos = {0, 0};
@@ -64,13 +30,16 @@ namespace Inventory {
         int maxPage = items.size() / 16;
 
         int start = (currentPage - 1) * 16;
-        int end = std::min(start + 16, (int) items.size());
+        int end = (start + 16 < (int) items.size()) ? start + 16 : items.size();
 
         while (inInventory) {
             system("cls");
 
             std::cout << "Inventory: " << std::endl;
-            // displayInventory(inventoryPos);
+            // displayInventory(player, inventoryPos);
+            for (int i = start; i < end; i++) {
+                std::cout << items[i]->getName() << std::endl;
+            }
             std::cout << "Press 'esc' to exit inventory, 'e' for next page, 'q' for previous page" << std::endl;
             
             char key = _getch();
@@ -112,32 +81,84 @@ namespace Inventory {
                 case 27: // Escape key
                     inInventory = false;
                     break;
-                case 13: {// Enter key
-                    int index = (currentPage - 1) * 16 + inventoryPos.first + inventoryPos.second * itemsPerRow;
-                    Item& selected = *items[index];
-                    bool isEquipped = selected.checkIsEquipped();
-                    if (Choice::showEquip(selected.getName(), isEquipped) == true) {
-                        if (isEquipped) {
-                            // if (Weapon* w = dynamic_cast<Weapon*>(&selected)) {
-                            //     player.unequipWeapon(*w);
-                            // } else if (Armor* a = dynamic_cast<Armor*>(&selected)) {
-                            //     player.unequipArmor(*a);
-                            // }
+                case 13: // Enter key 
+                {
+                    int pos = (currentPage - 1) * 16 + inventoryPos.first + inventoryPos.second * itemsPerRow;
+                    Item& select = *items[pos];
+                    bool Equipped = select.checkIsEquipped();
+                    if (Choice::showEquip(select.getName(), Equipped) == true) {
+                        if (Equipped) {
+                            if (Weapon* w = dynamic_cast<Weapon*>(&select)) {
+                                // unequipped by slot
+                                if (w->getName() == player.getFirstWeapon().getName()) {
+                                    w->setEquipped(false);
+                                    player.unequipWeapon(1);
+                                } else if (w->getName() == player.getSecondWeapon().getName()) {
+                                    w->setEquipped(false);
+                                    player.unequipWeapon(2);
+                                }
+                            } else if (Armor* a = dynamic_cast<Armor*>(&select)) {
+                                ArmorPart part = a->getPart();
+                                player.unequipArmor(part);
+                            }
                         } else {
-                            if (Weapon* w = dynamic_cast<Weapon*>(&selected)) {
-                                player.equipWeapon(*w);
-                            } else if (Armor* a = dynamic_cast<Armor*>(&selected)) {
+                            // if the item is a weapon, let player choose slot and equip
+                            if (Weapon* w = dynamic_cast<Weapon*>(&select)) {
+                                // find the empty slot
+                                if (player.getFirstWeapon().getName() == "Unknown") {
+                                    player.equipWeapon(*w, 1);
+                                } else if (player.getSecondWeapon().getName() == "Unknown") {
+                                    player.equipWeapon(*w, 2);
+                                } else {
+                                    // if both slots are occupied, let player choose slot
+                                    std::cout << "Both slots are occupied, choose a slot to equip: " << std::endl;
+                                    int slot;
+                                    std::cout << "Choose slot (1 or 2): ";
+                                    std::cin >> slot;
+                                    while (slot != 1 && slot != 2) {
+                                        std::cout << "Invalid slot, choose again: ";
+                                        std::cin >> slot;
+                                    }
+                                    player.equipWeapon(*w, slot);
+                                }
+                            } else if (Armor* a = dynamic_cast<Armor*>(&select)) {
                                 player.equipArmor(*a);
                             }
                         }
                     }
-                    
                     break;
                 }
-                default:
+                default: {
                     break;
+                }
             }
         }
     }
-    void displayInventory(Player &player);
+
+    void compareWeapon(Player &player, Weapon w1, Weapon w2) {
+        system("cls");
+        std::cout << "____________________________              ____________________________" << std::endl;
+        std::cout << "| Name: " << w1.getName() << std::string(24 - w1.getName().length(), ' ') << "|        \\\\    | Name: " << w2.getName() << std::string(24 - w2.getName().length(), ' ') << "|" << std::endl;
+        std::cout << "| Type: " << w1.getWeaponTypeString() << std::string(24 - w1.getWeaponTypeString().length(), ' ');
+        std::cout << "|        \\\\    | Type: " << w2.getWeaponTypeString() << std::string(24 - w2.getWeaponTypeString().length(), ' ') << "|" << std::endl;
+        std::cout << "| Damage: " << w1.getDamage() << " Atkspd: " << w1.getAtkSpeed() << std::string(24 - std::to_string(w1.getDamage()).length() - std::to_string(w1.getAtkSpeed()).length() - 10, ' ');
+        std::cout << "|   ========   | Damage: " << w2.getDamage() << " Atkspd: " << w2.getAtkSpeed() << std::string(24 - std::to_string(w2.getDamage()).length() - std::to_string(w2.getAtkSpeed()).length() - 10, ' ') << "|" << std::endl;
+        std::cout << "|                          |         //   |                          |" << std::endl;
+        std::cout << "|__________________________|        //    |__________________________|" << std::endl;
+    }
+
+    void compareArmor(Player &player, Armor a1, Armor a2) {
+        system("cls");
+        std::cout << "____________________________              ____________________________" << std::endl;
+        std::cout << "| Name: " << a1.getName() << std::string(24 - a1.getName().length(), ' ') << "|        \\\\    | Name: " << a2.getName() << std::string(24 - a2.getName().length(), ' ') << "|" << std::endl;
+        std::cout << "| Type: " << a1.getArmorTypeString() << std::string(24 - a1.getArmorTypeString().length(), ' ');
+        std::cout << "|        \\\\    | Type: " << a2.getArmorTypeString() << std::string(24 - a2.getArmorTypeString().length(), ' ') << "|" << std::endl;
+        std::cout << "| Health: " << a1.getHealth() << " Def: " << a1.getDefense() << std::string(24 - std::to_string(a1.getHealth()).length() - std::to_string(a1.getDefense()).length() - 10, ' ');
+        std::cout << "|   ========   | Health: " << a2.getHealth() << " Def: " << a2.getDefense() << std::string(24 - std::to_string(a2.getHealth()).length() - std::to_string(a2.getDefense()).length() - 10, ' ') << "|" << std::endl;
+        std::cout << "|                          |         //   |                          |" << std::endl;
+        std::cout << "|__________________________|        //    |__________________________|" << std::endl;
+    }
+    
+    // ching add ham ben duoi nhe
+    void displayInventory(Player &player, std::pair<int, int> inventoryPos) {}
 }

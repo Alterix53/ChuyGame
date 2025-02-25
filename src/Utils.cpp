@@ -77,7 +77,7 @@ namespace utils {
                 int changed = numberLines - 24;
                 
                 std::cout << A << std::string(width + numberLines, E) << B << std::endl;
-                if (isEquip) {
+                if (!isEquip) {
                     std::cout << F << " Do you want to equip: " << std::left << std::setw(width) << name << F << "\n";
                 } else {
                     std::cout << F << " Do you want to unequip: " << std::left << std::setw(width) << name << F << "\n";

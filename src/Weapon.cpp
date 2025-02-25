@@ -23,12 +23,16 @@ int Weapon::getCost() const {
 int Weapon::getDamage() const {
 	return _damage;
 }
-int Weapon::getAtkSpeed() const {
+float Weapon::getAtkSpeed() const {
 	return _atkSpeed;
 }
 
 WeaponType Weapon::getType() const {
 	return _type;
+}
+
+void Weapon::setEquipped(bool Equipped) {
+	_isEquipped = Equipped;
 }
 
 std::string Weapon::getWeaponTypeString() const {
