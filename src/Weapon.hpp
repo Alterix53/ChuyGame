@@ -2,7 +2,8 @@
 #include <iostream>
 #include <string>
 #include "Item.hpp"
-
+#include <sstream>
+#include <iomanip>
 
 enum class WeaponType {
 	SWORD,
@@ -49,4 +50,6 @@ public:
 	// print info
 	void printInfo() const override;
 	void printInfoInShort() const override; // in thong tin tren 1 hang
+
+	std::string toString() const override;
 };

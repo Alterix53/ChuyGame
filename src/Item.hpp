@@ -23,4 +23,6 @@ public:
 	virtual int calculateCost() = 0;
 	virtual void printInfo() const = 0;
 	virtual void printInfoInShort() const = 0;
+
+	virtual std::string toString() const;
 };

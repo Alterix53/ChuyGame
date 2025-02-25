@@ -19,3 +19,7 @@ bool Item::checkIsEquipped() const {
 void Item::setEquipped(bool Equipped) {
 	_isEquipped = Equipped;
 }
+
+std::string Item::toString() const {
+	return _name;
+}
