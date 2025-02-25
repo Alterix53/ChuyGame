@@ -23,8 +23,9 @@ namespace Inventory {
         // get the item list
         std::vector<Weapon> ws = player.getWeaponList();
         std::vector<Armor> as = player.getArmorList();
+
+        // tao mot vector chua tat ca cac item cua player
         std::vector<Item*> items;
-    
         for (auto& w : ws) items.push_back(&w);
         for (auto& a : as) items.push_back(&a);
 
