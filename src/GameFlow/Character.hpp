@@ -34,6 +34,7 @@ namespace Character {
     
     extern std::vector<std::string> sign;
 
+    void saveSlotSign();
     std::string slotToString(Slot slot);
     std::string slotToStringUpper(Slot slot);
     std::string tabToString(Tab tab);

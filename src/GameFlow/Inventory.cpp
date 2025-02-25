@@ -43,37 +43,39 @@ namespace Inventory {
             switch (key) {
                 case 'w':
                 case 72: // Up arrow
-                    if (inventoryPos.second > 0) {
-                        inventoryPos.second--;
-                    }
-                    break;
-                case 's':
-                case 80: // Down arrow
-                    if (inventoryPos.second < itemsPerCol - 1) {
-                        inventoryPos.second++;
-                    }
-                    break;
-                case 'a':
-                case 75: // Left arrow
                     if (inventoryPos.first > 0) {
                         inventoryPos.first--;
                     }
                     break;
-                case 'd':
-                case 77: // Right arrow
+                case 's':
+                case 80: // Down arrow
                     if (inventoryPos.first < itemsPerRow - 1) {
                         inventoryPos.first++;
+                    }
+                    break;
+                case 'a':
+                case 75: // Left arrow
+                    if (inventoryPos.second > 0) {
+                        inventoryPos.second--;
+                    }
+                    break;
+                case 'd':
+                case 77: // Right arrow
+                    if (inventoryPos.second < itemsPerCol - 1) {
+                        inventoryPos.second++;
                     }
                     break;
                 case 'e': // next page
                     if (currentPage < maxPage) {
                         currentPage++;
                     }
+                    inventoryPos = {0, 0};
                     break;
                 case 'q': // previous page
                     if (currentPage > 1) {
                         currentPage--;
                     }
+                    inventoryPos = {0, 0};
                     break;
                 case 27: // Escape key
                     inInventory = false;
@@ -169,7 +171,7 @@ namespace Inventory {
         return lines;
     }
     
-    void drawGrid(const std::vector<Item*>& data, int cols, int rows, int pageNumber) {
+    void drawGrid(const std::vector<Item*>& data, int cols, int rows, int indexMove, int pageNumber) {
         int colWidth = 28;
         int totalWidth = cols * (colWidth + 1) + 1;
         int consoleWidth = 166; // ~ mode con / columns ~ 166 (my computer <("))
@@ -204,8 +206,13 @@ namespace Inventory {
             for (int lineIndex = 0; lineIndex < maxLines; lineIndex++) {
                 std::cout << std::string(padding, ' ');
                 for (int j = 0; j < cols; j++) {
+                    // std::string text = std::to_string(i * 4 + j);
                     std::string text = (lineIndex < rowLines[j].size()) ? rowLines[j][lineIndex] : "";
-                    std::cout << vertical << std::left << std::setw(colWidth) << text;
+                    if (i * 4 + j == indexMove) {
+                        text = utils::colorString(text, Color::YELLOW);
+                        std::cout << vertical << std::left << std::setw(colWidth + 11) << text;
+                    }
+                    else std::cout << vertical << std::left << std::setw(colWidth) << text;
                 }
                 std::cout << vertical << '\n';
             }
@@ -228,6 +235,14 @@ namespace Inventory {
     
     void displayInventory(std::vector<Item*> &items, Player &player, std::pair<int, int> inventoryPos, int pageNumber) {
         system("cls");
-        drawGrid(items, 4, 4, pageNumber);
+        int index = inventoryPos.first * itemsPerRow + inventoryPos.second;
+        // std::cout << inventoryPos.first << " " << inventoryPos.second << " " << index << std::endl;
+        // getch();
+        drawGrid(items, itemsPerCol, itemsPerRow, index, pageNumber);
+    }
+    
+    int getVisibleLength(const std::string& str) {
+        std::regex colorCodeRegex("\033\\[[0-9;]*m");
+        return std::regex_replace(str, colorCodeRegex, "").length();
     }
 }
