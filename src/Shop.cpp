@@ -222,8 +222,20 @@ void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> prin
 			} else if (current < list.size() - 1) {
 				current++;
 			}
-		}
-		else if (key == 27) {
+		} else if (key == 'a' || key == 'A' || key == 75) {
+			int page = std::ceil(((double)current + 1) / ITEMS_PER_PAGE) - 1;
+			if (page >= 0) { 
+				first = page * ITEMS_PER_PAGE;
+				current = first;
+			}
+		} else if (key == 'd' || key == 'D' || key == 77) {
+			int totalPages = std::ceil(((double)list.size() + 1) / ITEMS_PER_PAGE);
+			int page = std::ceil(((double)current + 1) / ITEMS_PER_PAGE); 
+			if (page < totalPages) {
+				first = page * ITEMS_PER_PAGE;
+				current = first;
+			}
+		} else if (key == 27) {
 			if (list.size() != mainList.size()) {
 				list = mainList;
 				current = _currentItemIndex;
