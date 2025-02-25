@@ -19,7 +19,7 @@ public:
 	bool checkIsEquipped() const;
 
 	// functions
-	virtual void calculateCost() = 0;
+	virtual int calculateCost() = 0;
 	virtual void printInfo() const = 0;
 	virtual void printInfoInShort() const = 0;
 };

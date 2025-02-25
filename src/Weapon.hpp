@@ -42,7 +42,7 @@ public:
 	// override
 
 	// calculate the cost of the weapon
-	void calculateCost() override; // base on damage and atk speed
+	int calculateCost() override; // base on damage and atk speed
 
 	// print info
 	void printInfo() const override;
