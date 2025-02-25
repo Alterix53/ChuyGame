@@ -35,6 +35,10 @@ WeaponType Weapon::getType() const {
 	return _type;
 }
 
+void Weapon::setEquipped(bool Equipped) {
+	_isEquipped = Equipped;
+}
+
 std::string Weapon::getWeaponTypeString() const {
 	switch (_type) {
 	case WeaponType::SWORD:

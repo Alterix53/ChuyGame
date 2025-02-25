@@ -14,7 +14,7 @@
 #define MAX_WEAPON 2
 #define WEAPON_INDEX 0
 
-const int BaseCost = 5000; // anh ching thich bao nhieu tien? Chinh: 5 cu duoc khong ?
+const int BaseCost = 5000000; // anh ching thich bao nhieu tien? Chinh: 5 cu duoc khong ? Duy: duoc nhe
 
 class Player
 {
@@ -24,7 +24,8 @@ private:
 	std::string _ID;
 
 	// player's current equip weapon + armor
-	Weapon _weapon[2];  // player's weapon, max 2 weapons
+	Weapon _weapon1;  
+	Weapon _weapon2;   
 	Armor _helmet;		// this var only contains the helmet
 	Armor _leggings;	// this var only contains the leggings
 	Armor _boots;		// this var only contains the boots
@@ -36,7 +37,6 @@ private:
 	int _defense;
 	int _atkSpeed;
 	int _playerCost;		// cost to buy weapon
-	int _weapIndex;		// shows the index of the weapon in the array
 	// int _critRate;
 	// int _critDmg;
 
@@ -68,7 +68,8 @@ public:
 	std::vector<Weapon> getInventoryWeapon() const;
 	// int getCritRate();
 	// int getCritDmg();
-	Weapon getWeapon(int index) const;
+	Weapon getFirstWeapon() const;
+	Weapon getSecondWeapon() const;
 	Armor getArmor(ArmorPart part) const;
 
 	// adding weapon and armor to inventory
@@ -76,8 +77,8 @@ public:
 	void buyArmor(Armor armor);					// buy and add armor to player's inventory
 
 	// equip weapon and armor
-	void equipWeapon(Weapon weapon);					// equip weapon from player's inventory
-	void equipArmor(Armor armor);					// equip armor from player's inventory
+	void equipWeapon(Weapon weapon, int slot);					// equip weapon from player's inventory
+	void equipArmor(Armor armor);								// equip armor from player's inventory
 
 	// unequipped weapon and armor
 	void unequipWeapon(int index);				// unequip weapon from player's inventory

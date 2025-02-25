@@ -36,7 +36,8 @@ public:
 	float getAtkSpeed() const;
 	int getCost() const;
 	WeaponType getType() const;
-
+	void setEquipped(bool Equipped);
+	
 	// get weapon type string
 	std::string getWeaponTypeString() const;
 
