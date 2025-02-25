@@ -41,9 +41,12 @@ namespace Inventory {
 
             // ham display de in ra cac item co index tu start den end
             // displayInventory(player, inventoryPos);
+
+            // sau khi code xong ham display, xoa 3 dong duoi
             for (int i = start; i < end; i++) {
                 std::cout << items[i]->getName() << std::endl;
             }
+
             std::cout << "Press 'esc' to exit inventory, 'e' for next page, 'q' for previous page" << std::endl;
             
             char key = _getch();
@@ -88,6 +91,11 @@ namespace Inventory {
                 case 13: // Enter key 
                 {
                     int pos = (currentPage - 1) * 16 + inventoryPos.first + inventoryPos.second * itemsPerRow;
+                    if (pos >= (int) items.size()) {
+                        break;
+                    }
+                    
+                    // show the item detail
                     Item& select = *items[pos];
                     bool Equipped = select.checkIsEquipped();
                     if (Choice::showEquip(select.getName(), Equipped) == true) {
