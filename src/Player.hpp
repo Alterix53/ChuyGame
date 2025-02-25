@@ -7,6 +7,7 @@
 #include <type_traits>
 #include <conio.h>
 #include <windows.h>
+#include <cmath>
 #include "Utils.hpp"
 #include "Constants.hpp"
 
@@ -31,7 +32,7 @@ private:
 
 	// player's base stat
 	int _health;
-	int _attack;
+	float _attack;
 	int _defense;
 	int _atkSpeed;
 	int _playerCost;		// cost to buy weapon
@@ -47,7 +48,7 @@ public:
 	// constructor and destructor
 	Player();													// default constructor
 	Player(std::string name, std::string ID, int cost);		// constructor with parameters, contain basic player's info only
-	Player(std::string name, std::string ID, int cost, int health, int attack, int defense, int atkSpeed); // constructor with parameters, contain all player's info
+	Player(std::string name, std::string ID, int cost, int health, int attack, int defense, float atkSpeed); // constructor with parameters, contain all player's info
 	Player(const Player& player); // copy de chi khong biet
 	~Player();
 
@@ -60,6 +61,9 @@ public:
 	int getAttack() const;
 	int getDefense() const;
 	int getAtkSpeed() const;
+	int getTotalWeight() const;
+	float effectiveAtkspeed(float atkSpeed) const;
+	float calculateEffectiveAtkspeedAll();
 	std::vector<Armor> getInventoryArmor() const;
 	std::vector<Weapon> getInventoryWeapon() const;
 	// int getCritRate();

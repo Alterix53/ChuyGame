@@ -21,7 +21,7 @@ namespace WeaponData {
             int cost = weapon["cost"];
             WeaponType type = utils::stringToWeaponType(weapon["type"]);
             int damage = weapon["damage"];
-            int atkSpeed = weapon["atkSpeed"];
+            float atkSpeed = weapon["atkSpeed"];
             _availableWeapons.push_back(Weapon(name, cost, type, damage, atkSpeed));
         }
     }

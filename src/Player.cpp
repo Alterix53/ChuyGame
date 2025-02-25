@@ -9,7 +9,7 @@ Player::Player(std::string name, std::string ID, int cost) :
 	_weapIndex(WEAPON_INDEX),	_weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate()
 {}
 
-Player::Player(std::string name, std::string ID, int cost, int health, int attack, int atkSpeed, int defense) :
+Player::Player(std::string name, std::string ID, int cost, int health, int attack, int defense, float atkSpeed) :
 	_name(name), _ID(ID), _playerCost(cost), _health(health), _attack(attack), _atkSpeed(atkSpeed), _defense(defense),
 	_weapIndex(WEAPON_INDEX),	_weapon{ Weapon(), Weapon() }, _helmet(), _leggings(), _boots(), _chestplate()
 {}
@@ -75,6 +75,25 @@ Armor Player::getArmor(ArmorPart part) const {
 	default:
 		return Armor();
 	}
+}
+
+int Player::getTotalWeight() const {
+	int totalWeight = 0;
+	totalWeight += _helmet.getWeight();
+	totalWeight += _chestplate.getWeight();
+	totalWeight += _leggings.getWeight();
+	totalWeight += _boots.getWeight();
+	return totalWeight;
+}
+
+float Player::effectiveAtkspeed(float atkSpeed) const {
+	float weight = static_cast<float>(getTotalWeight());
+	return atkSpeed * (1.0f - (log(weight + 1.0f) / log(11.0f)));
+}
+
+float Player::calculateEffectiveAtkspeedAll() {
+	this->_weapon[0].setAtkSpeed(effectiveAtkspeed(this->_weapon[0].getAtkSpeed()));
+	this->_weapon[1].setAtkSpeed(effectiveAtkspeed(this->_weapon[1].getAtkSpeed()));
 }
 
 // below are the functions to add weapon and armor

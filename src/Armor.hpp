@@ -6,7 +6,7 @@
 // define the armor's base stat below
 #define BASE_ARMOR_DEFENSE 10
 #define BASE_ARMOR_HEALTH 1000
-#define BASE_ARMOR_WEIGHT 1
+#define BASE_ARMOR_WEIGHT 0
 
 enum class ArmorPart{ // rat minecraft
 	HELMET,

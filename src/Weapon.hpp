@@ -17,22 +17,23 @@ class Weapon : public Item
 private:
 	// weapon's only stat
 	int _damage;
-	int _atkSpeed;
+	float _atkSpeed;
 
 	// phan loai cua weapon
 	WeaponType _type;
 public:
 	Weapon();
-	Weapon(std::string name, int cost, WeaponType type, int damage, int atkSpeed);
+	Weapon(std::string name, int cost, WeaponType type, int damage, float atkSpeed);
 	~Weapon();
 
 	// getter and setter
 	void setDamage(int damage);	
 	void setCost(int cost);
+	void setAtkSpeed(float atkSpeed);
 
 	std::string getName() const;
 	int getDamage() const;
-	int getAtkSpeed() const;
+	float getAtkSpeed() const;
 	int getCost() const;
 	WeaponType getType() const;
 
