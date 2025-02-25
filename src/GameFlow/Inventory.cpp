@@ -23,19 +23,23 @@ namespace Inventory {
         // get the item list
         std::vector<Weapon> ws = player.getWeaponList();
         std::vector<Armor> as = player.getArmorList();
+
+        // tao mot vector chua tat ca cac item cua player
         std::vector<Item*> items;
-    
         for (auto& w : ws) items.push_back(&w);
         for (auto& a : as) items.push_back(&a);
-        int maxPage = items.size() / 16;
 
-        int start = (currentPage - 1) * 16;
-        int end = (start + 16 < (int) items.size()) ? start + 16 : items.size();
+        // so trang can co cua inventory
+        int maxPage = (items.size()) / 16 + 1;
+        int start = (currentPage - 1) * 16;                                         // index dau tien cua trang hien tai
+        int end = (start + 16 < (int) items.size()) ? start + 16 : items.size();    // index cuoi cung cua trang hien tai
 
         while (inInventory) {
             system("cls");
 
             std::cout << "Inventory: " << std::endl;
+
+            // ham display de in ra cac item co index tu start den end
             // displayInventory(player, inventoryPos);
             for (int i = start; i < end; i++) {
                 std::cout << items[i]->getName() << std::endl;
