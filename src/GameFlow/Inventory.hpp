@@ -6,6 +6,8 @@
 #include <iomanip>
 #include "../Player.hpp"
 #include "../Utils.hpp"
+#include "../Constants.hpp"
+#include <regex>
 
 // attribute of each box (box show an item)
 const int itemsPerPage = 16;
@@ -13,6 +15,7 @@ const int itemsPerRow = 4;
 const int itemsPerCol = 4;
 
 using namespace utils::dialog;
+using namespace Constants;
 
 namespace Inventory {
     // extern std::vector<std::string> items;
@@ -29,7 +32,8 @@ namespace Inventory {
     void compareArmor(Player &player, Armor a1, Armor a2); 
     std::vector<std::string> splitLines(const std::string& text);
     void displayInventory(std::vector<Item*> &items, Player &player, std::pair<int, int> inventoryPos, int pageNumber);
-    void drawGrid(const std::vector<Item*>& data, int cols = 4, int rows = 4, int pageNumber = 1);
+    void drawGrid(const std::vector<Item*>& data, int cols, int rows, int indexMove, int pageNumber);
+    int getVisibleLength(const std::string& str);
         // void listWeapons(Player &player);
     // void listArmors(Player &player);
     
