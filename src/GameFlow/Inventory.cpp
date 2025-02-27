@@ -38,7 +38,7 @@ namespace Inventory {
             displayInventory(items, player, inventoryPos, currentPage);
     
             std::cout << "Press 'esc' to exit inventory, 'e' for next page, 'q' for previous page" << std::endl;
-            
+            std::cout << "vi tri hien tai: " << inventoryPos.first << " " << inventoryPos.second << std::endl;
             char key = _getch();
             switch (key) {
                 case 'w':
@@ -49,7 +49,7 @@ namespace Inventory {
                     break;
                 case 's':
                 case 80: // Down arrow
-                    if (inventoryPos.first < itemsPerRow - 1) {
+                    if (inventoryPos.first < itemsPerCol - 1) {
                         inventoryPos.first++;
                     }
                     break;
@@ -61,7 +61,7 @@ namespace Inventory {
                     break;
                 case 'd':
                 case 77: // Right arrow
-                    if (inventoryPos.second < itemsPerCol - 1) {
+                    if (inventoryPos.second < itemsPerRow - 1) {
                         inventoryPos.second++;
                     }
                     break;
@@ -82,7 +82,7 @@ namespace Inventory {
                     break;
                 case 13: // Enter key 
                 {
-                    int pos = (currentPage - 1) * 16 + inventoryPos.first + inventoryPos.second * itemsPerRow;
+                    int pos = (currentPage - 1) * 16 + inventoryPos.second + inventoryPos.first * itemsPerRow;
                     if (pos >= (int) items.size()) {
                         break;
                     }
@@ -93,9 +93,11 @@ namespace Inventory {
                             if (Weapon* w = dynamic_cast<Weapon*>(&select)) {
                                 // unequipped by slot
                                 if (w->getName() == player.getFirstWeapon().getName()) {
+                                    select.setEquipped(false);
                                     w->setEquipped(false);
                                     player.unequipWeapon(1);
                                 } else if (w->getName() == player.getSecondWeapon().getName()) {
+                                    select.setEquipped(false);
                                     w->setEquipped(false);
                                     player.unequipWeapon(2);
                                 }
@@ -108,9 +110,13 @@ namespace Inventory {
                             if (Weapon* w = dynamic_cast<Weapon*>(&select)) {
                                 // find the empty slot
                                 if (player.getFirstWeapon().getName() == "Unknown") {
+                                    select.setEquipped(true);
                                     player.equipWeapon(*w, 1);
+                                    w->setEquipped(true);
                                 } else if (player.getSecondWeapon().getName() == "Unknown") {
+                                    select.setEquipped(true);
                                     player.equipWeapon(*w, 2);
+                                    w->setEquipped(true);
                                 } else {
                                     // if both slots are occupied, let player choose slot
                                     std::cout << "Both slots are occupied, choose a slot to equip: " << std::endl;
@@ -160,7 +166,8 @@ namespace Inventory {
         std::cout << "|                          |         //   |                          |" << std::endl;
         std::cout << "|__________________________|        //    |__________________________|" << std::endl;
     }
-
+    
+    // ching add ham ben duoi nhe
     std::vector<std::string> splitLines(const std::string& text) {
         std::vector<std::string> lines;
         std::stringstream ss(text);

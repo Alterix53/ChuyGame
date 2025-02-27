@@ -62,6 +62,7 @@ int Weapon::calculateCost() {
 
 void Weapon::printInfoInShort() const {
 	std::cout << _name << " - " << _damage << " damage - " << _atkSpeed << " atk speed - " << _cost << " points" << std::endl;
+	std::cout << "Equipped: " << (_isEquipped ? "Yes" : "No") << std::endl;
 }
 
 void Weapon::printInfo() const {
@@ -70,6 +71,7 @@ void Weapon::printInfo() const {
 	std::cout << "Damage: " << _damage << std::endl;
 	std::cout << "Attack Speed: " << _atkSpeed << std::endl;
 	std::cout << "Cost: " << _cost << std::endl;
+	std::cout << "Equipped: " << (_isEquipped ? "Yes" : "No") << std::endl;
 }
 
 std::string Weapon::toString() const {
