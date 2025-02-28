@@ -80,19 +80,19 @@ namespace Character {
                 "Name: " + player.getSecondWeapon().getName(),
             };
             armorSlot1 = {
-                "Type: " + player.getArmor(ArmorPart::HELMET).getArmorTypeString(),
+                "part: " + player.getArmor(ArmorPart::HELMET).getArmorPartString(),
                 "Name: " + player.getArmor(ArmorPart::HELMET).getName(),
             };
             armorSlot2 = {
-                "Type: " + player.getArmor(ArmorPart::CHESTPLATE).getArmorTypeString(),
+                "part: " + player.getArmor(ArmorPart::CHESTPLATE).getArmorPartString(),
                 "Name: " + player.getArmor(ArmorPart::CHESTPLATE).getName(),
             };
             armorSlot3 = {
-                "Type: " + player.getArmor(ArmorPart::LEGGINGS).getArmorTypeString(),
+                "part: " + player.getArmor(ArmorPart::LEGGINGS).getArmorPartString(),
                 "Name: " + player.getArmor(ArmorPart::LEGGINGS).getName(),
             };
             armorSlot4 = {
-                "Type: " + player.getArmor(ArmorPart::BOOTS).getArmorTypeString(),
+                "part: " + player.getArmor(ArmorPart::BOOTS).getArmorPartString(),
                 "Name: " + player.getArmor(ArmorPart::BOOTS).getName(),
             };
         };
