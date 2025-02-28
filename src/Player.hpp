@@ -71,6 +71,8 @@ public:
 	Weapon getFirstWeapon() const;
 	Weapon getSecondWeapon() const;
 	Armor getArmor(ArmorPart part) const;
+	void setEquippedWeapon(bool equip, int index);
+	void setEquippedArmor(bool equip, int index);
 
 	// adding weapon and armor to inventory
 	void buyWeapon(Weapon weapon);				// buy and add weapon to player's inventory

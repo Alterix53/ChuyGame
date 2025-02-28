@@ -91,32 +91,36 @@ namespace Inventory {
                     if (Choice::showEquip(select.getName(), Equipped) == true) {
                         if (Equipped) {
                             if (Weapon* w = dynamic_cast<Weapon*>(&select)) {
+                                
+                                // reset equipped status
+                                player.setEquippedWeapon(false, pos); 
+                                select.setEquipped(false);
+                                w->setEquipped(false);
                                 // unequipped by slot
-                                if (w->getName() == player.getFirstWeapon().getName()) {
-                                    select.setEquipped(false);
-                                    w->setEquipped(false);
+                                if (select.getName() == player.getFirstWeapon().getName()) {
                                     player.unequipWeapon(1);
                                 } else if (w->getName() == player.getSecondWeapon().getName()) {
-                                    select.setEquipped(false);
-                                    w->setEquipped(false);
                                     player.unequipWeapon(2);
                                 }
                             } else if (Armor* a = dynamic_cast<Armor*>(&select)) {
                                 ArmorPart part = a->getPart();
+                                player.setEquippedArmor(false, pos - player.getWeaponList().size());
+                                a->setEquipped(false);
+                                select.setEquipped(false);
                                 player.unequipArmor(part);
                             }
                         } else {
                             // if the item is a weapon, let player choose slot and equip
                             if (Weapon* w = dynamic_cast<Weapon*>(&select)) {
+                                player.setEquippedWeapon(true, pos);
+                                w->setEquipped(true);
+                                select.setEquipped(true);
                                 // find the empty slot
-                                if (player.getFirstWeapon().getName() == "Unknown") {
-                                    select.setEquipped(true);
+                                if (player.getFirstWeapon().getName() == "Unknown") {                                  
                                     player.equipWeapon(*w, 1);
-                                    w->setEquipped(true);
+  
                                 } else if (player.getSecondWeapon().getName() == "Unknown") {
-                                    select.setEquipped(true);
                                     player.equipWeapon(*w, 2);
-                                    w->setEquipped(true);
                                 } else {
                                     // if both slots are occupied, let player choose slot
                                     std::cout << "Both slots are occupied, choose a slot to equip: " << std::endl;
@@ -127,9 +131,45 @@ namespace Inventory {
                                         std::cout << "Invalid slot, choose again: ";
                                         std::cin >> slot;
                                     }
-                                    player.equipWeapon(*w, slot);
+                                    if (slot == 1) {
+                                        std::string lastWeapName = player.getFirstWeapon().getName(); int lastWeapIndex = 0;
+                                        for (int i = 0; i < (int) ws.size(); i++) {
+                                            if (ws[i].getName() == lastWeapName) {
+                                                lastWeapIndex = i;
+                                                break;
+                                            }
+                                        }
+                                        player.setEquippedWeapon(false, lastWeapIndex);
+                                        items[lastWeapIndex]->setEquipped(false);
+                                        player.equipWeapon(*w, slot);
+                                    } else {
+                                        std::string lastWeapName = player.getSecondWeapon().getName(); int lastWeapIndex = 0;
+                                        for (int i = 0; i < (int) ws.size(); i++) {
+                                            if (ws[i].getName() == lastWeapName) {
+                                                lastWeapIndex = i;
+                                                break;
+                                            }
+                                        }
+                                        player.setEquippedWeapon(false, lastWeapIndex);
+                                        items[lastWeapIndex]->setEquipped(false);
+                                        player.equipWeapon(*w, slot);
+                                    }
                                 }
                             } else if (Armor* a = dynamic_cast<Armor*>(&select)) {
+                                player.setEquippedArmor(true, pos - player.getWeaponList().size());
+                                a->setEquipped(true);
+                                select.setEquipped(true);
+                                if (player.getArmor(a->getPart()).getName() != "Unknown") {
+                                    Armor lastArmor = player.getArmor(a->getPart()); int lastArmorIndex = 0;
+                                    for (int i = 0; i < (int) as.size(); i++) {
+                                        if (as[i].getName() == lastArmor.getName()) {
+                                            lastArmorIndex = i;
+                                            break;
+                                        }
+                                    }
+                                    player.setEquippedArmor(false, lastArmorIndex);
+                                    items[lastArmorIndex + ws.size()]->setEquipped(false);
+                                }
                                 player.equipArmor(*a);
                             }
                         }

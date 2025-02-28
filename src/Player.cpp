@@ -81,6 +81,23 @@ Armor Player::getArmor(ArmorPart part) const {
 	}
 }
 
+void Player::setEquippedWeapon(bool equip, int index) {
+	if (index < 0 || index > _inventoryWeapon.size()) {
+		std::cerr << "Invalid index!" << std::endl;
+		return;
+	}
+
+	_inventoryWeapon[index].setEquipped(equip);
+}
+
+void Player::setEquippedArmor(bool equip, int index) {
+	if (index < 0 || index > _inventoryArmor.size()) {
+		std::cerr << "Invalid index!" << std::endl;
+		return;
+	}
+
+	_inventoryArmor[index].setEquipped(equip);
+}
 int Player::getTotalWeight() const {
 	int totalWeight = 0;
 	totalWeight += _helmet.getWeight();
@@ -270,16 +287,13 @@ void Player::unequipArmor(ArmorPart part) {
 	switch (part) {
 	case ArmorPart::HELMET:
 		this->updateStatUnequipArmor(_helmet);
-		_helmet.setEquipped(false);
 		_helmet = Armor();
 		break;
 	case ArmorPart::CHESTPLATE:
-		_chestplate.setEquipped(false);
 		this->updateStatUnequipArmor(_chestplate);
 		_chestplate = Armor();
 		break;
 	case ArmorPart::LEGGINGS:
-		_leggings.setEquipped(false);
 		this->updateStatUnequipArmor(_leggings);
 		_leggings = Armor();
 		break;
@@ -288,7 +302,6 @@ void Player::unequipArmor(ArmorPart part) {
 		//	std::cerr << "You don't have boots!" << std::endl;
 		//	return;
 		//}
-		_boots.setEquipped(false);
 		this->updateStatUnequipArmor(_boots);
 		_boots = Armor();
 		break;
