@@ -38,7 +38,7 @@ namespace Inventory {
             displayInventory(items, player, inventoryPos, currentPage);
     
             std::cout << "Press 'esc' to exit inventory, 'e' for next page, 'q' for previous page" << std::endl;
-            std::cout << "vi tri hien tai: " << inventoryPos.first << " " << inventoryPos.second << std::endl;
+            // std::cout << "vi tri hien tai: " << inventoryPos.first << " " << inventoryPos.second << std::endl;
             char key = _getch();
             switch (key) {
                 case 'w':
@@ -50,6 +50,10 @@ namespace Inventory {
                 case 's':
                 case 80: // Down arrow
                     if (inventoryPos.first < itemsPerCol - 1) {
+                        if (currentPage == items.size() / itemsPerPage  + 1 
+                            && (inventoryPos.first + 1) * itemsPerRow + inventoryPos.second + 1 > items.size() % itemsPerPage) {
+                                break;
+                        }
                         inventoryPos.first++;
                     }
                     break;
@@ -62,6 +66,10 @@ namespace Inventory {
                 case 'd':
                 case 77: // Right arrow
                     if (inventoryPos.second < itemsPerRow - 1) {
+                        if (currentPage == items.size() / itemsPerPage  + 1 
+                            && inventoryPos.first * itemsPerRow + inventoryPos.second + 1 >= items.size() % itemsPerPage) {
+                                break;
+                        }
                         inventoryPos.second++;
                     }
                     break;
@@ -283,8 +291,7 @@ namespace Inventory {
     void displayInventory(std::vector<Item*> &items, Player &player, std::pair<int, int> inventoryPos, int pageNumber) {
         system("cls");
         int index = inventoryPos.first * itemsPerRow + inventoryPos.second;
-        // std::cout << inventoryPos.first << " " << inventoryPos.second << " " << index << std::endl;
-        // getch();
+
         drawGrid(items, itemsPerCol, itemsPerRow, index, pageNumber);
     }
     
