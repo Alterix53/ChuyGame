@@ -52,9 +52,12 @@ namespace Character {
         return string;   
     }
     void show(Player &player) {
+        Tab tab = Tab::CHARACTER;
+        Slot option = Slot::MAIN;
+
         std::vector<std::string> mainSlot = {}, weaponSlot1 = {}, weaponSlot2 = {},
          armorSlot1 = {}, armorSlot2 = {}, armorSlot3 = {}, armorSlot4 = {};
-         
+
         std::function<void()> inital = [&]() -> void {
             std::vector<std::string> tabs = {
                 "Character",
@@ -93,9 +96,6 @@ namespace Character {
                 "Name: " + player.getArmor(ArmorPart::BOOTS).getName(),
             };
         };
-
-        Tab tab = Tab::CHARACTER;
-        Slot option = Slot::MAIN;
 
         std::function<void()> display = [&]() -> void {
             std::cout << std::right << std::setw(Frame::space + 11) << sign[int(Slot::CHARACTER)] << std::setw(Frame::space) << sign[int(Slot::INVENTORY)] << std::endl;
@@ -154,6 +154,9 @@ namespace Character {
                 } else if (option == Slot::INVENTORY) {
                     tab = Tab::INVENTORY;
                     Inventory::show(player);
+
+                    tab = Tab::CHARACTER;
+                    option = Slot::MAIN;
                 } 
             } else {
                 move = false;
