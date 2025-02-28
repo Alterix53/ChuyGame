@@ -224,8 +224,8 @@ void Shop::showItemShop(std::function<void(std::vector<T>&, int, int, int)> prin
 			}
 		} else if (key == 'a' || key == 'A' || key == 75) {
 			int page = std::ceil(((double)current + 1) / ITEMS_PER_PAGE) - 1;
-			if (page >= 0) { 
-				first = page * ITEMS_PER_PAGE;
+			if (page > 0) { 
+				first = page * ITEMS_PER_PAGE - ITEMS_PER_PAGE;
 				current = first;
 			}
 		} else if (key == 'd' || key == 'D' || key == 77) {
