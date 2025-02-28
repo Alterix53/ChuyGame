@@ -295,7 +295,7 @@ void Shop::printWeaponList(std::vector<Weapon> &list, int firstIndex, int endInd
 			std::cout << "  ";
 		}
 		// Number - 2 -> Number - "  " or "> " (length = 2)
-		std::cout << std::left << std::setw(List::Weapon::NUMBER - 2) << i << " | "
+		std::cout << std::left << std::setw(List::Weapon::NUMBER - 2) << i + 1 << " | "
 			<< std::setw(List::Weapon::NAME) << list[i].getName() << " | "
 			<< std::setw(List::Weapon::CATEGORY) << list[i].getWeaponTypeString() << " | "
 			<< std::setw(List::Weapon::ATK) << list[i].getDamage() << " | "
@@ -348,7 +348,7 @@ void Shop::printArmorList(std::vector<Armor> &list, int start, int end, int curr
 			std::cout << "  ";
 		}
 
-		std::cout << std::left << std::setw(List::Armor::NUMBER - 2) << i << " | "
+		std::cout << std::left << std::setw(List::Armor::NUMBER - 2) << i + 1 << " | "
 			<< std::setw(List::Armor::NAME) << list[i].getName() << " | "
 			<< std::setw(List::Armor::CATEGORY) << list[i].getArmorTypeString() << " | "
 			<< std::setw(List::Armor::DEF) << list[i].getDefense() << " | "
