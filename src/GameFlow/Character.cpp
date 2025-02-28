@@ -54,7 +54,7 @@ namespace Character {
     void show(Player &player) {
         std::vector<std::string> tabs = {
             "Character",
-            "Inventory"
+            "Inventory" 
         };
         std::vector<std::string> mainSlot = {
             "ID: " + player.getID(),
