@@ -52,41 +52,46 @@ namespace Character {
         return string;   
     }
     void show(Player &player) {
-        std::vector<std::string> tabs = {
-            "Character",
-            "Inventory" 
-        };
-        std::vector<std::string> mainSlot = {
-            "ID: " + player.getID(),
-            "Name: " + player.getName(),
-            "    ",
-            "Health: " + std::to_string(player.getHealth()),
-            "Attack: " + std::to_string(player.getAttack()),
-            "Defense: " + std::to_string(player.getDefense())
-        };
-        std::vector<std::string> weaponSlot1 = {
-            "Type: " + player.getFirstWeapon().getWeaponTypeString(),
-            "Name: " + player.getFirstWeapon().getName(),
-        };    
-        std::vector<std::string> weaponSlot2 = {
-            "Type: " + player.getSecondWeapon().getWeaponTypeString(),
-            "Name: " + player.getSecondWeapon().getName(),
-        };
-        std::vector<std::string> armorSlot1 = {
-            "Type: " + player.getArmor(ArmorPart::HELMET).getArmorTypeString(),
-            "Name: " + player.getArmor(ArmorPart::HELMET).getName(),
-        };
-        std::vector<std::string> armorSlot2 = {
-            "Type: " + player.getArmor(ArmorPart::CHESTPLATE).getArmorTypeString(),
-            "Name: " + player.getArmor(ArmorPart::CHESTPLATE).getName(),
-        };
-        std::vector<std::string> armorSlot3 = {
-            "Type: " + player.getArmor(ArmorPart::LEGGINGS).getArmorTypeString(),
-            "Name: " + player.getArmor(ArmorPart::LEGGINGS).getName(),
-        };
-        std::vector<std::string> armorSlot4 = {
-            "Type: " + player.getArmor(ArmorPart::BOOTS).getArmorTypeString(),
-            "Name: " + player.getArmor(ArmorPart::BOOTS).getName(),
+        std::vector<std::string> mainSlot = {}, weaponSlot1 = {}, weaponSlot2 = {},
+         armorSlot1 = {}, armorSlot2 = {}, armorSlot3 = {}, armorSlot4 = {};
+         
+        std::function<void()> inital = [&]() -> void {
+            std::vector<std::string> tabs = {
+                "Character",
+                "Inventory" 
+            };
+            mainSlot = {
+                "ID: " + player.getID(),
+                "Name: " + player.getName(),
+                "    ",
+                "Health: " + std::to_string(player.getHealth()),
+                "Attack: " + std::to_string(player.getAttack()),
+                "Defense: " + std::to_string(player.getDefense())
+            };
+            weaponSlot1 = {
+                "Type: " + player.getFirstWeapon().getWeaponTypeString(),
+                "Name: " + player.getFirstWeapon().getName(),
+            };    
+            weaponSlot2 = {
+                "Type: " + player.getSecondWeapon().getWeaponTypeString(),
+                "Name: " + player.getSecondWeapon().getName(),
+            };
+            armorSlot1 = {
+                "Type: " + player.getArmor(ArmorPart::HELMET).getArmorTypeString(),
+                "Name: " + player.getArmor(ArmorPart::HELMET).getName(),
+            };
+            armorSlot2 = {
+                "Type: " + player.getArmor(ArmorPart::CHESTPLATE).getArmorTypeString(),
+                "Name: " + player.getArmor(ArmorPart::CHESTPLATE).getName(),
+            };
+            armorSlot3 = {
+                "Type: " + player.getArmor(ArmorPart::LEGGINGS).getArmorTypeString(),
+                "Name: " + player.getArmor(ArmorPart::LEGGINGS).getName(),
+            };
+            armorSlot4 = {
+                "Type: " + player.getArmor(ArmorPart::BOOTS).getArmorTypeString(),
+                "Name: " + player.getArmor(ArmorPart::BOOTS).getName(),
+            };
         };
 
         Tab tab = Tab::CHARACTER;
@@ -114,6 +119,7 @@ namespace Character {
 
         while (true) {
             system("cls");
+            inital();
             display();
             char key = getch();
             if (key == 'q' || key == 'Q' || int(key) == 27) { 
