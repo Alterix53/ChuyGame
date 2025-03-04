@@ -127,10 +127,10 @@ namespace Inventory {
                                 std::cout << "Choose a slot to equip: " << std::endl;
                                 int slot;
                                 std::cout << "Choose slot (1 or 2): ";
-                                std::cin >> slot;
-                                while (slot != 1 && slot != 2) {
+                                while (!(std::cin >> slot) || (slot != 1 && slot != 2)) {
+                                    std::cin.clear();                   // clear the cin's bug
+                                    std::cin.ignore(1000, '\n');        // clear all the \n
                                     std::cout << "Invalid slot, choose again: ";
-                                    std::cin >> slot;
                                 }
                                 int lastWeapIndex = 0;
                                 // change the first slot weapon
@@ -202,7 +202,7 @@ namespace Inventory {
                                             break;
                                         }
                                     }
-
+                                    Inventory::compareArmor(player, player.getArmor(a->getPart()), *a);
                                     // change that armor's status
                                     player.setEquippedArmor(false, lastArmorIndex);
                                     items[lastArmorIndex + ws.size()]->setEquipped(false);
@@ -223,14 +223,14 @@ namespace Inventory {
     void compareWeapon(Player &player, Weapon w1, Weapon w2) {
         system("cls");
         std::cout << "The weapon will be replaced:" << std::endl;
-        std::cout << "____________________________              ____________________________" << std::endl;
-        std::cout << "| Name: " << w1.getName() << std::string(24 - w1.getName().length(), ' ') << "|        \\\\    | Name: " << w2.getName() << std::string(24 - w2.getName().length(), ' ') << "|" << std::endl;
-        std::cout << "| Type: " << w1.getWeaponTypeString() << std::string(24 - w1.getWeaponTypeString().length(), ' ');
-        std::cout << "|        \\\\    | Type: " << w2.getWeaponTypeString() << std::string(24 - w2.getWeaponTypeString().length(), ' ') << "|" << std::endl;
-        std::cout << "| Damage: " << w1.getDamage() << " Atkspd: " << w1.getAtkSpeed() << std::string(24 - std::to_string(w1.getDamage()).length() - std::to_string(w1.getAtkSpeed()).length() - 10, ' ');
-        std::cout << "|   ========   | Damage: " << w2.getDamage() << " Atkspd: " << w2.getAtkSpeed() << std::string(24 - std::to_string(w2.getDamage()).length() - std::to_string(w2.getAtkSpeed()).length() - 10, ' ') << "|" << std::endl;
-        std::cout << "|                          |         //   |                          |" << std::endl;
-        std::cout << "|__________________________|        //    |__________________________|" << std::endl;
+        std::cout << "__________________________________              __________________________________" << std::endl;
+        std::cout << "| Name: " << w1.getName() << std::string(25 - w1.getName().length(), ' ') << "|              | Name: " << w2.getName() << std::string(25 - w2.getName().length(), ' ') << "|" << std::endl;
+        std::cout << "| Type: " << w1.getWeaponTypeString() << std::string(25 - w1.getWeaponTypeString().length(), ' ');
+        std::cout << "|              | Type: " << w2.getWeaponTypeString() << std::string(25 - w2.getWeaponTypeString().length(), ' ') << "|" << std::endl;
+        std::cout << "| Damage: " << w1.getDamage() << "    Atkspd: " << w1.getAtkSpeed() << std::string(25 - std::to_string(w1.getDamage()).length() - std::to_string(w1.getAtkSpeed()).length() - 7, ' ');
+        std::cout << "|   ------->   | Damage: " << w2.getDamage() << "    Atkspd: " << w2.getAtkSpeed() << std::string(25 - std::to_string(w2.getDamage()).length() - std::to_string(w2.getAtkSpeed()).length() - 7, ' ') << "|" << std::endl;
+        std::cout << "|                                |              |                                |" << std::endl;
+        std::cout << "|________________________________|              |________________________________|" << std::endl;
         std::cout << "Press any key to continue. " << std::endl;
         getch();
     }
@@ -238,14 +238,14 @@ namespace Inventory {
     void compareArmor(Player &player, Armor a1, Armor a2) {
         system("cls");
         std::cout << "The armor will be replaced:" << std::endl;
-        std::cout << "____________________________              ____________________________" << std::endl;
-        std::cout << "| Name: " << a1.getName() << std::string(24 - a1.getName().length(), ' ') << "|        \\\\    | Name: " << a2.getName() << std::string(24 - a2.getName().length(), ' ') << "|" << std::endl;
-        std::cout << "| Type: " << a1.getArmorTypeString() << std::string(24 - a1.getArmorTypeString().length(), ' ');
-        std::cout << "|        \\\\    | Type: " << a2.getArmorTypeString() << std::string(24 - a2.getArmorTypeString().length(), ' ') << "|" << std::endl;
-        std::cout << "| Health: " << a1.getHealth() << " Def: " << a1.getDefense() << std::string(24 - std::to_string(a1.getHealth()).length() - std::to_string(a1.getDefense()).length() - 10, ' ');
-        std::cout << "|   ========   | Health: " << a2.getHealth() << " Def: " << a2.getDefense() << std::string(24 - std::to_string(a2.getHealth()).length() - std::to_string(a2.getDefense()).length() - 10, ' ') << "|" << std::endl;
-        std::cout << "|                          |         //   |                          |" << std::endl;
-        std::cout << "|__________________________|        //    |__________________________|" << std::endl;
+        std::cout << "__________________________________              __________________________________" << std::endl;
+        std::cout << "| Name: " << a1.getName() << std::string(25 - a1.getName().length(), ' ') << "|              | Name: " << a2.getName() << std::string(25 - a2.getName().length(), ' ') << "|" << std::endl;
+        std::cout << "| Type: " << a1.getArmorTypeString() << std::string(25 - a1.getArmorTypeString().length(), ' ');
+        std::cout << "|              | Type: " << a2.getArmorTypeString() << std::string(25 - a2.getArmorTypeString().length(), ' ') << "|" << std::endl;
+        std::cout << "| Health: " << a1.getHealth() << " Def: " << a1.getDefense() << std::string(25 - std::to_string(a1.getHealth()).length() - std::to_string(a1.getDefense()).length() - 8, ' ');
+        std::cout << "|   ------->   | Health: " << a2.getHealth() << " Def: " << a2.getDefense() << std::string(25 - std::to_string(a2.getHealth()).length() - std::to_string(a2.getDefense()).length() - 8, ' ') << "|" << std::endl;
+        std::cout << "|                                |              |                                |" << std::endl;
+        std::cout << "|________________________________|              |________________________________|" << std::endl;
         std::cout << "Press any key to continue. " << std::endl;
         getch();
     }
