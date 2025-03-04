@@ -117,57 +117,84 @@ namespace Inventory {
                                 select.setEquipped(false);
                                 player.unequipArmor(part);
                             }
-                        } else {
+                        } else { // unequip case
                             // if the item is a weapon, let player choose slot and equip
                             if (Weapon* w = dynamic_cast<Weapon*>(&select)) {
                                 player.setEquippedWeapon(true, pos);
                                 w->setEquipped(true);
                                 select.setEquipped(true);
-                                // find the empty slot
-                                if (player.getFirstWeapon().getName() == "Unknown") {                                  
-                                    player.equipWeapon(*w, 1);
-  
-                                } else if (player.getSecondWeapon().getName() == "Unknown") {
-                                    player.equipWeapon(*w, 2);
-                                } else {
-                                    // if both slots are occupied, let player choose slot
-                                    std::cout << "Both slots are occupied, choose a slot to equip: " << std::endl;
-                                    int slot;
-                                    std::cout << "Choose slot (1 or 2): ";
+                                // let player choose slot
+                                std::cout << "Choose a slot to equip: " << std::endl;
+                                int slot;
+                                std::cout << "Choose slot (1 or 2): ";
+                                std::cin >> slot;
+                                while (slot != 1 && slot != 2) {
+                                    std::cout << "Invalid slot, choose again: ";
                                     std::cin >> slot;
-                                    while (slot != 1 && slot != 2) {
-                                        std::cout << "Invalid slot, choose again: ";
-                                        std::cin >> slot;
+                                }
+                                int lastWeapIndex = 0;
+                                // change the first slot weapon
+                                if (slot == 1) {
+                                    // if there is no weapon before, just equip it
+                                    if (player.getFirstWeapon().getName() == "Unknown") {
+                                        player.equipWeapon(*w, slot);
                                     }
-                                    if (slot == 1) {
-                                        std::string lastWeapName = player.getFirstWeapon().getName(); int lastWeapIndex = 0;
+
+                                    // if there IS a weapon, change it directly
+                                    else {
+                                        // find the last weapon in the player's list to update equip status
+                                        std::string lastWeapName = player.getFirstWeapon().getName();
                                         for (int i = 0; i < (int) ws.size(); i++) {
                                             if (ws[i].getName() == lastWeapName) {
                                                 lastWeapIndex = i;
                                                 break;
                                             }
                                         }
+                            
+                                        // show two weapons for comparison
+                                        Inventory::compareWeapon(player, player.getFirstWeapon(), *w); 
+
+                                        // change weapon's status
                                         player.setEquippedWeapon(false, lastWeapIndex);
                                         items[lastWeapIndex]->setEquipped(false);
                                         player.equipWeapon(*w, slot);
-                                    } else {
-                                        std::string lastWeapName = player.getSecondWeapon().getName(); int lastWeapIndex = 0;
+                                    }
+                                } else { // (slot == 2)
+                                    // if there is no weapon before, just equip it
+                                    if (player.getSecondWeapon().getName() == "Unknown") {
+                                        player.equipWeapon(*w, slot);
+                                    }
+
+                                    // if there IS a weapon, change it directly
+                                    else {
+                                        // find the last weapon in the player's list to update equip status
+                                        std::string lastWeapName = player.getSecondWeapon().getName(); 
                                         for (int i = 0; i < (int) ws.size(); i++) {
                                             if (ws[i].getName() == lastWeapName) {
                                                 lastWeapIndex = i;
                                                 break;
                                             }
                                         }
+                                        // show two weapons for comparison
+                                        Inventory::compareWeapon(player, player.getSecondWeapon(), *w);
+                                        // change the status and equip
                                         player.setEquippedWeapon(false, lastWeapIndex);
                                         items[lastWeapIndex]->setEquipped(false);
                                         player.equipWeapon(*w, slot);
                                     }
                                 }
+                            // if the chosen item is armor:
                             } else if (Armor* a = dynamic_cast<Armor*>(&select)) {
+
+                                // set equip status for that armor (in both player's inventory and the current list work in inventory)
                                 player.setEquippedArmor(true, pos - player.getWeaponList().size());
                                 a->setEquipped(true);
                                 select.setEquipped(true);
+
+                                // if the current part is equipped by another armor, find and change the status
                                 if (player.getArmor(a->getPart()).getName() != "Unknown") {
+
+                                    // find the last armor
                                     Armor lastArmor = player.getArmor(a->getPart()); int lastArmorIndex = 0;
                                     for (int i = 0; i < (int) as.size(); i++) {
                                         if (as[i].getName() == lastArmor.getName()) {
@@ -175,6 +202,8 @@ namespace Inventory {
                                             break;
                                         }
                                     }
+
+                                    // change that armor's status
                                     player.setEquippedArmor(false, lastArmorIndex);
                                     items[lastArmorIndex + ws.size()]->setEquipped(false);
                                 }
@@ -193,6 +222,7 @@ namespace Inventory {
 
     void compareWeapon(Player &player, Weapon w1, Weapon w2) {
         system("cls");
+        std::cout << "The weapon will be replaced:" << std::endl;
         std::cout << "____________________________              ____________________________" << std::endl;
         std::cout << "| Name: " << w1.getName() << std::string(24 - w1.getName().length(), ' ') << "|        \\\\    | Name: " << w2.getName() << std::string(24 - w2.getName().length(), ' ') << "|" << std::endl;
         std::cout << "| Type: " << w1.getWeaponTypeString() << std::string(24 - w1.getWeaponTypeString().length(), ' ');
@@ -201,10 +231,13 @@ namespace Inventory {
         std::cout << "|   ========   | Damage: " << w2.getDamage() << " Atkspd: " << w2.getAtkSpeed() << std::string(24 - std::to_string(w2.getDamage()).length() - std::to_string(w2.getAtkSpeed()).length() - 10, ' ') << "|" << std::endl;
         std::cout << "|                          |         //   |                          |" << std::endl;
         std::cout << "|__________________________|        //    |__________________________|" << std::endl;
+        std::cout << "Press any key to continue. " << std::endl;
+        getch();
     }
 
     void compareArmor(Player &player, Armor a1, Armor a2) {
         system("cls");
+        std::cout << "The armor will be replaced:" << std::endl;
         std::cout << "____________________________              ____________________________" << std::endl;
         std::cout << "| Name: " << a1.getName() << std::string(24 - a1.getName().length(), ' ') << "|        \\\\    | Name: " << a2.getName() << std::string(24 - a2.getName().length(), ' ') << "|" << std::endl;
         std::cout << "| Type: " << a1.getArmorTypeString() << std::string(24 - a1.getArmorTypeString().length(), ' ');
@@ -213,6 +246,8 @@ namespace Inventory {
         std::cout << "|   ========   | Health: " << a2.getHealth() << " Def: " << a2.getDefense() << std::string(24 - std::to_string(a2.getHealth()).length() - std::to_string(a2.getDefense()).length() - 10, ' ') << "|" << std::endl;
         std::cout << "|                          |         //   |                          |" << std::endl;
         std::cout << "|__________________________|        //    |__________________________|" << std::endl;
+        std::cout << "Press any key to continue. " << std::endl;
+        getch();
     }
     
     // ching add ham ben duoi nhe
