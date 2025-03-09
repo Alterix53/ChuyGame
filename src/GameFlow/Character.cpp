@@ -90,19 +90,19 @@ namespace Character {
                 "Name: " + player.getSecondWeapon().getName(),
             };
             armorSlot1 = {
-                "part: " + player.getArmor(ArmorPart::HELMET).getArmorPartString(),
+                "Type: " + player.getArmor(ArmorPart::HELMET).getArmorTypeString(),
                 "Name: " + player.getArmor(ArmorPart::HELMET).getName(),
             };
             armorSlot2 = {
-                "part: " + player.getArmor(ArmorPart::CHESTPLATE).getArmorPartString(),
+                "Type: " + player.getArmor(ArmorPart::CHESTPLATE).getArmorTypeString(),
                 "Name: " + player.getArmor(ArmorPart::CHESTPLATE).getName(),
             };
             armorSlot3 = {
-                "part: " + player.getArmor(ArmorPart::LEGGINGS).getArmorPartString(),
+                "Type: " + player.getArmor(ArmorPart::LEGGINGS).getArmorTypeString(),
                 "Name: " + player.getArmor(ArmorPart::LEGGINGS).getName(),
             };
             armorSlot4 = {
-                "part: " + player.getArmor(ArmorPart::BOOTS).getArmorPartString(),
+                "Type: " + player.getArmor(ArmorPart::BOOTS).getArmorTypeString(),
                 "Name: " + player.getArmor(ArmorPart::BOOTS).getName(),
             };
         };
@@ -183,17 +183,6 @@ namespace Character {
     }   
 
     void saveSlotSign() {
-        // sign = {
-        //     "\033[0;33m" + slotToStringUpper(Slot::MAIN) + "\033[0m",
-        //     "\033[0;31m" + slotToStringUpper(Slot::WEAPON1) + "\033[0m",
-        //     "\033[0;31m" + slotToStringUpper(Slot::WEAPON2) + "\033[0m",
-        //     "\033[0;31m" + slotToStringUpper(Slot::ARMOR1) + "\033[0m",
-        //     "\033[0;31m" + slotToStringUpper(Slot::ARMOR2) + "\033[0m",
-        //     "\033[0;31m" + slotToStringUpper(Slot::ARMOR3) + "\033[0m",
-        //     "\033[0;31m" + slotToStringUpper(Slot::ARMOR4) + "\033[0m",
-        //     "\033[0;31m" + slotToStringUpper(Slot::CHARACTER) + "\033[0m",
-        //     "\033[0;31m" + slotToStringUpper(Slot::INVENTORY) + "\033[0m",
-        // };
         sign = {
             "\033[0;33m" + slotToStringUpper(Slot::MAIN) + "\033[0m",
             "\033[0;31m" + slotToStringUpper(Slot::WEAPON1) + "\033[0m",
