@@ -125,7 +125,7 @@ void Shop::runShop(Player& buyer) {
 }
 
 void Shop::displayShop(int opt) {
-	std::string options[] = { "Weapon", "Armor", "Return" };
+	std::string options[] = { "Weapon", "Armor", "Back" };
 
 	std::cout << "\033[1;31m";
 	std::cout << "\t\t CHOOSE THE ITEM'S CATEGORY" << "\n\n";

@@ -5,10 +5,10 @@ namespace Character {
         "\033[0;33m" + slotToStringUpper(Slot::MAIN) + "\033[0m",
         "\033[0;31m" + slotToStringUpper(Slot::WEAPON1) + "\033[0m",
         "\033[0;31m" + slotToStringUpper(Slot::WEAPON2) + "\033[0m",
-        "\033[0;31m" + slotToStringUpper(Slot::ARMOR1) + "\033[0m",
-        "\033[0;31m" + slotToStringUpper(Slot::ARMOR2) + "\033[0m",
-        "\033[0;31m" + slotToStringUpper(Slot::ARMOR3) + "\033[0m",
-        "\033[0;31m" + slotToStringUpper(Slot::ARMOR4) + "\033[0m",
+        "\033[0;31mHELMET\033[0m",
+        "\033[0;31mCHESTPLATE\033[0m",
+        "\033[0;31mLEGGINGS\033[0m",
+        "\033[0;31mBOOTS\033[0m",
         "\033[0;31m" + slotToStringUpper(Slot::CHARACTER) + "\033[0m",
         "\033[0;31m" + slotToStringUpper(Slot::INVENTORY) + "\033[0m",
     };
@@ -29,7 +29,17 @@ namespace Character {
     }
 
     std::string slotToStringUpper(Slot slot) {
-        std::string string = slotToString(slot);
+        std::string string;
+        if (slot == Slot::ARMOR1) {
+            string = "helmet";
+        } else if (slot == Slot::ARMOR2) {
+            string = "chestplate";
+        } else if (slot == Slot::ARMOR3) {
+            string = "leggings";
+        } else if (slot == Slot::ARMOR4) {
+            string = "boots";
+        } else string = slotToString(slot);
+
         std::transform(string.begin(), string.end(), string.begin(), ::toupper);
         return string;
     }
@@ -108,9 +118,9 @@ namespace Character {
             std::cout << std::right << std::setw(Frame::space + mainSlot[4].length()) << mainSlot[4] << std::endl;
             std::cout << std::right << std::setw(Frame::space + mainSlot[5].length()) << mainSlot[5] << std::endl;
             std::cout << "\n\n";
-            std::cout << std::left << std::setw(Frame::space + 11) <<  sign[int(Slot::ARMOR1)] << std::setw(Frame::space + 11) << sign[int(Slot::ARMOR2)] << std::setw(Frame::space + 11) << sign[int(Slot::ARMOR3)] << std::setw(Frame::space) << sign[int(Slot::ARMOR4)] << std::endl;
-            std::cout << std::left << std::setw(Frame::space) << armorSlot1[0] << std::setw(Frame::space) << armorSlot2[0] << std::setw(Frame::space) << armorSlot3[0] << std::setw(Frame::space) << armorSlot4[0] << std::endl;
-            std::cout << std::left << std::setw(Frame::space) << armorSlot1[1] << std::setw(Frame::space) << armorSlot2[1] << std::setw(Frame::space) << armorSlot3[1] << std::setw(Frame::space) << armorSlot4[1] << std::endl;
+            std::cout << std::left << std::setw(Frame::space + 11) <<  sign[int(Slot::ARMOR1)] << std::setw(Frame::space + 11) << sign[int(Slot::ARMOR2)] << std::setw(Frame::space + 11 + 5) << sign[int(Slot::ARMOR3)] << std::setw(Frame::space) << sign[int(Slot::ARMOR4)] << std::endl;
+            std::cout << std::left << std::setw(Frame::space) << armorSlot1[0] << std::setw(Frame::space) << armorSlot2[0] << std::setw(Frame::space + 5) << armorSlot3[0] << std::setw(Frame::space) << armorSlot4[0] << std::endl;
+            std::cout << std::left << std::setw(Frame::space) << armorSlot1[1] << std::setw(Frame::space) << armorSlot2[1] << std::setw(Frame::space + 5) << armorSlot3[1] << std::setw(Frame::space) << armorSlot4[1] << std::endl;
             std::cout << "\n\n\n";
             std::cout << std::right << std::setw(Frame::space * 2) << "Press ESC or Q to exit" << std::endl;
         };
@@ -173,14 +183,25 @@ namespace Character {
     }   
 
     void saveSlotSign() {
+        // sign = {
+        //     "\033[0;33m" + slotToStringUpper(Slot::MAIN) + "\033[0m",
+        //     "\033[0;31m" + slotToStringUpper(Slot::WEAPON1) + "\033[0m",
+        //     "\033[0;31m" + slotToStringUpper(Slot::WEAPON2) + "\033[0m",
+        //     "\033[0;31m" + slotToStringUpper(Slot::ARMOR1) + "\033[0m",
+        //     "\033[0;31m" + slotToStringUpper(Slot::ARMOR2) + "\033[0m",
+        //     "\033[0;31m" + slotToStringUpper(Slot::ARMOR3) + "\033[0m",
+        //     "\033[0;31m" + slotToStringUpper(Slot::ARMOR4) + "\033[0m",
+        //     "\033[0;31m" + slotToStringUpper(Slot::CHARACTER) + "\033[0m",
+        //     "\033[0;31m" + slotToStringUpper(Slot::INVENTORY) + "\033[0m",
+        // };
         sign = {
             "\033[0;33m" + slotToStringUpper(Slot::MAIN) + "\033[0m",
             "\033[0;31m" + slotToStringUpper(Slot::WEAPON1) + "\033[0m",
             "\033[0;31m" + slotToStringUpper(Slot::WEAPON2) + "\033[0m",
-            "\033[0;31m" + slotToStringUpper(Slot::ARMOR1) + "\033[0m",
-            "\033[0;31m" + slotToStringUpper(Slot::ARMOR2) + "\033[0m",
-            "\033[0;31m" + slotToStringUpper(Slot::ARMOR3) + "\033[0m",
-            "\033[0;31m" + slotToStringUpper(Slot::ARMOR4) + "\033[0m",
+            "\033[0;31mHELMET\033[0m",
+            "\033[0;31mCHESTPLATE\033[0m",
+            "\033[0;31mLEGGINGS\033[0m",
+            "\033[0;31mBOOTS\033[0m",
             "\033[0;31m" + slotToStringUpper(Slot::CHARACTER) + "\033[0m",
             "\033[0;31m" + slotToStringUpper(Slot::INVENTORY) + "\033[0m",
         };
