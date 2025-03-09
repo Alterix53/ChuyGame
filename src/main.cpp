@@ -7,17 +7,18 @@
 #include "GameFlow/Character.hpp"
 #include "Utils.hpp"
 
-const int OPTION = 4;
+const int OPTION = 5;
 
 enum class Menu {
     CHARACTER,
     SHOP,
+    SETTING,
     PLAY,
     EXIT
 };
 
 void displayMenu(int option) {
-    std::string options[] = {"Character", "Shop", "Play", "Exit"};
+    std::string options[] = {"Character", "Shop", "Setting", "Play", "Exit"};
 
     std::cout << "\033[1;31m";
     std::cout << "\t\t\t  CHUYGAME" << "\n\n";
@@ -59,6 +60,9 @@ int main() {
             } 
             if (option == int(Menu::SHOP)) {
                 shop.runShop(player);
+            }
+            if (option == int(Menu::SETTING)) {
+
             }
             if (option == int(Menu::PLAY)) {
                 std::string weaponJson = "{\"weapon\":[" + utils::makeJsonWeapon(player.getFirstWeapon()) + "," + utils::makeJsonWeapon(player.getSecondWeapon()) +  "],";
