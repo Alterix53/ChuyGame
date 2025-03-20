@@ -45,18 +45,17 @@ private:
 	std::vector<Armor> _inventoryArmor;
 
 public:
-	// constructor and destructor
+	// --------------------- CONSTRUCTOR AND DESTRUCTOR --------------------- 
 	Player();													// default constructor
 	Player(std::string name, std::string ID, int cost);		// constructor with parameters, contain basic player's info only
 	Player(std::string name, std::string ID, int cost, int health, int attack, int defense, float atkSpeed); // constructor with parameters, contain all player's info
 	Player(const Player& player); // copy de chi khong biet
 	~Player();
 
-	// getter and setter
+	// -------------------------- GETTER AND SETTER -------------------------
+	// Getter and setter for game info:
 	void setPoint(int points);
 	int getPoint() const;
-	std::string getName() const;
-	std::string getID() const;
 	int getHealth() const;
 	int getAttack() const;
 	int getDefense() const;
@@ -74,7 +73,14 @@ public:
 	void setEquippedWeapon(bool equip, int index);
 	void setEquippedArmor(bool equip, int index);
 
-	// adding weapon and armor to inventory
+	//Getter and setter for player's info (linked in discord)
+	std::string getName() const;
+	std::string getID() const;
+	void setName(std::string name);
+	void setID(std::string ID);
+
+	// -------------------------- ADD ITEM METHOD -------------------------
+	// buy weapon and armor from shop and to player's inventory
 	void buyWeapon(Weapon weapon);				// buy and add weapon to player's inventory
 	void buyArmor(Armor armor);					// buy and add armor to player's inventory
 

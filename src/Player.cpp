@@ -117,6 +117,14 @@ float Player::calculateEffectiveAtkspeedAll() {
 	this->_weapon2.setAtkSpeed(effectiveAtkspeed(this->_weapon2.getAtkSpeed()));
 }
 
+void Player::setName(std::string name) {
+    _name = name;
+}
+
+void Player::setID(std::string id) {
+    _ID = id;
+}
+
 // below are the functions to add weapon and armor
 // slot are 1 and 2, 1 is left, 2 is right
 void Player::equipWeapon(Weapon weapon, int slot) {
