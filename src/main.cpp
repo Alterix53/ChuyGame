@@ -6,6 +6,7 @@
 #include <vector>
 #include "GameFlow/Character.hpp"
 #include "Utils.hpp"
+#include "GameFlow/Setting.hpp"
 
 const int OPTION = 5;
 
@@ -62,7 +63,7 @@ int main() {
                 shop.runShop(player);
             }
             if (option == int(Menu::SETTING)) {
-
+                Setting::show(player);
             }
             if (option == int(Menu::PLAY)) {
                 std::string weaponJson = "{\"weapon\":[" + utils::makeJsonWeapon(player.getFirstWeapon()) + "," + utils::makeJsonWeapon(player.getSecondWeapon()) +  "],";
