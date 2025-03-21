@@ -1,4 +1,7 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 const args = process.argv.slice(2);
 if (args.length === 0) {
@@ -16,7 +19,8 @@ try {
     const data = JSON.parse(cleanJsonString);
     console.log(data);
 
-    const apiUrl = 'http://localhost:3000/players';
+
+    const apiUrl =  'https://chuygame.vercel.app/players';
 
     axios.post(apiUrl, data)
         .then(response => {
