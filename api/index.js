@@ -1,4 +1,5 @@
 import express from 'express';
+import axios from 'axios';
 
 const app = express();
 app.use(express.json());
@@ -7,6 +8,14 @@ const players = [];
 
 app.get("/players", (req, res) => {
     res.json(players);
+});
+
+const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
+
+app.delete("/players", (req, res) => {
+    players.splice(0, players.length);
+    players.length = 0;
+    res.json({ message: "Đã xoá toàn bộ người chơi" });
 });
 
 app.get("/players/:id", (req, res) => {
@@ -20,51 +29,21 @@ app.get("/players/:id", (req, res) => {
     res.json(player);
 });
 
-app.post("/players", (req, res) => {
+app.post("/players", async (req, res) => {
     const { weapon, armor, name, id } = req.body;
 
     if (!Array.isArray(weapon) || !Array.isArray(armor)) {
         return res.status(400).json({ message: "weapon va armor phai la mang" });
     }
 
-    const validWeapon = weapon.every(w => 
-        w.type && 
-        w.name && 
-        typeof w.damage === 'number' && 
-        typeof w.atkSpeed === 'number' && 
-        typeof w.cost === 'number'
-    );
-
-    if (!validWeapon) {
-        return res.status(400).json({ message: "Thong tin vu khi khong hop le" });
-    }
-
-    const validArmor = armor.every(a => 
-        a.type && 
-        a.name && 
-        a.part && 
-        typeof a.defense === 'number' && 
-        typeof a.health === 'number'
-    );
-
-    if (!validArmor) {
-        return res.status(400).json({ message: "Thong tin giap khong hop le" });
-    }
-
-    const newPlayer = {
-        weapon,
-        armor,
-        name,
-        id,
-        createdAt: new Date()
-    };
-
+    const newPlayer = { weapon, armor, name, id, createdAt: new Date() };
     players.push(newPlayer);
 
-    res.status(201).json({ 
-        message: "Them nguoi choi thanh cong", 
-        player: newPlayer 
+    await axios.post(DISCORD_WEBHOOK_URL, {
+        content: `🛡️ Người chơi mới: **${name}** (ID: ${id}) vừa tham gia!`
     });
+
+    res.status(201).json({ message: "Them nguoi choi thanh cong", player: newPlayer });
 });
 
 app.put("/players/:id", (req, res) => {
@@ -92,10 +71,9 @@ app.put("/players/:id", (req, res) => {
         player: updatedPlayer
     });
 });
+export default app;
 
-const port = 3000;
-app.listen(port, () => {
-    console.log(`http://localhost:${port}`);
-});
-
-// export default app;
+// const port = 3000;
+// app.listen(port, () => {
+//     console.log(`http://localhost:${port}`);
+// });
