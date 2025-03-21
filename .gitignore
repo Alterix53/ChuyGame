@@ -4,6 +4,9 @@ api/node_modules/
 config.py
 __pycache__/
 
+src/data/json.hpp
+
+
 *.log
 
 __test__/
