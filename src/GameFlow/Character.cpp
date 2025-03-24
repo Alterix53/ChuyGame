@@ -212,6 +212,7 @@ namespace Character {
         if (option == Slot::ARMOR4) {
             return Slot::WEAPON2;
         }
+        return Slot::INVENTORY;
     }
     
     Slot goDown(const Slot &option) {
@@ -227,6 +228,7 @@ namespace Character {
         if (option == Slot::WEAPON2) {
             return Slot::ARMOR4;
         }
+        return Slot::INVENTORY;
     }
 
     Slot goLeft(const Slot &option) {
@@ -248,6 +250,7 @@ namespace Character {
         if (option == Slot::ARMOR2) {
             return Slot::ARMOR1;
         }
+        return Slot::INVENTORY;
     }
     
     Slot goRight(const Slot &option) {
@@ -269,5 +272,6 @@ namespace Character {
         if (option == Slot::ARMOR3) {
             return Slot::ARMOR4;
         }
+        return Slot::INVENTORY;
     }
 }

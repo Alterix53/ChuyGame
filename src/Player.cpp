@@ -112,7 +112,7 @@ float Player::effectiveAtkspeed(float atkSpeed) const {
 	return atkSpeed * (1.0f - (log(weight + 1.0f) / log(11.0f)));
 }
 
-float Player::calculateEffectiveAtkspeedAll() {
+void Player::calculateEffectiveAtkspeedAll() {
 	this->_weapon1.setAtkSpeed(effectiveAtkspeed(this->_weapon1.getAtkSpeed()));
 	this->_weapon2.setAtkSpeed(effectiveAtkspeed(this->_weapon2.getAtkSpeed()));
 }
