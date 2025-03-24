@@ -88,7 +88,9 @@ int main() {
                 getch();
             }
             if (option == int(Menu::EXIT)) {
-                player.printPlayerInventory();
+                system("cls");
+                std::cout << "\t\tCam on ban da choi game\n\n";
+                std::cout << "\t\tChuygame - MiSide v2 cua chung toi\n";
                 break;
             }
         }

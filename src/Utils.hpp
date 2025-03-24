@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <algorithm>
 #include "Constants.hpp"
+#include <cstdlib>  
 
 using namespace Constants::Frame;
 
@@ -20,6 +21,8 @@ namespace utils {
     std::string makeJsonArmor(const Armor &armor);
     std::string colorString(std::string str, int color, int mode = 0);
     
+    void clearScreen();
+
     namespace dialog {
         namespace Choice {
             void clearLastTwoLines();
