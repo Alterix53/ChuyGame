@@ -28,17 +28,30 @@ jobs:
         npm test
 
   cpp:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-    - name: Install dependencies
-      run: sudo apt-get install -y g++ make
+    
+    - name: Download json.hpp
+      run: |
+        curl -L https://github.com/nlohmann/json/releases/latest/download/json.hpp -o src/data/json.hpp
+    - name: Install MinGW
+      run: |
+        choco install mingw -y
+
+    - name: Update PATH for MinGW
+      run: echo "C:\ProgramData\mingw64\mingw64\bin" >> $GITHUB_PATH
+    
+    - name: Verify MinGW installation
+      run: g++ --version
+
     - name: Build project
       run: |
         cd src
         g++ *.cpp data/*.cpp GameFlow/*.cpp -o main.exe
+        
     - name: Run tests
       run: |
         cd src
-        ./main
+        ./main.exe

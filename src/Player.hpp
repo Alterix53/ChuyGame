@@ -62,7 +62,7 @@ public:
 	int getAtkSpeed() const;
 	int getTotalWeight() const;
 	float effectiveAtkspeed(float atkSpeed) const;
-	float calculateEffectiveAtkspeedAll();
+	void calculateEffectiveAtkspeedAll();
 	std::vector<Armor> getInventoryArmor() const;
 	std::vector<Weapon> getInventoryWeapon() const;
 	// int getCritRate();
