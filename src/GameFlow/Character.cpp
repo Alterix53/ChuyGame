@@ -132,26 +132,29 @@ namespace Character {
             inital();
             display();
             char key = getch();
+            if (key == -32) { 
+                key = _getch();
+            }
             if (key == 'q' || key == 'Q' || int(key) == 27) { 
                 saveSlotSign();
                 return;
-            } else if (key == 'w' || key == 'W') {
+            } else if (key == 'w' || key == 'W' || key == 72) {
                 move = true;
                 if (tab == Tab::CHARACTER) {
                     option = goUp(option);
                 }
-            } else if (key == 's' || key == 'S') {
+            } else if (key == 's' || key == 'S' || key == 80) {
                 move = true;
                 if (tab == Tab::CHARACTER) {
                     option = goDown(option);
                 }
 
-            } else if (key == 'a' || key == 'A') {
+            } else if (key == 'a' || key == 'A' || key == 75) {
                 move = true;
                 if (tab == Tab::CHARACTER) {
                     option = goLeft(option);
                 }
-            } else if (key == 'd' || key == 'D') {
+            } else if (key == 'd' || key == 'D' || key == 77) {
                 move = true;
                 if (tab == Tab::CHARACTER) {
                     option = goRight(option);
