@@ -36,11 +36,15 @@ jobs:
     - name: Download json.hpp
       run: |
         curl -L https://github.com/nlohmann/json/releases/latest/download/json.hpp -o src/data/json.hpp
-    
-    - name: Install dependencies
+    - name: Install MinGW
       run: |
         choco install mingw -y
-        refreshenv
+
+    - name: Update PATH for MinGW
+      run: echo "C:\ProgramData\mingw64\mingw64\bin" >> $GITHUB_PATH
+    
+    - name: Verify MinGW installation
+      run: g++ --version
 
     - name: Build project
       run: |
