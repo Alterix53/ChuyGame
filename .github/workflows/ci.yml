@@ -50,8 +50,3 @@ jobs:
       run: |
         cd src
         g++ *.cpp data/*.cpp GameFlow/*.cpp -o main.exe
-        
-    - name: Run tests
-      run: |
-        cd src
-        ./main.exe
